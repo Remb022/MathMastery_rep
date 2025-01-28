@@ -48,7 +48,7 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
 
-    //Фу, Выплюнь!
+    //Фу, Выплюнь!(я не понимаю почему не отправляется)
     implementation(libs.androidx.core.ktx)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
