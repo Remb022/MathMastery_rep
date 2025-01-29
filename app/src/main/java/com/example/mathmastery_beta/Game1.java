@@ -1,5 +1,6 @@
 package com.example.mathmastery_beta;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -18,16 +19,8 @@ public class Game1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game1);
 
-        ViewPager2 viewPager = findViewById(R.id.viewPager2);
-        ImageButton back = findViewById(R.id.back);
-
-        //Кнопка назад
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        setFunctionalHeaderIcon();
+        ViewPager2 viewPager = findViewById(R.id.level_list_pager);
 
         // Разделение уровней на страницы
         List<List<Integer>> levelPages = new ArrayList<>();
@@ -39,4 +32,16 @@ public class Game1 extends AppCompatActivity {
         LevelPagerAdapter adapter = new LevelPagerAdapter(levelPages, this);
         viewPager.setAdapter(adapter);
     }
+
+    private void setFunctionalHeaderIcon() {
+        ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
+        functionalHeaderIcon.setImageResource(R.drawable.icon_homepage);
+        functionalHeaderIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
 }
