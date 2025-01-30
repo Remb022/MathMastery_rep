@@ -1,6 +1,5 @@
 package com.example.mathmastery_beta;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Game1 extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +30,10 @@ public class Game1 extends AppCompatActivity {
         // Установка адаптера
         LevelPagerAdapter adapter = new LevelPagerAdapter(levelPages, this);
         viewPager.setAdapter(adapter);
+
+        ComponentAdaptive componentAdaptive = new ComponentAdaptive(this);
+        componentAdaptive.setHeaderComponentSize();
+        componentAdaptive.setFooterTextSize();
     }
 
     private void setFunctionalHeaderIcon() {

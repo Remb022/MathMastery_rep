@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Game1">
+    tools:context=".GameActivity">
 
     <!-- Header -->
     <include
         layout="@layout/header_component"
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="100dp"/>
+        android:layout_height="wrap_content"/>
 
     <!-- Body -->
     <LinearLayout
@@ -41,7 +41,7 @@
         layout="@layout/footer_component"
         android:id="@+id/footer"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <View

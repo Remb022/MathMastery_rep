@@ -21,7 +21,7 @@
 
             <!-- Игра 1 -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardFirstGame"
+                android:id="@+id/card_game_1"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"
@@ -40,6 +40,7 @@
                     android:src="@drawable/info_icon" />
 
                 <TextView
+                    android:id="@+id/level_card_info_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -50,6 +51,7 @@
 
                 <!-- Рекорд -->
                 <TextView
+                    android:id="@+id/level_card_score_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -66,6 +68,7 @@
 
             <!-- Игра 2 -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_game_2"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"
@@ -84,6 +87,7 @@
                     android:src="@drawable/info_icon" />
 
                 <TextView
+                    android:id="@+id/level_card_info_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -94,6 +98,7 @@
 
                 <!-- Рекорд -->
                 <TextView
+                    android:id="@+id/level_card_score_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -114,6 +119,7 @@
 
             <!-- Игра 3 -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_game_3"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"
@@ -132,6 +138,7 @@
                     android:src="@drawable/info_icon" />
 
                 <TextView
+                    android:id="@+id/level_card_info_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -142,6 +149,7 @@
 
                 <!-- Рекорд -->
                 <TextView
+                    android:id="@+id/level_card_score_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -158,6 +166,7 @@
 
             <!-- Игра 4 -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_game_4"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"
@@ -176,6 +185,7 @@
                     android:src="@drawable/info_icon" />
 
                 <TextView
+                    android:id="@+id/level_card_info_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -186,6 +196,7 @@
 
                 <!-- Рекорд -->
                 <TextView
+                    android:id="@+id/level_card_score_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -206,6 +217,7 @@
 
             <!-- Игра 5 -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_game_5"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"
@@ -224,6 +236,7 @@
                     android:src="@drawable/info_icon" />
 
                 <TextView
+                    android:id="@+id/level_card_info_5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -234,6 +247,7 @@
 
                 <!-- Рекорд -->
                 <TextView
+                    android:id="@+id/level_card_score_5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -250,6 +264,7 @@
 
             <!-- Игра 6 -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_game_6"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"
@@ -268,6 +283,7 @@
                     android:src="@drawable/info_icon" />
 
                 <TextView
+                    android:id="@+id/level_card_info_6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -278,6 +294,7 @@
 
                 <!-- Рекорд -->
                 <TextView
+                    android:id="@+id/level_card_score_6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"

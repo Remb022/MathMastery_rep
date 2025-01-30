@@ -1,18 +1,12 @@
 package com.example.mathmastery_beta;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageButton;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-
-import org.jetbrains.annotations.Nullable;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,16 +16,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setFunctionalHeaderIcon();
-        CardView cardFirstGame = findViewById(R.id.cardFirstGame);
+        CardView cardFirstGame = findViewById(R.id.card_game_1);
 
         cardFirstGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Game1.class);
+                Intent intent = new Intent(MainActivity.this, GameActivity.class);
                 startActivity(intent);
             }
         });
 
+        ComponentAdaptive componentAdaptive = new ComponentAdaptive(this);
+        componentAdaptive.setHeaderComponentSize();
+        componentAdaptive.setMainPageComponentSize();
+        componentAdaptive.setFooterTextSize();
     }
 
     private void setFunctionalHeaderIcon() {
