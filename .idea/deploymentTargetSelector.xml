@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="MathMastery_beta.app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-01-30T09:17:57.811453300Z">
+        <DropdownSelection timestamp="2025-01-30T14:59:25.764207100Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="PhysicalDevice" identifier="serial=088793728O003114" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\Вадим\.android\avd\Pixel_8_Pro_API_31.avd" />
             </handle>
           </Target>
         </DropdownSelection>

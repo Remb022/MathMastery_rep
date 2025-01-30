@@ -14,10 +14,15 @@ public class ComponentAdaptive {
         this.activity = activity;
     }
 
-    private int getScreenWidthPixels() {
+    private int getScreenXDPI() {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        return displayMetrics.widthPixels;
+        return (int)displayMetrics.xdpi;
+    }
+
+    private float getElementTextSize(float baseSize){
+        float xdpi = getScreenXDPI();
+        return baseSize * (xdpi / 160f);
     }
 
     // HEADER ADAPTIVE
@@ -31,8 +36,12 @@ public class ComponentAdaptive {
     private void setAvatarIconSize() {
         ImageButton avatarHeaderIcon = activity.findViewById(R.id.avatar_header_icon);
 
-        int screenWidth = getScreenWidthPixels();
-        int elementSize = screenWidth / 7;
+        int baseSizeDp = 60;
+        int elementSize = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                baseSizeDp,
+                activity.getResources().getDisplayMetrics()
+        );
 
         ViewGroup.LayoutParams params = avatarHeaderIcon.getLayoutParams();
         params.width = elementSize;
@@ -43,24 +52,26 @@ public class ComponentAdaptive {
     private void setNicknameInfoSize() {
         TextView nicknameHeaderInfo = activity.findViewById(R.id.nickname_header_info);
 
-        int screenWidth = getScreenWidthPixels();
-        int elementSize = screenWidth / 45;
-        nicknameHeaderInfo.setTextSize(TypedValue.COMPLEX_UNIT_SP, elementSize);
+        float elementSize = getElementTextSize(18);
+        nicknameHeaderInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX, elementSize);
     }
 
     private void setLevelInfoSize() {
         TextView levelHeaderInfo = activity.findViewById(R.id.level_header_info);
 
-        int screenWidth = getScreenWidthPixels();
-        int elementSize = screenWidth / 55;
-        levelHeaderInfo.setTextSize(TypedValue.COMPLEX_UNIT_SP, elementSize);
+        float elementSize = getElementTextSize(15);
+        levelHeaderInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX, elementSize);
     }
 
     private void setFunctionalIconSize() {
         ImageButton functionalHeaderIcon = activity.findViewById(R.id.functional_header_icon);
 
-        int screenWidth = getScreenWidthPixels();
-        int elementSize = screenWidth / 10;
+        int baseSizeDp = 35;
+        int elementSize = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                baseSizeDp,
+                activity.getResources().getDisplayMetrics()
+        );
 
         ViewGroup.LayoutParams params = functionalHeaderIcon.getLayoutParams();
         params.width = elementSize;
@@ -84,12 +95,10 @@ public class ComponentAdaptive {
                 R.id.level_card_info_6
         };
 
-        int screenWidth = getScreenWidthPixels();
-        int elementSize = screenWidth / 24;
-
+        float elementSize = getElementTextSize(30);
         for (int id : levelCardInfoId) {
             TextView levelCardInfo = activity.findViewById(id);
-            levelCardInfo.setTextSize(TypedValue.COMPLEX_UNIT_SP, elementSize);
+            levelCardInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX, elementSize);
         }
     }
 
@@ -103,12 +112,10 @@ public class ComponentAdaptive {
                 R.id.level_card_score_6
         };
 
-        int screenWidth = getScreenWidthPixels();
-        int elementSize = screenWidth / 48;
-
+        float elementSize = getElementTextSize(18);
         for (int id : levelCardScoreId) {
             TextView levelCardInfo = activity.findViewById(id);
-            levelCardInfo.setTextSize(TypedValue.COMPLEX_UNIT_SP, elementSize);
+            levelCardInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX, elementSize);
         }
     }
 
@@ -117,9 +124,8 @@ public class ComponentAdaptive {
         TextView levelFooterText = activity.findViewById(R.id.level_footer_text);
         TextView levelFooterScore = activity.findViewById(R.id.level_footer_score);
 
-        int screenWidth = getScreenWidthPixels();
-        int elementSize = screenWidth / 36;
-        levelFooterText.setTextSize(TypedValue.COMPLEX_UNIT_SP, elementSize);
-        levelFooterScore.setTextSize(TypedValue.COMPLEX_UNIT_SP, elementSize);
+        float elementSize = getElementTextSize(20);
+        levelFooterText.setTextSize(TypedValue.COMPLEX_UNIT_PX, elementSize);
+        levelFooterScore.setTextSize(TypedValue.COMPLEX_UNIT_PX, elementSize);
     }
 }
