@@ -9,11 +9,8 @@
 
     <!-- Header -->
     <include
-        layout="@layout/header_component"
         android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="10dp"/>
+        layout="@layout/header_component"/>
 
     <!-- Body -->
     <ScrollView
