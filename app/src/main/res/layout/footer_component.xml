@@ -25,7 +25,7 @@
         android:backgroundTint="@color/gray"
         android:layout_margin="15dp"
         android:layout_gravity="center"
-        android:alpha="0.8">
+        android:alpha="0.9">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,7 +44,6 @@
                     android:text="LVL"
                     android:textColor="@color/white"/>
 
-                <!-- LVL -->
                 <TextView
                     android:id="@+id/level_footer_score"
                     android:layout_width="wrap_content"
@@ -54,7 +53,6 @@
                     android:textSize="20sp"
                     android:text="1"/>
 
-                <!-- Прогресс уровня -->
                 <ProgressBar
                     android:id="@+id/progressBar"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
