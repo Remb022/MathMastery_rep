@@ -15,5 +15,25 @@ public class LevelBarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level);
+
+        setFunctionalHeaderIcon();
+
+        Intent intent = getIntent();
+        TextView levelNumber = findViewById(R.id.levelNumber);
+
+        //Номер уровня на header
+        int level = intent.getIntExtra("levelNumber", 0);
+        levelNumber.setText(String.valueOf(level));
+    }
+
+    private void setFunctionalHeaderIcon() {
+        ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
+        functionalHeaderIcon.setImageResource(R.drawable.icon_list);
+        functionalHeaderIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

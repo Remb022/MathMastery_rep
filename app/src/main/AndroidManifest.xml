@@ -16,7 +16,7 @@
             android:name=".LevelBarActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".GameActivity"
+            android:name=".GameActivityFirst"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
