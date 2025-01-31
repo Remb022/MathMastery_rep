@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setFunctionalHeaderIcon();
         CardView cardFirstGame = findViewById(R.id.card_game_1);
 
         cardFirstGame.setOnClickListener(new View.OnClickListener() {
@@ -25,16 +24,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        ComponentAdaptive componentAdaptive = new ComponentAdaptive(this);
-        componentAdaptive.setHeaderComponentSize();
-        componentAdaptive.setMainPageComponentSize();
-        componentAdaptive.setFooterTextSize();
     }
-
-    private void setFunctionalHeaderIcon() {
-        ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
-        functionalHeaderIcon.setImageResource(R.drawable.icon_settings);
-    }
-
 }
