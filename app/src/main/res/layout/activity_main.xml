@@ -7,19 +7,20 @@
     android:background="@color/white"
     tools:context=".MainActivity">
 
-    <!-- Шапка -->
+    <!-- Header -->
     <include
         android:id="@+id/header"
-        layout="@layout/header"/>
+        layout="@layout/header_component"/>
 
+    <!-- Body -->
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/footer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header">
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toTopOf="@id/footer">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,7 +36,7 @@
 
                 <!-- Игра 1 -->
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardFirstGame"
+                    android:id="@+id/card_game_1"
                     android:layout_width="0dp"
                     android:layout_height="250dp"
                     android:layout_weight="1"
@@ -308,8 +309,9 @@
 
     </ScrollView>
 
+    <!-- Footer -->
     <include
-        android:id="@+id/footer"
-        layout="@layout/footer"/>
+        layout="@layout/footer_component"
+        android:id="@+id/footer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

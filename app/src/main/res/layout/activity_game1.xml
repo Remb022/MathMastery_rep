@@ -5,25 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Game1">
+    tools:context=".GameActivity">
 
     <include
         android:id="@+id/header"
-        layout="@layout/header"/>
+        layout="@layout/header_component"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/footer"
+        app:layout_constraintBottom_toTopOf="@id/footer_component"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header">
+        app:layout_constraintTop_toBottomOf="@id/header">
 
-        <!-- id не трогать! -->
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager2"
+            android:id="@+id/level_list_pager"
             android:layout_width="match_parent"
             android:layout_height="520dp"
             android:orientation="horizontal"
@@ -34,7 +33,7 @@
     </LinearLayout>
 
     <include
-        android:id="@+id/footer"
-        layout="@layout/footer"/>
+        android:id="@+id/footer_component"
+        layout="@layout/footer_component"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

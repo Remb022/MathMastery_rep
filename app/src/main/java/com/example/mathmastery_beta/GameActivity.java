@@ -11,23 +11,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Game1 extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_game1);
-
-        ViewPager2 viewPager = findViewById(R.id.viewPager2);
-        ImageButton back = findViewById(R.id.back);
-
-        //Кнопка назад
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        ViewPager2 viewPager = findViewById(R.id.level_list_pager);
+        ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
 
         // Разделение уровней на страницы
         List<List<Integer>> levelPages = new ArrayList<>();
@@ -35,8 +27,5 @@ public class Game1 extends AppCompatActivity {
         levelPages.add(Arrays.asList(10, 11, 12, 13, 14, 15, 16, 17, 18)); // Вторая страница
         levelPages.add(Arrays.asList(19, 20, 21, 22, 23, 24, 25, 26, 27)); // Третья страница
 
-        // Установка адаптера
-        LevelPagerAdapter adapter = new LevelPagerAdapter(levelPages, this);
-        viewPager.setAdapter(adapter);
     }
 }
