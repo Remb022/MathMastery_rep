@@ -1,5 +1,15 @@
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/color_tool_bar"
+    android:elevation="10dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
     <ImageButton
         android:id="@+id/avatar_header_icon"
@@ -44,4 +54,4 @@
         android:scaleType="fitXY"
         tools:ignore="ContentDescription" />
 
-</merge>
+</LinearLayout>
