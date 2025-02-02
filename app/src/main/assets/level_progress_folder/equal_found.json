@@ -1,0 +1,50 @@
+[
+  {
+    "level": 1,
+    "status": "active"
+  },
+  {
+    "level": 2,
+    "status": "no active"
+  },
+  {
+    "level": 3,
+    "status": "no active"	
+  },
+  {
+    "level": 4,
+    "status": "active"
+  },
+  {
+    "level": 5,
+    "status": "no active"
+  },
+  {
+    "level": 6,
+    "status": "no active"	
+  },
+  {
+    "level": 7,
+    "status": "active"
+  },
+  {
+    "level": 8,
+    "status": "no active"
+  },
+  {
+    "level": 9,
+    "status": "no active"	
+  },
+  {
+    "level": 10,
+    "status": "active"
+  },
+  {
+    "level": 11,
+    "status": "no active"
+  },
+  {
+    "level": 12,
+    "status": "no active"	
+  }
+]

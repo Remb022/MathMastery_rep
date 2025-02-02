@@ -21,7 +21,7 @@
 
             <!-- Игра 1 -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_game_1"
+                android:id="@+id/operand_found_game"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"
@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="X + Y = 17"
+                    android:text="@string/operand_found"
                     android:textColor="@color/gray"
                     android:textSize="30sp"
                     android:textStyle="bold" />
@@ -68,7 +68,7 @@
 
             <!-- Игра 2 -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_game_2"
+                android:id="@+id/operation_found_game"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"
@@ -91,7 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="2048"
+                    android:text="@string/operation_found"
                     android:textColor="@color/gray"
                     android:textSize="30sp"
                     android:textStyle="bold" />
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_margin="10dp"
-                    android:text="уровень: 138"
+                    android:text="уровень: 2"
                     android:textColor="@color/gray"
                     android:textSize="20sp" />
 
@@ -119,7 +119,7 @@
 
             <!-- Игра 3 -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_game_3"
+                android:id="@+id/result_found_game"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"
@@ -142,7 +142,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="&gt; &lt; ="
+                    android:text="@string/result_found"
                     android:textColor="@color/gray"
                     android:textSize="40sp"
                     android:textStyle="bold" />
@@ -166,7 +166,7 @@
 
             <!-- Игра 4 -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_game_4"
+                android:id="@+id/equal_found_game"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"
@@ -189,7 +189,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="X ? Y = C"
+                    android:text="@string/equal_found"
                     android:textColor="@color/gray"
                     android:textSize="30sp"
                     android:textStyle="bold" />
@@ -217,7 +217,7 @@
 
             <!-- Игра 5 -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_game_5"
+                android:id="@+id/mini_game_2048"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"
@@ -240,7 +240,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="X + X = 2X"
+                    android:text="@string/mini_game_2048"
                     android:textColor="@color/gray"
                     android:textSize="30sp"
                     android:textStyle="bold" />
@@ -252,7 +252,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_margin="10dp"
-                    android:text="уровень: 3"
+                    android:text="уровень: 35"
                     android:textColor="@color/gray"
                     android:textSize="20sp" />
 
@@ -287,7 +287,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="\?"
+                    android:text="@string/coming_soon_mode"
                     android:textColor="@color/gray"
                     android:textSize="70sp"
                     android:textStyle="bold" />
