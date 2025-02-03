@@ -13,7 +13,7 @@
         android:theme="@style/Theme.MathMastery_beta"
         tools:targetApi="31">
         <activity
-            android:name=".LevelActivity"
+            android:name=".GameFirstActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity

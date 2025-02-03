@@ -10,7 +10,7 @@
     <!-- Header -->
     <include
         android:id="@+id/header"
-        layout="@layout/header_component"/>
+        layout="@layout/component_header"/>
 
     <!-- Body -->
     <ScrollView
@@ -28,7 +28,7 @@
 
     <!-- Footer -->
     <include
-        layout="@layout/footer_component"
+        layout="@layout/component_footer"
         android:id="@+id/footer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

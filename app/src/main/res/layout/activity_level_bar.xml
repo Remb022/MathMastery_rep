@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <include layout="@layout/header_component" />
+        <include layout="@layout/component_header" />
 
     </LinearLayout>
 
@@ -48,7 +48,7 @@
     </LinearLayout>
 
     <include
-        layout="@layout/footer_component"
+        layout="@layout/component_footer"
         android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
