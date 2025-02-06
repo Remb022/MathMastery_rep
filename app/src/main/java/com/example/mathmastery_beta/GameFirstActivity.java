@@ -9,26 +9,30 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-public class Level extends AppCompatActivity {
+public class GameFirstActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_level);
+        setContentView(R.layout.activity_game_first);
+
+        setFunctionalHeaderIcon();
 
         Intent intent = getIntent();
-        ImageButton back = findViewById(R.id.back);
         TextView levelNumber = findViewById(R.id.levelNumber);
-
         int level = intent.getIntExtra("levelNumber", 0);
         levelNumber.setText(String.valueOf(level));
+    }
 
-        back.setOnClickListener(new View.OnClickListener() {
+    private void setFunctionalHeaderIcon() {
+        ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
+        functionalHeaderIcon.setImageResource(R.drawable.icon_homepage);
+        functionalHeaderIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
     }
+
 }

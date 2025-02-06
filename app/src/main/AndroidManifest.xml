@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,11 +13,11 @@
         android:theme="@style/Theme.MathMastery_beta"
         tools:targetApi="31">
         <activity
-            android:name=".Level"
+            android:name=".GameFirstActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Game1"
+            android:name=".LevelBarActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

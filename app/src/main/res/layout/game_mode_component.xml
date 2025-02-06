@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="18dp"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <!-- Игра 1 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/operand_found_game"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/yalow"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+
+                <!-- Информация игра 1 -->
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="8dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/icon_info" />
+
+                <TextView
+                    android:id="@+id/level_card_info_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/operand_found"
+                    android:textColor="@color/gray"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <!-- Рекорд -->
+                <TextView
+                    android:id="@+id/level_card_score_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="10dp"
+                    android:text="уровень: 18"
+                    android:textColor="@color/gray"
+                    android:textSize="20sp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="15dp"
+                android:layout_height="0dp" />
+
+            <!-- Игра 2 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/operation_found_game"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/yalow"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+
+                <!-- Информация игра 2 -->
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="8dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/icon_info" />
+
+                <TextView
+                    android:id="@+id/level_card_info_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/operation_found"
+                    android:textColor="@color/gray"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <!-- Рекорд -->
+                <TextView
+                    android:id="@+id/level_card_score_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="10dp"
+                    android:text="уровень: 2"
+                    android:textColor="@color/gray"
+                    android:textSize="20sp" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+
+            <!-- Игра 3 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/result_found_game"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/yalow"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+
+                <!-- Информация игра 3 -->
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="8dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/icon_info" />
+
+                <TextView
+                    android:id="@+id/level_card_info_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/result_found"
+                    android:textColor="@color/gray"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+
+                <!-- Рекорд -->
+                <TextView
+                    android:id="@+id/level_card_score_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="10dp"
+                    android:text="уровень: 7"
+                    android:textColor="@color/gray"
+                    android:textSize="20sp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="15dp"
+                android:layout_height="0dp" />
+
+            <!-- Игра 4 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/equal_found_game"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/yalow"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+
+                <!-- Информация игра 4 -->
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="8dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/icon_info" />
+
+                <TextView
+                    android:id="@+id/level_card_info_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/equal_found"
+                    android:textColor="@color/gray"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <!-- Рекорд -->
+                <TextView
+                    android:id="@+id/level_card_score_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="10dp"
+                    android:text="уровень: 37"
+                    android:textColor="@color/gray"
+                    android:textSize="20sp" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
+
+            <!-- Игра 5 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/mini_game_2048"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/yalow"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+
+                <!-- Информация игра 5 -->
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="8dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/icon_info" />
+
+                <TextView
+                    android:id="@+id/level_card_info_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/mini_game_2048"
+                    android:textColor="@color/gray"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <!-- Рекорд -->
+                <TextView
+                    android:id="@+id/level_card_score_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="10dp"
+                    android:text="уровень: 35"
+                    android:textColor="@color/gray"
+                    android:textSize="20sp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="15dp"
+                android:layout_height="0dp" />
+
+            <!-- Игра 6 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_game_6"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/yalow"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+
+                <!-- Информация игра 6 -->
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="8dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/icon_info" />
+
+                <TextView
+                    android:id="@+id/level_card_info_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/coming_soon_mode"
+                    android:textColor="@color/gray"
+                    android:textSize="70sp"
+                    android:textStyle="bold" />
+
+                <!-- Рекорд -->
+                <TextView
+                    android:id="@+id/level_card_score_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="10dp"
+                    android:text="уровень: 18"
+                    android:textColor="@color/gray"
+                    android:textSize="20sp" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

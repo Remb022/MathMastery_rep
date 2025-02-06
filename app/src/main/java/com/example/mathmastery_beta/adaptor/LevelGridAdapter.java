@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.mathmastery_beta.Level;
+import com.example.mathmastery_beta.GameFirstActivity;
 import com.example.mathmastery_beta.R;
 
 import java.util.List;
@@ -37,7 +37,7 @@ public class LevelGridAdapter extends RecyclerView.Adapter<LevelGridAdapter.View
 
         //Переход на уровни
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, Level.class);
+            Intent intent = new Intent(context, GameFirstActivity.class);
             //Передача номера уровня
             intent.putExtra("levelNumber",level);
             context.startActivity(intent);
