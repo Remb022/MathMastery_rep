@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "MathMastery_beta"
 include(":app")
- 
+include(":game2048")

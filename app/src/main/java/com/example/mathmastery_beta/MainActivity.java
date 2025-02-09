@@ -1,9 +1,12 @@
 package com.example.mathmastery_beta;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -12,6 +15,8 @@ import com.example.mathmastery_beta.level_status_model.EqualFoundModel;
 import com.example.mathmastery_beta.level_status_model.OperandFoundModel;
 import com.example.mathmastery_beta.level_status_model.OperationFoundModel;
 import com.example.mathmastery_beta.level_status_model.ResultFoundModel;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         CardView operationFoundGame = findViewById(R.id.operation_found_game);
         CardView resultFoundGame = findViewById(R.id.result_found_game);
         CardView equalFoundGame = findViewById(R.id.equal_found_game);
+        CardView miniGame2048 = findViewById(R.id.mini_game_2048);
 
         operandFoundGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +62,26 @@ public class MainActivity extends AppCompatActivity {
                         EqualFoundModel.class);
             }
         });
+        miniGame2048.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), com.kynzai.game2048.MainActivity.class);
+
+                //Проверяется есть ли активность или нет
+                PackageManager packageManager = v.getContext().getPackageManager();
+                List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
+
+                if (!activities.isEmpty()) {
+                    v.getContext().startActivity(intent);
+
+                    Toast.makeText(v.getContext(), "Активность найдена", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(v.getContext(), "Активность не найдена", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
 
         setFunctionalHeaderIcon();
     }

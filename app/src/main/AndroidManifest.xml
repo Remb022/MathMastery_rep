@@ -13,14 +13,6 @@
         android:theme="@style/Theme.MathMastery_beta"
         tools:targetApi="31">
         <activity
-            android:name=".GameFirstActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".LevelBarActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
@@ -30,6 +22,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".GameFirstActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".LevelBarActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kynzai.game2048.MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
