@@ -1,0 +1,28 @@
+[
+  {
+    "level": 1,
+    "status": "no active",
+    "exp": 50,
+    "record": "00:03",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": 100,
+    "rangeMax": 500,
+    "operationList": ["+", "-"],
+    "page": 1
+  },
+  {
+    "level": 2,
+    "status": "active",
+    "exp": 50,
+    "record": "00:21",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": 1000,
+    "rangeMax": 5000,
+    "operationList": ["+", "-"],
+    "page": 1
+  }
+]

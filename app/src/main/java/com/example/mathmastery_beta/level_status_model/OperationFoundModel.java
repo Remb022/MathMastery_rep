@@ -3,7 +3,8 @@ package com.example.mathmastery_beta.level_status_model;
 public class OperationFoundModel implements LevelModel {
     private int level;
     private String status;
-    private int param;
+    private int exp;
+    private String record;
 
     public int getLevel() {
         return level;
@@ -13,7 +14,11 @@ public class OperationFoundModel implements LevelModel {
         return status;
     }
 
-    public int getParam() {
-        return param;
+    public int getExp() {
+        return exp;
+    }
+
+    public String getRecord() {
+        return record;
     }
 }

@@ -1,0 +1,67 @@
+[
+  {
+    "level": 1,
+    "status": "active",
+    "exp": 50,
+    "record": "01:07",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": 0,
+    "rangeMax": 15,
+    "operationList": ["+"],
+    "page": 1
+  },
+  {
+    "level": 2,
+    "status": "active",
+    "exp": 50,
+    "record": "00:00",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": 0,
+    "rangeMax": 45,
+    "operationList": ["+"],
+    "page": 1
+  },
+  {
+    "level": 3,
+    "status": "active",
+    "exp": 50,
+    "record": "00:00",
+
+    "width": 3,
+    "height": 3,
+    "rangeMin": -20,
+    "rangeMax": 20,
+    "operationList": ["+"],
+    "page": 1
+  },
+  {
+    "level": 4,
+    "status": "active",
+    "exp": 50,
+    "record": "00:00",
+
+    "width": 3,
+    "height": 3,
+    "rangeMin": -40,
+    "rangeMax": 40,
+    "operationList": ["+", "-"],
+    "page": 1
+  },
+  {
+    "level": 5,
+    "status": "active",
+    "exp": 50,
+    "record": "00:00",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": 10,
+    "rangeMax": 50,
+    "operationList": ["+", "-", "*"],
+    "page": 1
+  }
+]

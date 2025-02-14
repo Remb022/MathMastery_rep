@@ -7,22 +7,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.mathmastery_beta.R;
+import com.example.mathmastery_beta.level_status_model.LevelModel;
+
 import java.util.List;
 import android.content.Context;
 
 
 public class LevelPagerAdapter extends RecyclerView.Adapter<LevelPagerAdapter.ViewHolder> {
 
-    private final List<List<Integer>> levelPages;
+    private final List<List<LevelModel>> levelPages;
     private final Context context;
+    private final String path;
 
-    public LevelPagerAdapter(List<List<Integer>> levelPages, Context context) {
+    public LevelPagerAdapter(List<List<LevelModel>> levelPages, Context context, String path) {
         this.levelPages = levelPages;
         this.context = context;
+        this.path = path;
     }
 
-    @NonNull
-    @Override
+    @Override @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.page_level, parent, false);
         return new ViewHolder(view);
@@ -30,10 +33,9 @@ public class LevelPagerAdapter extends RecyclerView.Adapter<LevelPagerAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        List<Integer> levels = levelPages.get(position);
+        List<LevelModel> levels = levelPages.get(position);
 
-        // Установка адаптера для сетки
-        LevelGridAdapter gridAdapter = new LevelGridAdapter(levels, context);
+        LevelGridAdapter gridAdapter = new LevelGridAdapter(levels, context, path);
         holder.recyclerView.setLayoutManager(new GridLayoutManager(holder.itemView.getContext(), 3));
         holder.recyclerView.setAdapter(gridAdapter);
     }

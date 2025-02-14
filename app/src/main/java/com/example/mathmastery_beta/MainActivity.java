@@ -2,7 +2,6 @@ package com.example.mathmastery_beta;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,37 +24,17 @@ public class MainActivity extends AppCompatActivity {
         CardView resultFoundGame = findViewById(R.id.result_found_game);
         CardView equalFoundGame = findViewById(R.id.equal_found_game);
 
-        operandFoundGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startLevelBarActivity("level_progress_folder/operand_found.json",
-                        OperandFoundModel.class);
-            }
-        });
+        operandFoundGame.setOnClickListener(v -> startLevelBarActivity("operand_found.json",
+                OperandFoundModel.class));
 
-        operationFoundGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startLevelBarActivity("level_progress_folder/operation_found.json",
-                        OperationFoundModel.class);
-            }
-        });
+        operationFoundGame.setOnClickListener(v -> startLevelBarActivity("operation_found.json",
+                OperationFoundModel.class));
 
-        resultFoundGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startLevelBarActivity("level_progress_folder/result_found.json",
-                        ResultFoundModel.class);
-            }
-        });
+        resultFoundGame.setOnClickListener(v -> startLevelBarActivity("result_found.json",
+                ResultFoundModel.class));
 
-        equalFoundGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startLevelBarActivity("level_progress_folder/equal_found.json",
-                        EqualFoundModel.class);
-            }
-        });
+        equalFoundGame.setOnClickListener(v -> startLevelBarActivity("equal_found.json",
+                EqualFoundModel.class));
 
         setFunctionalHeaderIcon();
 
