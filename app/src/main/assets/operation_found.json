@@ -3,66 +3,220 @@
     "level": 1,
     "status": "active",
     "exp": 50,
-    "record": "20:42"
+    "record": "00:00",
+
+    "rangeMin": 0,
+    "rangeMax": 10,
+    "operationList": ["+", "-", "*", "/"],
+    "count": 5
   },
   {
     "level": 2,
     "status": "no active",
     "exp": 50,
-    "record": "00:00"
+    "record": "00:00",
+
+    "rangeMin": 0,
+    "rangeMax": 10,
+    "operationList": ["+", "-", "*", "/"],
+    "count": 10
   },
   {
     "level": 3,
     "status": "no active",
-    "exp": 50,
-    "record": "00:00"
+    "exp": 75,
+    "record": "00:00",
+
+    "rangeMin": -10,
+    "rangeMax": 10,
+    "operationList": ["+", "-", "*", "/"],
+    "count": 5
   },
   {
     "level": 4,
     "status": "no active",
-    "exp": 50,
-    "record": "00:00"
+    "exp": 75,
+    "record": "00:00",
+
+    "rangeMin": -10,
+    "rangeMax": 10,
+    "operationList": ["+", "-", "*", "/"],
+    "count": 10
   },
   {
     "level": 5,
     "status": "no active",
-    "exp": 50,
-    "record": "00:00"
+    "exp": 100,
+    "record": "00:00",
+
+    "rangeMin": -25,
+    "rangeMax": 25,
+    "operationList": ["+", "-", "*", "/"],
+    "count": 5
   },
   {
     "level": 6,
     "status": "no active",
-    "exp": 50,
-    "record": "00:00"
+    "exp": 100,
+    "record": "00:00",
+
+    "rangeMin": -25,
+    "rangeMax": 25,
+    "operationList": ["+", "-", "*", "/"],
+    "count": 10
   },
   {
     "level": 7,
     "status": "no active",
-    "exp": 50,
-    "record": "00:00"
+    "exp": 125,
+    "record": "00:00",
+
+    "rangeMin": 0,
+    "rangeMax": 50,
+    "operationList": ["+", "-", "*", "/"],
+    "count": 5
   },
   {
     "level": 8,
     "status": "no active",
-    "exp": 50,
-    "record": "00:00"
+    "exp": 125,
+    "record": "00:00",
+
+    "rangeMin": 0,
+    "rangeMax": 50,
+    "operationList": ["+", "-", "*", "/"],
+    "count": 10
   },
   {
     "level": 9,
     "status": "no active",
-    "exp": 50,
-    "record": "00:00"
+    "exp": 150,
+    "record": "00:00",
+
+    "rangeMin": -50,
+    "rangeMax": 0,
+    "operationList": ["+", "-", "*", "/"],
+    "count": 10
   },
   {
     "level": 10,
     "status": "no active",
-    "exp": 50,
-    "record": "00:00"
+    "exp": 150,
+    "record": "00:00",
+
+    "rangeMin": -50,
+    "rangeMax": 0,
+    "operationList": ["+", "-", "*", "/"],
+    "count": 15
   },
   {
     "level": 11,
     "status": "no active",
-    "exp": 50,
-    "record": "00:00"
+    "exp": 200,
+    "record": "00:00",
+
+    "rangeMin": -50,
+    "rangeMax": 25,
+    "operationList": ["+", "-", "*", "/"],
+    "count": 10
+  },
+  {
+    "level": 12,
+    "status": "no active",
+    "exp": 150,
+    "record": "00:00",
+
+    "rangeMin": -50,
+    "rangeMax": 25,
+    "operationList": ["+", "-", "*", "/"],
+    "count": 15
+  },
+  {
+    "level": 13,
+    "status": "no active",
+    "exp": 225,
+    "record": "00:00",
+
+    "rangeMin": -50,
+    "rangeMax": 50,
+    "operationList": ["+", "-", "*", "/"],
+    "count": 10
+  },
+  {
+    "level": 14,
+    "status": "no active",
+    "exp": 225,
+    "record": "00:00",
+
+    "rangeMin": -50,
+    "rangeMax": 50,
+    "operationList": ["+", "-", "*", "/"],
+    "count": 15
+  },
+  {
+    "level": 15,
+    "status": "no active",
+    "exp": 250,
+    "record": "00:00",
+
+    "rangeMin": 0,
+    "rangeMax": 10,
+    "operationList": ["+", "-", "*", "/", "%", "√"],
+    "count": 10
+  },
+  {
+    "level": 16,
+    "status": "no active",
+    "exp": 300,
+    "record": "00:00",
+
+    "rangeMin": 0,
+    "rangeMax": 10,
+    "operationList": ["+", "-", "*", "/", "%", "√"],
+    "count": 15
+  },
+  {
+    "level": 17,
+    "status": "no active",
+    "exp": 300,
+    "record": "00:00",
+
+    "rangeMin": -10,
+    "rangeMax": 10,
+    "operationList": ["+", "-", "*", "/", "%", "√"],
+    "count": 10
+  },
+  {
+    "level": 18,
+    "status": "no active",
+    "exp": 325,
+    "record": "00:00",
+
+    "rangeMin": -10,
+    "rangeMax": 10,
+    "operationList": ["+", "-", "*", "/", "%", "√"],
+    "count": 15
+  },
+  {
+    "level": 19,
+    "status": "no active",
+    "exp": 325,
+    "record": "00:00",
+
+    "rangeMin": -25,
+    "rangeMax": 25,
+    "operationList": ["+", "-", "*", "/", "%", "√"],
+    "count": 10
+  },
+  {
+    "level": 20,
+    "status": "no active",
+    "exp": 350,
+    "record": "00:00",
+
+    "rangeMin": -25,
+    "rangeMax": 25,
+    "operationList": ["+", "-", "*", "/", "%", "√"],
+    "count": 15
   }
 ]

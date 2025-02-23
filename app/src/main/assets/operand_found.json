@@ -3,7 +3,7 @@
     "level": 1,
     "status": "active",
     "exp": 50,
-    "record": "01:07",
+    "record": "00:00",
 
     "width": 4,
     "height": 4,
@@ -14,7 +14,7 @@
   },
   {
     "level": 2,
-    "status": "active",
+    "status": "no active",
     "exp": 50,
     "record": "00:00",
 
@@ -27,12 +27,12 @@
   },
   {
     "level": 3,
-    "status": "active",
-    "exp": 50,
+    "status": "no active",
+    "exp": 75,
     "record": "00:00",
 
-    "width": 3,
-    "height": 3,
+    "width": 4,
+    "height": 4,
     "rangeMin": -20,
     "rangeMax": 20,
     "operationList": ["+"],
@@ -40,28 +40,223 @@
   },
   {
     "level": 4,
-    "status": "active",
-    "exp": 50,
+    "status": "no active",
+    "exp": 75,
     "record": "00:00",
 
-    "width": 3,
-    "height": 3,
-    "rangeMin": -40,
-    "rangeMax": 40,
-    "operationList": ["+", "-"],
+    "width": 4,
+    "height": 4,
+    "rangeMin": -50,
+    "rangeMax": 50,
+    "operationList": ["+"],
     "page": 1
   },
   {
     "level": 5,
-    "status": "active",
-    "exp": 50,
+    "status": "no active",
+    "exp": 100,
     "record": "00:00",
 
     "width": 4,
     "height": 4,
     "rangeMin": 10,
+    "rangeMax": 80,
+    "operationList": ["+", "-"],
+    "page": 1
+  },
+  {
+    "level": 6,
+    "status": "no active",
+    "exp": 100,
+    "record": "00:00",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": -50,
+    "rangeMax": 100,
+    "operationList": ["+", "-"],
+    "page": 1
+  },
+  {
+    "level": 7,
+    "status": "no active",
+    "exp": 125,
+    "record": "00:00",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": -100,
+    "rangeMax": 100,
+    "operationList": ["+", "-"],
+    "page": 1
+  },
+  {
+    "level": 8,
+    "status": "no active",
+    "exp": 125,
+    "record": "00:00",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": -250,
+    "rangeMax": 250,
+    "operationList": ["+", "-"],
+    "page": 1
+  },
+  {
+    "level": 9,
+    "status": "no active",
+    "exp": 150,
+    "record": "00:00",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": -500,
+    "rangeMax": 500,
+    "operationList": ["+", "-"],
+    "page": 2
+  },
+  {
+    "level": 10,
+    "status": "no active",
+    "exp": 150,
+    "record": "00:00",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": -1000,
+    "rangeMax": 1000,
+    "operationList": ["+", "-"],
+    "page": 2
+  },
+  {
+    "level": 11,
+    "status": "no active",
+    "exp": 200,
+    "record": "00:00",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": 1,
+    "rangeMax": 10,
+    "operationList": ["*"],
+    "page": 1
+  },
+  {
+    "level": 12,
+    "status": "no active",
+    "exp": 200,
+    "record": "00:00",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": 1,
+    "rangeMax": 20,
+    "operationList": ["*"],
+    "page": 1
+  },
+  {
+    "level": 13,
+    "status": "no active",
+    "exp": 225,
+    "record": "00:00",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": -10,
+    "rangeMax": 10,
+    "operationList": ["*"],
+    "page": 1
+  },
+  {
+    "level": 14,
+    "status": "no active",
+    "exp": 225,
+    "record": "00:00",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": -20,
+    "rangeMax": 20,
+    "operationList": ["*"],
+    "page": 1
+  },
+  {
+    "level": 15,
+    "status": "no active",
+    "exp": 250,
+    "record": "00:00",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": -25,
+    "rangeMax": 25,
+    "operationList": ["*"],
+    "page": 2
+  },
+  {
+    "level": 16,
+    "status": "no active",
+    "exp": 300,
+    "record": "00:00",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": 0,
     "rangeMax": 50,
     "operationList": ["+", "-", "*"],
     "page": 1
+  },
+  {
+    "level": 17,
+    "status": "no active",
+    "exp": 300,
+    "record": "00:00",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": -50,
+    "rangeMax": 50,
+    "operationList": ["+", "-", "*"],
+    "page": 1
+  },
+  {
+    "level": 18,
+    "status": "no active",
+    "exp": 325,
+    "record": "00:00",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": -25,
+    "rangeMax": 100,
+    "operationList": ["+", "-", "*"],
+    "page": 1
+  },
+  {
+    "level": 19,
+    "status": "no active",
+    "exp": 325,
+    "record": "00:00",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": -50,
+    "rangeMax": 150,
+    "operationList": ["+", "-", "*"],
+    "page": 1
+  },
+  {
+    "level": 20,
+    "status": "no active",
+    "exp": 350,
+    "record": "00:00",
+
+    "width": 4,
+    "height": 4,
+    "rangeMin": -100,
+    "rangeMax": 100,
+    "operationList": ["+", "-", "*"],
+    "page": 2
   }
 ]
