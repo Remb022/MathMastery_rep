@@ -51,11 +51,6 @@ public class LevelBarActivity extends AppCompatActivity {
         catch (ClassNotFoundException ex) {
             Log.e("NotFoundModel", "Model-Class not found", ex);
         }
-
-        // component adaptive
-        ComponentAdaptive componentAdaptive = new ComponentAdaptive(this);
-        componentAdaptive.setHeaderComponentSize();
-        componentAdaptive.setFooterTextSize();
     }
 
     private void setFunctionalHeaderIcon() {

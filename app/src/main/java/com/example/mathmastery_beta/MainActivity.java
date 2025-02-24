@@ -38,10 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
         setFunctionalHeaderIcon();
 
-        ComponentAdaptive componentAdaptive = new ComponentAdaptive(this);
-        componentAdaptive.setHeaderComponentSize();
-        componentAdaptive.setMainPageComponentSize();
-        componentAdaptive.setFooterTextSize();
     }
 
     private void startLevelBarActivity(String jsonFileName, Class<?> model) {
