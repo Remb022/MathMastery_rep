@@ -5,6 +5,10 @@ public class OperationFoundModel implements LevelModel {
     private String status;
     private int exp;
     private String record;
+    private int rangeMin;
+    private int rangeMax;
+    private String[] operationList;
+    private int count;
 
     public int getLevel() {
         return level;
@@ -20,5 +24,21 @@ public class OperationFoundModel implements LevelModel {
 
     public String getRecord() {
         return record;
+    }
+
+    public int getRangeMin() {
+        return rangeMin;
+    }
+
+    public int getRangeMax() {
+        return rangeMax;
+    }
+
+    public String[] getOperationList() {
+        return operationList;
+    }
+
+    public int getCount() {
+        return count;
     }
 }
