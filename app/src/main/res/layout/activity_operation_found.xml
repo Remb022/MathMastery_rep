@@ -142,9 +142,51 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
+            android:id="@+id/num1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="X + Y = 17"
+            android:text="X"
+            android:layout_margin="7dp"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
+            android:textSize="55sp"/>
+
+        <TextView
+            android:id="@+id/operand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/coming_soon_mode"
+            android:layout_margin="7dp"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
+            android:textSize="55sp"/>
+
+        <TextView
+            android:id="@+id/num2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="7dp"
+            android:text="Y"
+            android:textColor="@color/gray"
+            android:textSize="55sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/equal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="="
+            android:layout_margin="7dp"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
+            android:textSize="55sp"/>
+
+        <TextView
+            android:id="@+id/num3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="C"
+            android:layout_margin="7dp"
             android:textColor="@color/gray"
             android:textStyle="bold"
             android:textSize="55sp"/>

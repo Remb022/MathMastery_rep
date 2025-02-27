@@ -8,21 +8,7 @@
     tools:context=".LevelBarActivity">
 
     <!-- Header -->
-    <LinearLayout
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/color_tool_bar"
-        android:elevation="4dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <include layout="@layout/header_component" />
-
-    </LinearLayout>
+    <include layout="@layout/component_header_game_name" />
 
     <!-- Body -->
     <LinearLayout
@@ -48,7 +34,7 @@
     </LinearLayout>
 
     <include
-        layout="@layout/footer_component"
+        layout="@layout/component_footer"
         android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

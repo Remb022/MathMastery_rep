@@ -1,6 +1,7 @@
 package com.example.mathmastery_beta;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -9,14 +10,9 @@ import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.mathmastery_beta.level_status_model.HandlerJSON;
-import com.example.mathmastery_beta.level_status_model.OperandFoundModel;
 import com.example.mathmastery_beta.level_status_model.OperationFoundModel;
-
-import java.util.Random;
 
 public class OperationFoundActivity extends AppCompatActivity {
     @Override
@@ -77,11 +73,13 @@ public class OperationFoundActivity extends AppCompatActivity {
 
             for (int col = 0; col < width; col++) {
                 TextView label = new TextView(this);
-
+                Resources resources = getResources();
+                int color = resources.getColor(R.color.gray);
                 label.setText(content[contentIndex]);
                 contentIndex++;
 
                 label.setTextSize(30);
+                label.setTextColor(color);
                 label.setTypeface(null, Typeface.BOLD);
                 label.setGravity(Gravity.CENTER);
                 label.setBackgroundResource(R.drawable.cell_border_game);

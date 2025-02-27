@@ -1,30 +1,18 @@
 package com.example.mathmastery_beta;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.mathmastery_beta.level_status_model.HandlerJSON;
 import com.example.mathmastery_beta.level_status_model.OperandFoundModel;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import org.apache.commons.io.IOUtils;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.Random;
 
 public class OperandFoundActivity extends AppCompatActivity {
@@ -82,11 +70,14 @@ public class OperandFoundActivity extends AppCompatActivity {
 
             for (int col = 0; col < model.getWidth(); col++) {
                 TextView label = new TextView(this);
+                Resources resources = getResources();
+                int color = resources.getColor(R.color.gray, null);
 
                 int randomValue = new Random().nextInt(model.getRangeMax() - model.getRangeMin() + 1) + model.getRangeMin();
                 label.setText(String.valueOf(randomValue));
 
                 label.setTextSize(30);
+                label.setTextColor(color);
                 label.setTypeface(null, Typeface.BOLD);
                 label.setGravity(Gravity.CENTER);
                 label.setBackgroundResource(R.drawable.cell_border_game);
