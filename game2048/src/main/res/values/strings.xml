@@ -1,1 +1,13 @@
-<resources></resources>
+<resources>
+    <string name="app_nam">2048</string>
+
+    <string name="message_game_over">игра закончена </string>
+    <string name="message_you_win">Ты победил</string>
+    <string name="message_empty" />
+
+    <string name="current_record_number_label">Number</string>
+    <string name="current_record_score_label">Score</string>
+    <string name="current_label">Current</string>
+    <string name="record_label">Record</string>
+    <string name="start_again_button_description">Start Again</string>
+</resources>

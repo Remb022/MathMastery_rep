@@ -65,19 +65,11 @@ public class MainActivity extends AppCompatActivity {
         miniGame2048.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), com.kynzai.game2048.MainActivity.class);
+                Intent intent = new Intent(v.getContext(), com.kynzai.game2048.game.MainActivity.class);
 
-                //Проверяется есть ли активность или нет
-                PackageManager packageManager = v.getContext().getPackageManager();
-                List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
-
-                if (!activities.isEmpty()) {
                     v.getContext().startActivity(intent);
 
-                    Toast.makeText(v.getContext(), "Активность найдена", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(v.getContext(), "Активность не найдена", Toast.LENGTH_SHORT).show();
-                }
+
             }
         });
 

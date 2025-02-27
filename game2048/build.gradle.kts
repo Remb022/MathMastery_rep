@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("kotlin-kapt")
+    alias(libs.plugins.hilt)
 
 }
 
@@ -32,6 +34,12 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    kapt {
+        correctErrorTypes = true
+        useBuildCache = true
+
+    }
+
 }
 
 dependencies {
@@ -49,9 +57,30 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
 
+
+
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    //Dagger
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.hilt.navigation.compose)
+
+    //Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
+
+    //Datastore
+    implementation(libs.androidx.datastore.preferences)
+
+    //Lifecycle
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    implementation(libs.kotlinx.metadata.jvm)
+
 }
