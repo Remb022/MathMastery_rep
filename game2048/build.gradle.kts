@@ -70,17 +70,11 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
 
-    //Room
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    kapt(libs.androidx.room.compiler)
-
     //Datastore
     implementation(libs.androidx.datastore.preferences)
 
     //Lifecycle
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-    implementation(libs.kotlinx.metadata.jvm)
 
 }
