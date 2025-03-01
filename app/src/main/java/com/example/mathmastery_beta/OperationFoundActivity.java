@@ -1,36 +1,24 @@
 package com.example.mathmastery_beta;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mathmastery_beta.handlers.HandlerAdaptive;
-import com.example.mathmastery_beta.handlers.HandlerCalculate;
-import com.example.mathmastery_beta.handlers.HandlerScore;
-import com.example.mathmastery_beta.handlers.HandlerTimer;
-import com.example.mathmastery_beta.handlers.HandlerJSON;
+import com.example.mathmastery_beta.level_status_model.HandlerJSON;
+import com.example.mathmastery_beta.level_status_model.OperandFoundModel;
 import com.example.mathmastery_beta.level_status_model.OperationFoundModel;
 
-import java.text.DecimalFormat;
 import java.util.Random;
 
-public class OperationFoundActivity extends AppCompatActivity implements HandlerTimer.OnTimerFinishListener {
-
-    HandlerTimer handlerTimer;
-    HandlerCalculate calculator = new HandlerCalculate();
-    HandlerJSON handlerJSON = new HandlerJSON(this);
-    HandlerScore handlerScore = new HandlerScore(this);
-    private OperationFoundModel model = new OperationFoundModel();
-
+public class OperationFoundActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,161 +26,75 @@ public class OperationFoundActivity extends AppCompatActivity implements Handler
 
         setFunctionalHeaderIcon();
         generateComponent();
-        generateExample();
-        adaptiveComponent();
-
-        TextView timer = findViewById(R.id.currentTime);
-        handlerTimer = new HandlerTimer(timer, this);
-        handlerTimer.startCountDownTimer();
-    }
-
-    @Override
-    public void onTimerFinish() {
-        finish();
     }
 
     private void setFunctionalHeaderIcon() {
         ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
         functionalHeaderIcon.setImageResource(R.drawable.icon_homepage);
-        functionalHeaderIcon.setOnClickListener(v -> finish());
+        functionalHeaderIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void generateComponent() {
+        HandlerJSON handlerJSON = new HandlerJSON(this);
+
+        // update level header
         Intent intent = getIntent();
         TextView levelNumber = findViewById(R.id.levelNumber);
         int level = intent.getIntExtra("levelNumber", 0);
         levelNumber.setText(String.valueOf(level));
 
+        // get level info from json
         String jsonPath = intent.getStringExtra("json");
         String json = handlerJSON.loadJSON(jsonPath);
-        model = HandlerJSON.getJSONote(json, level, OperationFoundModel.class);
+        OperationFoundModel model = HandlerJSON.getJSONote(json, level, OperationFoundModel.class);
 
+        // set record
         TextView bestTime = findViewById(R.id.bestTime);
         bestTime.setText(model.getRecord());
 
+        // generative field
         TableLayout gameFieldBlock = findViewById(R.id.gameFieldBlock);
 
-        String[] operations = model.getOperationList();
-        int operationCount = operations.length;
-        int columns = 2;
-        int rows = operationCount / columns;
+        int width = 2;
+        int height = 2;
+        String[] content = {"+", "-", "*", "/"};
 
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
-        int buttonSize = (screenWidth - (rows * 100)) / columns;
+        int buttonSize = (screenWidth - 100) / width;
 
         int contentIndex = 0;
-        for (int row = 0; row < rows; row++) {
+        for (int row = 0; row < height; row++) {
             TableRow tableRow = new TableRow(this);
+            tableRow.setLayoutParams(new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.MATCH_PARENT,
+                    TableLayout.LayoutParams.WRAP_CONTENT
+            ));
 
-            for (int col = 0; col < columns; col++) {
+            for (int col = 0; col < width; col++) {
                 TextView label = new TextView(this);
 
-                label.setText(operations[contentIndex]);
+                label.setText(content[contentIndex]);
                 contentIndex++;
 
-                label.setTextSize(45);
+                label.setTextSize(30);
                 label.setTypeface(null, Typeface.BOLD);
                 label.setGravity(Gravity.CENTER);
                 label.setBackgroundResource(R.drawable.cell_border_game);
-                label.setTextColor(Color.parseColor("#939272"));
 
                 TableRow.LayoutParams params = new TableRow.LayoutParams(buttonSize, buttonSize);
                 params.setMargins(5, 5, 5, 5);
                 label.setLayoutParams(params);
 
-                label.setOnClickListener(v -> gameProcessClick(label));
                 tableRow.addView(label);
             }
 
             gameFieldBlock.addView(tableRow);
         }
     }
-
-    private int count = 0;
-    private void gameProcessClick(TextView clickedLabel){
-        TextView num1 = findViewById(R.id.num1);
-        TextView num2 = findViewById(R.id.num2);
-        TextView res = findViewById(R.id.result);
-
-        int numToInt1 = Integer.parseInt(num1.getText().toString());
-        int numToInt2 = Integer.parseInt(num2.getText().toString());
-        String result = res.getText().toString();
-        String operation = clickedLabel.getText().toString();
-
-        double resultValue = calculator.calculateResult(numToInt1, numToInt2, operation);
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        String decFormatResult = decimalFormat.format(resultValue);
-
-        if (decFormatResult.equals(result)) {
-            count++;
-            if (count < model.getCount()) {
-                generateExample();
-            }
-            else {
-                gameEnd();
-            }
-        }
-        else {
-            gameNotTrueEqual();
-        }
-    }
-
-    private void generateExample(){
-        int rangeMin = model.getRangeMin();
-        int rangeMax = model.getRangeMax();
-        String[] operations = model.getOperationList();
-
-        Random random = new Random();
-        int randomNum1 = rangeMin + random.nextInt((rangeMax - rangeMin) + 1);
-        int randomNum2 = rangeMin + random.nextInt((rangeMax - rangeMin) + 1);
-        String randomOperation = operations[random.nextInt(operations.length)];
-
-        double resultValue = calculator.calculateResult(randomNum1, randomNum2, randomOperation);
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        String decFormatResult = decimalFormat.format(resultValue);
-
-        TextView num1 = findViewById(R.id.num1);
-        TextView num2 = findViewById(R.id.num2);
-        TextView result = findViewById(R.id.result);
-
-        num1.setText(String.valueOf(randomNum1));
-        num2.setText(String.valueOf(randomNum2));
-        result.setText(decFormatResult);
-
-        HandlerAdaptive handlerAdaptive = new HandlerAdaptive(this);
-        handlerAdaptive.setAdaptiveExample();
-    }
-
-    private void gameNotTrueEqual() {
-        Toast.makeText(this, "Not True Operation!", Toast.LENGTH_SHORT).show();
-    }
-
-    private void gameEnd() {
-        TextView currentRecordTextView = findViewById(R.id.currentTime);
-        String currentRecord = currentRecordTextView.getText().toString();
-
-        String record = model.getRecord();
-        if ("00:00".equals(record)) {
-            handlerScore.userLevelUp(model.getExp());
-        }
-
-        if (handlerTimer.isBetterRecord(currentRecord, record)) {
-            model.setRecord(currentRecord);
-            handlerJSON.updateRecord(getIntent().getStringExtra("json"), model, OperationFoundModel.class);
-        }
-
-        int currentLevel = model.getLevel();
-        handlerJSON.unlockNextLevel(getIntent().getStringExtra("json"), currentLevel, OperationFoundModel.class);
-
-        Toast.makeText(this, "Level Complete!", Toast.LENGTH_SHORT).show();
-        finish();
-    }
-
-    private void adaptiveComponent(){
-        HandlerAdaptive handlerAdaptive = new HandlerAdaptive(this);
-        handlerAdaptive.setGamesHeaderComponentSize();
-        handlerAdaptive.setGamesScoreSize();
-    }
-
 
 }

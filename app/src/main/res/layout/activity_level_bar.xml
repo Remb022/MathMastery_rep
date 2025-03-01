@@ -20,35 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:layout_marginStart="25dp">
-
-        <TextView
-            android:id="@+id/game_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/gray"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            android:text="Уровень"/>
-
-    </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/functional_header_icon"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_margin="35dp"
-            android:src="@drawable/icon_settings"
-            android:background="@android:color/transparent"
-            android:scaleType="fitXY"
-            tools:ignore="ContentDescription" />
+        <include layout="@layout/header_component" />
 
     </LinearLayout>
 

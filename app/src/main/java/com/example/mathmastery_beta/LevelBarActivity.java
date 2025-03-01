@@ -1,6 +1,9 @@
 package com.example.mathmastery_beta;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -8,24 +11,20 @@ import java.util.Objects;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.mathmastery_beta.adaptor.LevelPagerAdapter;
-import com.example.mathmastery_beta.handlers.HandlerAdaptive;
-import com.example.mathmastery_beta.handlers.HandlerScore;
-import com.example.mathmastery_beta.handlers.HandlerJSON;
 import com.example.mathmastery_beta.level_status_model.LevelModel;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class LevelBarActivity extends AppCompatActivity {
+import org.apache.commons.io.IOUtils;
 
-    private final HandlerScore handlerScore = new HandlerScore(this);
+public class LevelBarActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,52 +32,9 @@ public class LevelBarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_level_bar);
 
         setFunctionalHeaderIcon();
-        setGameInfo();
-        setLevelList();
-        adaptiveComponent();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        setLevelList();
-        updateFooterProgress();
-    }
-
-    private void setFunctionalHeaderIcon() {
-        ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
-        functionalHeaderIcon.setImageResource(R.drawable.icon_homepage);
-        functionalHeaderIcon.setOnClickListener(v -> finish());
-    }
-
-    private void setGameInfo(){
-        TextView gameInfo = findViewById(R.id.game_info);
-
-        String gameType = getIntent().getStringExtra("json");
-        String type = "";
-        switch (Objects.requireNonNull(gameType)) {
-            case "operand_found.json":
-                type = "X + ? = C";
-                break;
-            case "operation_found.json":
-                type = "X ? Y = C";
-                break;
-            case "result_found.json":
-                type = "X + Y = ?";
-                break;
-            case "equal_found.json":
-                type = "> < =";
-                break;
-            default:
-                type = "EMPTY";
-                break;
-        }
-        gameInfo.setText(type);
-    }
-
-    private void setLevelList(){
         ViewPager2 viewPager = findViewById(R.id.level_list_pager);
 
+        // json parse
         String jsonFilePath = getIntent().getStringExtra("json");
         String model = getIntent().getStringExtra("model");
         String json = loadJSON(jsonFilePath);
@@ -87,6 +43,7 @@ public class LevelBarActivity extends AppCompatActivity {
             Class<?> modelClass = Class.forName(Objects.requireNonNull(model));
             List<LevelModel> modelList = parseJSON(json, modelClass);
 
+            // pages generate
             List<List<LevelModel>> levelPages = createPages(modelList);
             LevelPagerAdapter adapter = new LevelPagerAdapter(levelPages, this, jsonFilePath);
             viewPager.setAdapter(adapter);
@@ -94,11 +51,27 @@ public class LevelBarActivity extends AppCompatActivity {
         catch (ClassNotFoundException ex) {
             Log.e("NotFoundModel", "Model-Class not found", ex);
         }
+
+        // component adaptive
+        ComponentAdaptive componentAdaptive = new ComponentAdaptive(this);
+        componentAdaptive.setHeaderComponentSize();
+        componentAdaptive.setFooterTextSize();
+    }
+
+    private void setFunctionalHeaderIcon() {
+        ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
+        functionalHeaderIcon.setImageResource(R.drawable.icon_homepage);
+        functionalHeaderIcon.setOnClickListener(v -> finish());
     }
 
     private String loadJSON(String fileName) {
-        HandlerJSON handlerJSON = new HandlerJSON(this);
-        return handlerJSON.loadJSON(fileName);
+        try (InputStream is = getAssets().open(fileName)) {
+            return IOUtils.toString(is, StandardCharsets.UTF_8);
+        }
+        catch (IOException ex) {
+            Log.e("JsonLoad", "Error loading JSON from asset", ex);
+            return null;
+        }
     }
 
     private List<LevelModel> parseJSON(String json, Class<?> model) {
@@ -125,19 +98,6 @@ public class LevelBarActivity extends AppCompatActivity {
         }
 
         return pages;
-    }
-
-    private void updateFooterProgress() {
-        TextView levelFooterIndex = findViewById(R.id.level_footer_index);
-        ProgressBar progressBar = findViewById(R.id.progressBar);
-
-        handlerScore.updateFooterProgress(levelFooterIndex, progressBar);
-    }
-
-    private void adaptiveComponent(){
-        HandlerAdaptive handlerAdaptive = new HandlerAdaptive(this);
-        handlerAdaptive.setLevelBarHeaderComponentSize();
-        handlerAdaptive.setFooterTextSize();
     }
 
 }

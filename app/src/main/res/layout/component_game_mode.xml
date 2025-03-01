@@ -37,7 +37,7 @@
                     android:layout_gravity="end"
                     android:layout_margin="8dp"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/info_icon" />
+                    android:src="@drawable/icon_info" />
 
                 <TextView
                     android:id="@+id/level_card_info_1"
@@ -84,7 +84,7 @@
                     android:layout_gravity="end"
                     android:layout_margin="8dp"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/info_icon" />
+                    android:src="@drawable/icon_info" />
 
                 <TextView
                     android:id="@+id/level_card_info_2"
@@ -135,7 +135,7 @@
                     android:layout_gravity="end"
                     android:layout_margin="8dp"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/info_icon" />
+                    android:src="@drawable/icon_info" />
 
                 <TextView
                     android:id="@+id/level_card_info_3"
@@ -144,7 +144,7 @@
                     android:layout_gravity="center"
                     android:text="@string/result_found"
                     android:textColor="@color/gray"
-                    android:textSize="40sp"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
 
                 <!-- Рекорд -->
@@ -182,7 +182,7 @@
                     android:layout_gravity="end"
                     android:layout_margin="8dp"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/info_icon" />
+                    android:src="@drawable/icon_info" />
 
                 <TextView
                     android:id="@+id/level_card_info_4"
@@ -233,7 +233,7 @@
                     android:layout_gravity="end"
                     android:layout_margin="8dp"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/info_icon" />
+                    android:src="@drawable/icon_info" />
 
                 <TextView
                     android:id="@+id/level_card_info_5"
@@ -280,7 +280,7 @@
                     android:layout_gravity="end"
                     android:layout_margin="8dp"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/info_icon" />
+                    android:src="@drawable/icon_info" />
 
                 <TextView
                     android:id="@+id/level_card_info_6"
