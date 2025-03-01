@@ -54,6 +54,8 @@ fun BoardGameScreen(viewModel: TwoZeroFourEightViewModel, uiState: GameState) {
             horizontalAlignment = CenterHorizontally
         ) {
 
+            HeaderPanel()
+
 
             Spacer(modifier = Modifier.height(50.dp))
             Row(
