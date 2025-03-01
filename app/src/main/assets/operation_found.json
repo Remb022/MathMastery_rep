@@ -161,7 +161,7 @@
 
     "rangeMin": 0,
     "rangeMax": 10,
-    "operationList": ["+", "-", "*", "/", "%", "√"],
+    "operationList": ["+", "-", "*", "/", "%", "^"],
     "count": 10
   },
   {
@@ -172,7 +172,7 @@
 
     "rangeMin": 0,
     "rangeMax": 10,
-    "operationList": ["+", "-", "*", "/", "%", "√"],
+    "operationList": ["+", "-", "*", "/", "%", "^"],
     "count": 15
   },
   {
@@ -183,7 +183,7 @@
 
     "rangeMin": -10,
     "rangeMax": 10,
-    "operationList": ["+", "-", "*", "/", "%", "√"],
+    "operationList": ["+", "-", "*", "/", "%", "^"],
     "count": 10
   },
   {
@@ -194,7 +194,7 @@
 
     "rangeMin": -10,
     "rangeMax": 10,
-    "operationList": ["+", "-", "*", "/", "%", "√"],
+    "operationList": ["+", "-", "*", "/", "%", "^"],
     "count": 15
   },
   {
@@ -205,7 +205,7 @@
 
     "rangeMin": -25,
     "rangeMax": 25,
-    "operationList": ["+", "-", "*", "/", "%", "√"],
+    "operationList": ["+", "-", "*", "/", "%", "^"],
     "count": 10
   },
   {
@@ -216,7 +216,7 @@
 
     "rangeMin": -25,
     "rangeMax": 25,
-    "operationList": ["+", "-", "*", "/", "%", "√"],
+    "operationList": ["+", "-", "*", "/", "%", "^"],
     "count": 15
   }
 ]

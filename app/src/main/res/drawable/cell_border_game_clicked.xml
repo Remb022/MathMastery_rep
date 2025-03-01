@@ -2,6 +2,6 @@
     <solid android:color="@android:color/transparent" />
     <stroke
         android:width="2dp"
-        android:color="#7FF4AF16" />
+        android:color="#275D4E2D" />
     <corners android:radius="10dp" />
 </shape>

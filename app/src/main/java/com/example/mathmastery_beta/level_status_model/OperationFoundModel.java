@@ -18,6 +18,8 @@ public class OperationFoundModel implements LevelModel {
         return status;
     }
 
+    public void setStatus(String status) { this.status = status; }
+
     public int getExp() {
         return exp;
     }
@@ -25,6 +27,8 @@ public class OperationFoundModel implements LevelModel {
     public String getRecord() {
         return record;
     }
+
+    public void setRecord(String record) { this.record = record; }
 
     public int getRangeMin() {
         return rangeMin;

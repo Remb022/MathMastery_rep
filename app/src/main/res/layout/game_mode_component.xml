@@ -25,7 +25,7 @@
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/yalow"
+                android:backgroundTint="@color/yellow"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="2dp"
                 app:cardUseCompatPadding="true">
@@ -72,7 +72,7 @@
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/yalow"
+                android:backgroundTint="@color/yellow"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="2dp"
                 app:cardUseCompatPadding="true">
@@ -123,7 +123,7 @@
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/yalow"
+                android:backgroundTint="@color/yellow"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="2dp"
                 app:cardUseCompatPadding="true">
@@ -170,7 +170,7 @@
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/yalow"
+                android:backgroundTint="@color/yellow"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="2dp"
                 app:cardUseCompatPadding="true">
@@ -221,7 +221,7 @@
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/yalow"
+                android:backgroundTint="@color/yellow"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="2dp"
                 app:cardUseCompatPadding="true">
@@ -268,7 +268,7 @@
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/yalow"
+                android:backgroundTint="@color/yellow"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="2dp"
                 app:cardUseCompatPadding="true">
@@ -287,7 +287,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/coming_soon_mode"
+                    android:text="@string/question_mark"
                     android:textColor="@color/gray"
                     android:textSize="70sp"
                     android:textStyle="bold" />

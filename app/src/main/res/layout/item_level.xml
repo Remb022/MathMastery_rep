@@ -12,6 +12,7 @@
         android:layout_width="100dp"
         android:layout_height="90dp"
         android:gravity="center"
+        android:layout_gravity="center"
         android:background="@drawable/icon_lock" />
 
     <LinearLayout

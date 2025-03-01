@@ -8,9 +8,63 @@
     tools:context=".MainActivity">
 
     <!-- Header -->
-    <include
+    <LinearLayout
         android:id="@+id/header"
-        layout="@layout/header_component"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/color_tool_bar"
+        android:elevation="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"> >
+
+        <ImageButton
+            android:id="@+id/avatar_header_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/circle_white"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            tools:ignore="RtlHardcoded">
+
+            <TextView
+                android:id="@+id/nickname_header_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Никнейм игрока"
+                android:textColor="@color/gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/level_header_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LVL: 1"
+                android:textColor="@color/gray"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/functional_header_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_margin="35dp"
+            android:src="@drawable/icon_settings"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
 
     <!-- Body -->
     <ScrollView

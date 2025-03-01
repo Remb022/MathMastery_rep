@@ -20,6 +20,8 @@ public class OperandFoundModel implements LevelModel {
         return status;
     }
 
+    public void setStatus(String status) { this.status = status; }
+
     public int getExp() {
         return exp;
     }
@@ -27,6 +29,8 @@ public class OperandFoundModel implements LevelModel {
     public String getRecord() {
         return record;
     }
+
+    public void setRecord(String record) { this.record = record; }
 
     public int getWidth() {
         return width;
