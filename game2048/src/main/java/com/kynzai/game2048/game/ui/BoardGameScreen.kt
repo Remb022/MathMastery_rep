@@ -19,7 +19,7 @@ import com.kynzai.game2048.game.ui.components.AppNameDefaultHeight
 import com.kynzai.game2048.game.ui.components.GameOverDialog
 import com.kynzai.game2048.game.ui.components.HeaderPanel
 import com.kynzai.game2048.game.ui.components.HighScoreDisplay
-import com.kynzai.game2048.game.ui.components.IconButton
+import com.kynzai.game2048.game.ui.components.RestartButton
 import com.kynzai.game2048.game.ui.components.IconButtonHeight
 import com.kynzai.game2048.game.ui.theme.White2
 import com.kynzai.game2048.game.viewmodel.TwoZeroFourEightViewModel
@@ -45,6 +45,7 @@ fun BoardGameScreen(viewModel: TwoZeroFourEightViewModel, uiState: GameState) {
         }
     }
 
+
     Box {
         Column(
             modifier = Modifier
@@ -52,7 +53,7 @@ fun BoardGameScreen(viewModel: TwoZeroFourEightViewModel, uiState: GameState) {
                 .background(White2),
             horizontalAlignment = CenterHorizontally
         ) {
-            HeaderPanel()
+
 
             Spacer(modifier = Modifier.height(50.dp))
             Row(
@@ -96,13 +97,17 @@ fun BoardGameScreen(viewModel: TwoZeroFourEightViewModel, uiState: GameState) {
             }
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth().padding(top = 180.dp),
+                modifier = Modifier.fillMaxWidth()
+                    .padding(top = 180.dp),
                 horizontalArrangement = Arrangement.Center
             ) {
-                IconButton(
+                HeaderPanel()
+
+                RestartButton(
                     modifier = Modifier.offset(y = reStartButtonY),
-                    iconResource = R.drawable.start_again,
-                    onClick = { viewModel.startNewGame() }
+                    gameStatus = uiState.gameStatus,
+                    onRestartConfirmed = { viewModel.startNewGame() },
+                    iconResource = R.drawable.start_again // Иконка для кнопки
                 )
             }
         }

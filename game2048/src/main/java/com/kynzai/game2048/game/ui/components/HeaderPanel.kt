@@ -1,5 +1,7 @@
 package com.kynzai.game2048.game.ui.components
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -24,36 +27,42 @@ import com.kynzai.game2048.game.ui.theme.Yallow
 
 @Composable
 fun HeaderPanel() {
+    val context = LocalContext.current
     Row(
-        modifier = Modifier.Companion
+        modifier = Modifier
             .fillMaxWidth()
             .background(Yallow)
             .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.Companion.CenterVertically
+        verticalAlignment = Alignment.CenterVertically
     ) {
-
         Column {
             Text(
                 "2048",
-                color = Color.Companion.White,
-                fontWeight = FontWeight.Companion.Bold,
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
                 fontSize = 42.sp
             )
         }
 
-        Spacer(modifier = Modifier.Companion.weight(1f))
+        Spacer(modifier = Modifier.weight(1f))
 
         // Кнопка настроек
         IconButton(
-            onClick = { /* Обработчик кнопки настроек */ },
-            modifier = Modifier.Companion.size(70.dp)
+            onClick = {
+                // Логика перехода на главный экран через deep link
+                val deepLinkUri = Uri.parse("app://mathmastery/home")
+                val intent = Intent(Intent.ACTION_VIEW, deepLinkUri)
+                context.startActivity(intent)
+                (context as? android.app.Activity)?.finish() // Закрываем текущий экран
+            },
+            modifier = Modifier.size(70.dp)
         ) {
             Icon(
-                painter = painterResource(id = R.drawable.icon_homepage), // Ваш ресурс
+                painter = painterResource(id = R.drawable.icon_homepage),
                 contentDescription = "homescreen",
-                tint = Color.Companion.White,
-                modifier = Modifier.Companion.size(40.dp)
+                tint = Color.White,
+                modifier = Modifier.size(40.dp)
             )
         }
     }

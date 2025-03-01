@@ -3,6 +3,7 @@ package com.example.mathmastery_beta;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -15,6 +16,7 @@ import com.example.mathmastery_beta.level_status_model.EqualFoundModel;
 import com.example.mathmastery_beta.level_status_model.OperandFoundModel;
 import com.example.mathmastery_beta.level_status_model.OperationFoundModel;
 import com.example.mathmastery_beta.level_status_model.ResultFoundModel;
+import com.example.mathmastery_beta.utils.DeepLinkHandler;
 
 import java.util.List;
 
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DeepLinkHandler.handleDeepLink(this);
 
         CardView operandFoundGame = findViewById(R.id.operand_found_game);
         CardView operationFoundGame = findViewById(R.id.operation_found_game);
