@@ -1,9 +1,6 @@
 package com.example.mathmastery_beta;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -11,20 +8,24 @@ import java.util.Objects;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
-import android.widget.Toast;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.mathmastery_beta.adaptor.LevelPagerAdapter;
+import com.example.mathmastery_beta.handlers.HandlerAdaptive;
+import com.example.mathmastery_beta.handlers.HandlerScore;
+import com.example.mathmastery_beta.handlers.HandlerJSON;
 import com.example.mathmastery_beta.level_status_model.LevelModel;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.apache.commons.io.IOUtils;
-
 public class LevelBarActivity extends AppCompatActivity {
+
+    private final HandlerScore handlerScore = new HandlerScore(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,30 +33,16 @@ public class LevelBarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_level_bar);
 
         setFunctionalHeaderIcon();
-        ViewPager2 viewPager = findViewById(R.id.level_list_pager);
+        setGameInfo();
+        setLevelList();
+        adaptiveComponent();
+    }
 
-        // json parse
-        String jsonFilePath = getIntent().getStringExtra("json");
-        String model = getIntent().getStringExtra("model");
-        String json = loadJSON(jsonFilePath);
-
-        try {
-            Class<?> modelClass = Class.forName(Objects.requireNonNull(model));
-            List<LevelModel> modelList = parseJSON(json, modelClass);
-
-            // pages generate
-            List<List<LevelModel>> levelPages = createPages(modelList);
-            LevelPagerAdapter adapter = new LevelPagerAdapter(levelPages, this, jsonFilePath);
-            viewPager.setAdapter(adapter);
-        }
-        catch (ClassNotFoundException ex) {
-            Log.e("NotFoundModel", "Model-Class not found", ex);
-        }
-
-        // component adaptive
-        ComponentAdaptive componentAdaptive = new ComponentAdaptive(this);
-        componentAdaptive.setHeaderComponentSize();
-        componentAdaptive.setFooterTextSize();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setLevelList();
+        updateFooterProgress();
     }
 
     private void setFunctionalHeaderIcon() {
@@ -64,14 +51,54 @@ public class LevelBarActivity extends AppCompatActivity {
         functionalHeaderIcon.setOnClickListener(v -> finish());
     }
 
+    private void setGameInfo(){
+        TextView gameInfo = findViewById(R.id.game_info);
+
+        String gameType = getIntent().getStringExtra("json");
+        String type = "";
+        switch (Objects.requireNonNull(gameType)) {
+            case "operand_found.json":
+                type = "X + ? = C";
+                break;
+            case "operation_found.json":
+                type = "X ? Y = C";
+                break;
+            case "result_found.json":
+                type = "X + Y = ?";
+                break;
+            case "equal_found.json":
+                type = "> < =";
+                break;
+            default:
+                type = "EMPTY";
+                break;
+        }
+        gameInfo.setText(type);
+    }
+
+    private void setLevelList(){
+        ViewPager2 viewPager = findViewById(R.id.level_list_pager);
+
+        String jsonFilePath = getIntent().getStringExtra("json");
+        String model = getIntent().getStringExtra("model");
+        String json = loadJSON(jsonFilePath);
+
+        try {
+            Class<?> modelClass = Class.forName(Objects.requireNonNull(model));
+            List<LevelModel> modelList = parseJSON(json, modelClass);
+
+            List<List<LevelModel>> levelPages = createPages(modelList);
+            LevelPagerAdapter adapter = new LevelPagerAdapter(levelPages, this, jsonFilePath);
+            viewPager.setAdapter(adapter);
+        }
+        catch (ClassNotFoundException ex) {
+            Log.e("NotFoundModel", "Model-Class not found", ex);
+        }
+    }
+
     private String loadJSON(String fileName) {
-        try (InputStream is = getAssets().open(fileName)) {
-            return IOUtils.toString(is, StandardCharsets.UTF_8);
-        }
-        catch (IOException ex) {
-            Log.e("JsonLoad", "Error loading JSON from asset", ex);
-            return null;
-        }
+        HandlerJSON handlerJSON = new HandlerJSON(this);
+        return handlerJSON.loadJSON(fileName);
     }
 
     private List<LevelModel> parseJSON(String json, Class<?> model) {
@@ -98,6 +125,19 @@ public class LevelBarActivity extends AppCompatActivity {
         }
 
         return pages;
+    }
+
+    private void updateFooterProgress() {
+        TextView levelFooterIndex = findViewById(R.id.level_footer_index);
+        ProgressBar progressBar = findViewById(R.id.progressBar);
+
+        handlerScore.updateFooterProgress(levelFooterIndex, progressBar);
+    }
+
+    private void adaptiveComponent(){
+        HandlerAdaptive handlerAdaptive = new HandlerAdaptive(this);
+        handlerAdaptive.setLevelBarHeaderComponentSize();
+        handlerAdaptive.setFooterTextSize();
     }
 
 }
