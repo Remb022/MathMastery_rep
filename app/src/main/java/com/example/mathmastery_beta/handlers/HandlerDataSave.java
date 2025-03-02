@@ -3,13 +3,20 @@ package com.example.mathmastery_beta.handlers;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class HandlerScore {
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+public class HandlerDataSave {
     private final Context context;
 
-    public HandlerScore(Context context) {
+    public HandlerDataSave(Context context) {
         this.context = context;
     }
 
@@ -73,4 +80,65 @@ public class HandlerScore {
         int progress = (int) ((userExp / (float) expToNextLevel) * 100);
         progressBar.setProgress(progress);
     }
+
+    public void saveNickname(String nickname) {
+        SharedPreferences prefs = context.getSharedPreferences("userProgress", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("nickname", nickname);
+        editor.apply();
+    }
+
+    public String getNickname() {
+        SharedPreferences prefs = context.getSharedPreferences("userProgress", Context.MODE_PRIVATE);
+        return prefs.getString("nickname", "User_db0075");
+    }
+
+    public void saveAvatar(String filePath) {
+        SharedPreferences prefs = context.getSharedPreferences("userProgress", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("avatarFilePath", filePath);
+        editor.apply();
+    }
+
+    public String getAvatar() {
+        SharedPreferences prefs = context.getSharedPreferences("userProgress", Context.MODE_PRIVATE);
+        return prefs.getString("avatarFilePath", null);
+    }
+
+    public String copyImageFromUri(Uri uri) {
+        try {
+            InputStream inputStream = context.getContentResolver().openInputStream(uri);
+            if (inputStream == null) {
+                return null;
+            }
+
+            File oldFile = new File(context.getFilesDir(), "avatar.jpg");
+            if (oldFile.exists()) {
+                boolean isDeleted = oldFile.delete();
+                if (!isDeleted) {
+                    Log.e("Copy File", "Failed to Delete Old Avatar File");
+                }
+            }
+
+
+            File file = new File(context.getFilesDir(), "avatar.jpg");
+            FileOutputStream outputStream = new FileOutputStream(file);
+
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+
+            inputStream.close();
+            outputStream.close();
+
+            return file.getAbsolutePath();
+        }
+        catch (IOException e) {
+            Log.e("Copy File", "Error Copy, File Not Download");
+            return null;
+        }
+    }
+
 }

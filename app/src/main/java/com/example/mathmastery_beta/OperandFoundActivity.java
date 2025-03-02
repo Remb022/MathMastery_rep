@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mathmastery_beta.handlers.HandlerAdaptive;
 import com.example.mathmastery_beta.handlers.HandlerCalculate;
 import com.example.mathmastery_beta.handlers.HandlerJSON;
-import com.example.mathmastery_beta.handlers.HandlerScore;
+import com.example.mathmastery_beta.handlers.HandlerDataSave;
 import com.example.mathmastery_beta.handlers.HandlerTimer;
 import com.example.mathmastery_beta.level_status_model.OperandFoundModel;
 
@@ -26,14 +26,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class OperandFoundActivity extends AppCompatActivity implements HandlerTimer.OnTimerFinishListener {
+public class OperandFoundActivity extends AppCompatActivity {
 
     private List<Integer> operandList;
 
     HandlerTimer handlerTimer;
     HandlerCalculate calculator = new HandlerCalculate();
     HandlerJSON handlerJSON = new HandlerJSON(this);
-    HandlerScore handlerScore = new HandlerScore(this);
+    HandlerDataSave handlerDataSave = new HandlerDataSave(this);
     private OperandFoundModel model = new OperandFoundModel();
 
     @Override
@@ -47,13 +47,8 @@ public class OperandFoundActivity extends AppCompatActivity implements HandlerTi
         adaptiveComponent();
 
         TextView timer = findViewById(R.id.currentTime);
-        handlerTimer = new HandlerTimer(timer, this);
-        handlerTimer.startCountDownTimer();
-    }
-
-    @Override
-    public void onTimerFinish() {
-        finish();
+        handlerTimer = new HandlerTimer(timer);
+        handlerTimer.startTimer();
     }
 
     private void setFunctionalHeaderIcon() {
@@ -196,6 +191,7 @@ public class OperandFoundActivity extends AppCompatActivity implements HandlerTi
 
     private void gameNotTrueEqual() {
         Toast.makeText(this, "Not True Operand!", Toast.LENGTH_SHORT).show();
+        handlerTimer.addFineTime();
     }
 
     private void gameEnd() {
@@ -204,7 +200,7 @@ public class OperandFoundActivity extends AppCompatActivity implements HandlerTi
 
         String record = model.getRecord();
         if ("00:00".equals(record)) {
-            handlerScore.userLevelUp(model.getExp());
+            handlerDataSave.userLevelUp(model.getExp());
         }
 
         if (handlerTimer.isBetterRecord(currentRecord, record)) {

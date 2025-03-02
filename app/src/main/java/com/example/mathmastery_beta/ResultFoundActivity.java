@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mathmastery_beta.handlers.HandlerAdaptive;
 import com.example.mathmastery_beta.handlers.HandlerCalculate;
 import com.example.mathmastery_beta.handlers.HandlerJSON;
-import com.example.mathmastery_beta.handlers.HandlerScore;
+import com.example.mathmastery_beta.handlers.HandlerDataSave;
 import com.example.mathmastery_beta.handlers.HandlerTimer;
 import com.example.mathmastery_beta.level_status_model.ResultFoundModel;
 
@@ -26,7 +26,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class ResultFoundActivity extends AppCompatActivity implements HandlerTimer.OnTimerFinishListener {
+public class ResultFoundActivity extends AppCompatActivity {
 
     private List<Integer> numList1;
     private List<Integer> numList2;
@@ -36,7 +36,7 @@ public class ResultFoundActivity extends AppCompatActivity implements HandlerTim
     HandlerTimer handlerTimer;
     HandlerCalculate calculator = new HandlerCalculate();
     HandlerJSON handlerJSON = new HandlerJSON(this);
-    HandlerScore handlerScore = new HandlerScore(this);
+    HandlerDataSave handlerDataSave = new HandlerDataSave(this);
     private ResultFoundModel model = new ResultFoundModel();
 
     @Override
@@ -50,13 +50,8 @@ public class ResultFoundActivity extends AppCompatActivity implements HandlerTim
         adaptiveComponent();
 
         TextView timer = findViewById(R.id.currentTime);
-        handlerTimer = new HandlerTimer(timer, this);
-        handlerTimer.startCountDownTimer();
-    }
-
-    @Override
-    public void onTimerFinish() {
-        finish();
+        handlerTimer = new HandlerTimer(timer);
+        handlerTimer.startTimer();
     }
 
     private void setFunctionalHeaderIcon() {
@@ -212,6 +207,7 @@ public class ResultFoundActivity extends AppCompatActivity implements HandlerTim
 
     private void gameNotTrueEqual() {
         Toast.makeText(this, "Not True Result!", Toast.LENGTH_SHORT).show();
+        handlerTimer.addFineTime();
     }
 
     private void gameEnd() {
@@ -220,7 +216,7 @@ public class ResultFoundActivity extends AppCompatActivity implements HandlerTim
 
         String record = model.getRecord();
         if ("00:00".equals(record)) {
-            handlerScore.userLevelUp(model.getExp());
+            handlerDataSave.userLevelUp(model.getExp());
         }
 
         if (handlerTimer.isBetterRecord(currentRecord, record)) {

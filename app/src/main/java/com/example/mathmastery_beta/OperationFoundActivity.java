@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mathmastery_beta.handlers.HandlerAdaptive;
 import com.example.mathmastery_beta.handlers.HandlerCalculate;
-import com.example.mathmastery_beta.handlers.HandlerScore;
+import com.example.mathmastery_beta.handlers.HandlerDataSave;
 import com.example.mathmastery_beta.handlers.HandlerTimer;
 import com.example.mathmastery_beta.handlers.HandlerJSON;
 import com.example.mathmastery_beta.level_status_model.OperationFoundModel;
@@ -23,12 +23,12 @@ import com.example.mathmastery_beta.level_status_model.OperationFoundModel;
 import java.text.DecimalFormat;
 import java.util.Random;
 
-public class OperationFoundActivity extends AppCompatActivity implements HandlerTimer.OnTimerFinishListener {
+public class OperationFoundActivity extends AppCompatActivity {
 
     HandlerTimer handlerTimer;
     HandlerCalculate calculator = new HandlerCalculate();
     HandlerJSON handlerJSON = new HandlerJSON(this);
-    HandlerScore handlerScore = new HandlerScore(this);
+    HandlerDataSave handlerDataSave = new HandlerDataSave(this);
     private OperationFoundModel model = new OperationFoundModel();
 
     @Override
@@ -42,13 +42,8 @@ public class OperationFoundActivity extends AppCompatActivity implements Handler
         adaptiveComponent();
 
         TextView timer = findViewById(R.id.currentTime);
-        handlerTimer = new HandlerTimer(timer, this);
-        handlerTimer.startCountDownTimer();
-    }
-
-    @Override
-    public void onTimerFinish() {
-        finish();
+        handlerTimer = new HandlerTimer(timer);
+        handlerTimer.startTimer();
     }
 
     private void setFunctionalHeaderIcon() {
@@ -165,6 +160,7 @@ public class OperationFoundActivity extends AppCompatActivity implements Handler
 
     private void gameNotTrueEqual() {
         Toast.makeText(this, "Not True Operation!", Toast.LENGTH_SHORT).show();
+        handlerTimer.addFineTime();
     }
 
     private void gameEnd() {
@@ -173,7 +169,7 @@ public class OperationFoundActivity extends AppCompatActivity implements Handler
 
         String record = model.getRecord();
         if ("00:00".equals(record)) {
-            handlerScore.userLevelUp(model.getExp());
+            handlerDataSave.userLevelUp(model.getExp());
         }
 
         if (handlerTimer.isBetterRecord(currentRecord, record)) {

@@ -72,4 +72,6 @@ dependencies {
 
     implementation ("com.google.code.gson:gson:2.12.1")
     implementation ("commons-io:commons-io:2.18.0")
+
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
 }

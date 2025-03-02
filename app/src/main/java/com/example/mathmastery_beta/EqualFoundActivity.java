@@ -16,18 +16,18 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mathmastery_beta.handlers.HandlerAdaptive;
-import com.example.mathmastery_beta.handlers.HandlerScore;
+import com.example.mathmastery_beta.handlers.HandlerDataSave;
 import com.example.mathmastery_beta.handlers.HandlerTimer;
 import com.example.mathmastery_beta.level_status_model.EqualFoundModel;
 import com.example.mathmastery_beta.handlers.HandlerJSON;
 
 import java.util.Random;
 
-public class EqualFoundActivity extends AppCompatActivity implements HandlerTimer.OnTimerFinishListener {
+public class EqualFoundActivity extends AppCompatActivity {
 
     HandlerTimer handlerTimer;
     HandlerJSON handlerJSON = new HandlerJSON(this);
-    HandlerScore handlerScore = new HandlerScore(this);
+    HandlerDataSave handlerDataSave = new HandlerDataSave(this);
     private EqualFoundModel model = new EqualFoundModel();
 
     @Override
@@ -41,13 +41,8 @@ public class EqualFoundActivity extends AppCompatActivity implements HandlerTime
         adaptiveComponent();
 
         TextView timer = findViewById(R.id.currentTime);
-        handlerTimer = new HandlerTimer(timer, this);
-        handlerTimer.startCountDownTimer();
-    }
-
-    @Override
-    public void onTimerFinish() {
-        finish();
+        handlerTimer = new HandlerTimer(timer);
+        handlerTimer.startTimer();
     }
 
     private void setFunctionalHeaderIcon() {
@@ -168,6 +163,7 @@ public class EqualFoundActivity extends AppCompatActivity implements HandlerTime
 
     private void gameNotTrueEqual() {
         Toast.makeText(this, "Not True Equal!", Toast.LENGTH_SHORT).show();
+        handlerTimer.addFineTime();
     }
 
     private void gameEnd() {
@@ -176,7 +172,7 @@ public class EqualFoundActivity extends AppCompatActivity implements HandlerTime
 
         String record = model.getRecord();
         if ("00:00".equals(record)) {
-            handlerScore.userLevelUp(model.getExp());
+            handlerDataSave.userLevelUp(model.getExp());
         }
 
         if (handlerTimer.isBetterRecord(currentRecord, record)) {
