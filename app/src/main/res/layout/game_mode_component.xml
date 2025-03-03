@@ -8,15 +8,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="18dp"
+        android:layout_margin="13dp"
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginBottom="13dp"
+            android:layout_marginTop="13dp"
             android:orientation="horizontal">
 
             <!-- Игра 1 -->
@@ -27,7 +27,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/yellow"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="2dp"
+                app:cardElevation="4dp"
                 app:cardUseCompatPadding="true">
 
                 <!-- Информация игра 1 -->
@@ -63,7 +63,7 @@
             </androidx.cardview.widget.CardView>
 
             <View
-                android:layout_width="15dp"
+                android:layout_width="13dp"
                 android:layout_height="0dp" />
 
             <!-- Игра 2 -->
@@ -74,7 +74,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/yellow"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="2dp"
+                app:cardElevation="4dp"
                 app:cardUseCompatPadding="true">
 
                 <!-- Информация игра 2 -->
@@ -114,7 +114,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="13dp"
             android:orientation="horizontal">
 
             <!-- Игра 3 -->
@@ -125,7 +125,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/yellow"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="2dp"
+                app:cardElevation="4dp"
                 app:cardUseCompatPadding="true">
 
                 <!-- Информация игра 3 -->
@@ -161,7 +161,7 @@
             </androidx.cardview.widget.CardView>
 
             <View
-                android:layout_width="15dp"
+                android:layout_width="13dp"
                 android:layout_height="0dp" />
 
             <!-- Игра 4 -->
@@ -172,7 +172,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/yellow"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="2dp"
+                app:cardElevation="4dp"
                 app:cardUseCompatPadding="true">
 
                 <!-- Информация игра 4 -->
@@ -223,7 +223,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/yellow"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="2dp"
+                app:cardElevation="4dp"
                 app:cardUseCompatPadding="true">
 
                 <!-- Информация игра 5 -->
@@ -259,7 +259,7 @@
             </androidx.cardview.widget.CardView>
 
             <View
-                android:layout_width="15dp"
+                android:layout_width="13dp"
                 android:layout_height="0dp" />
 
             <!-- Игра 6 -->
@@ -270,7 +270,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/yellow"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="2dp"
+                app:cardElevation="4dp"
                 app:cardUseCompatPadding="true">
 
                 <!-- Информация игра 6 -->

@@ -33,8 +33,8 @@ public class ChangeNicknameForm {
         input.setBackgroundResource(R.drawable.edit_form_border);
         input.setPadding(16, 16, 16, 16);
 
-        input.setTextColor(ContextCompat.getColor(context,R.color.light_gray));
-        input.setTextColor(ContextCompat.getColor(context,R.color.light_gray));
+        input.setTextColor(ContextCompat.getColor(context,R.color.yellow_gray));
+        input.setTextColor(ContextCompat.getColor(context,R.color.yellow_gray));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             input.setTextCursorDrawable(R.drawable.edit_form_selected_cursor);
         }

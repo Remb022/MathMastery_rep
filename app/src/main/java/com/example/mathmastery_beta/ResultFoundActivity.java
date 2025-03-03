@@ -56,7 +56,7 @@ public class ResultFoundActivity extends AppCompatActivity {
 
     private void setFunctionalHeaderIcon() {
         ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
-        functionalHeaderIcon.setImageResource(R.drawable.icon_homepage);
+        functionalHeaderIcon.setImageResource(R.drawable.icon_list);
         functionalHeaderIcon.setOnClickListener(v -> finish());
     }
 
