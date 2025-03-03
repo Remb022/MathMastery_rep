@@ -33,19 +33,20 @@ public class ChangeNicknameForm {
         input.setBackgroundResource(R.drawable.edit_form_border);
         input.setPadding(16, 16, 16, 16);
 
-        input.setTextColor(Color.parseColor("#7e7d68"));
-        input.setHighlightColor(Color.parseColor("#33F4AF16"));
+        input.setTextColor(ContextCompat.getColor(context,R.color.light_gray));
+        input.setTextColor(ContextCompat.getColor(context,R.color.light_gray));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             input.setTextCursorDrawable(R.drawable.edit_form_selected_cursor);
         }
 
         LinearLayout container = new LinearLayout(context);
         container.setOrientation(LinearLayout.VERTICAL);
+
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
         );
-        params.setMargins(32, 32, 32, 0); // Отступы по бокам
+        params.setMargins(45, 32, 45, 0); // Отступы по бокам
         input.setLayoutParams(params);
         container.addView(input);
 
@@ -65,16 +66,17 @@ public class ChangeNicknameForm {
         builder.setNegativeButton("Отмена", (dialog, which) -> dialog.cancel());
 
         AlertDialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.round_dialog); //Скругление углов диалогового окна
         dialog.show();
 
         Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
         if (positiveButton != null) {
-            positiveButton.setTextColor(ContextCompat.getColor(context, R.color.yellow));
+            positiveButton.setTextColor(ContextCompat.getColor(context, R.color.yellow));//Поменял цвет
         }
 
         Button negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
         if (negativeButton != null) {
-            negativeButton.setTextColor(ContextCompat.getColor(context, R.color.yellow));
+            negativeButton.setTextColor(ContextCompat.getColor(context, R.color.yellow));//Поменял цвет
         }
     }
 

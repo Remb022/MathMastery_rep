@@ -89,7 +89,7 @@ public class OperandFoundActivity extends AppCompatActivity {
                 label.setTypeface(null, Typeface.BOLD);
                 label.setGravity(Gravity.CENTER);
                 label.setBackgroundResource(R.drawable.cell_border_game);
-                label.setTextColor(Color.parseColor("#939272"));
+                label.setTextColor(Color.parseColor("#363634"));
 
                 TableRow.LayoutParams params = new TableRow.LayoutParams(buttonSize, buttonSize);
                 params.setMargins(5, 5, 5, 5);
