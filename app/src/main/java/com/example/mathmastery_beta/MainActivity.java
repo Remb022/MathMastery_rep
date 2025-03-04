@@ -1,9 +1,13 @@
 package com.example.mathmastery_beta;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -12,6 +16,9 @@ import com.example.mathmastery_beta.level_status_model.EqualFoundModel;
 import com.example.mathmastery_beta.level_status_model.OperandFoundModel;
 import com.example.mathmastery_beta.level_status_model.OperationFoundModel;
 import com.example.mathmastery_beta.level_status_model.ResultFoundModel;
+import com.example.mathmastery_beta.utils.DeepLinkHandler;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,10 +27,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DeepLinkHandler.handleDeepLink(this);
+
         CardView operandFoundGame = findViewById(R.id.operand_found_game);
         CardView operationFoundGame = findViewById(R.id.operation_found_game);
         CardView resultFoundGame = findViewById(R.id.result_found_game);
         CardView equalFoundGame = findViewById(R.id.equal_found_game);
+        CardView miniGame2048 = findViewById(R.id.mini_game_2048);
 
         operandFoundGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +66,18 @@ public class MainActivity extends AppCompatActivity {
                         EqualFoundModel.class);
             }
         });
+        miniGame2048.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), com.kynzai.game2048.game.MainActivity.class);
+
+                    v.getContext().startActivity(intent);
+
+
+            }
+        });
+
+
 
         setFunctionalHeaderIcon();
     }

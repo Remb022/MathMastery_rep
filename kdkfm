@@ -1,0 +1,218 @@
+[33mcommit 29c3dd3cc37d0fe087bce4a75e99fba6440be1aa[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mnotMaster[m[33m)[m
+Author: Kinza <egort.egort05@mail.ru>
+Date:   Thu Feb 27 11:36:43 2025 +0300
+
+    Чтож основа вроде сделана
+
+[33mcommit 2851791bd6e6c316b227147639f3a830d6e9cdf5[m[33m ([m[1;31morigin/notMaster[m[33m)[m
+Author: Kinza <egort.egort05@mail.ru>
+Date:   Sun Feb 9 23:51:55 2025 +0300
+
+    чертов терминал
+
+[33mcommit 2a0102cc05274a0e63cd69d4a26e4abb07ef9d36[m
+Merge: e31f6be 0335795
+Author: Kinza <egort.egort05@mail.ru>
+Date:   Thu Feb 6 21:09:14 2025 +0300
+
+    ну он мне говорит что то отправить ну я и отправляю
+
+[33mcommit e31f6be4f6ceff6ba7e0fcc89491d4993f9e36fd[m
+Author: Kinza <egort.egort05@mail.ru>
+Date:   Thu Feb 6 21:02:32 2025 +0300
+
+    не знаю что за штука оно просто появилось
+    добавлять наверное не рекомендую
+
+[33mcommit 0335795e79557b11cbe32c160a4df050ca2e6df6[m
+Author: Vadim <vadim@gmail.com>
+Date:   Mon Feb 3 22:11:50 2025 +0300
+
+    БфИзминениСлиты ветки, ÐÐизменение в названиях файловÐÐÐ
+
+[33mcommit 1c4dd678aafbc1d8ed64a2e19b56e379dfed021b[m[33m ([m[1;31morigin/XYZ1337[m[33m)[m
+Merge: d2bf83e 2a65f0b
+Author: Hindi_Here <90714509+Hindi-Here@users.noreply.github.com>
+Date:   Sun Feb 2 14:56:00 2025 +0300
+
+    Merge branch 'XYZ1337' of https://github.com/Remb022/MathMastery_rep into XYZ1337
+
+[33mcommit d2bf83e16b3ff3f8fe035142cc803007706ff8e4[m
+Author: Hindi_Here <90714509+Hindi-Here@users.noreply.github.com>
+Date:   Sun Feb 2 14:51:39 2025 +0300
+
+    generate level list from JSON
+
+[33mcommit 2a65f0bae7874cde98f48f4f4b7ab80106a60869[m
+Author: Vadim <vadim@gmail.com>
+Date:   Fri Jan 31 12:47:10 2025 +0300
+
+    Нерабочий адаптер размеров
+
+[33mcommit 7b4c69e38bfc029562b6a15ed07b1186a55f4c8e[m
+Merge: c846d8f 3b1e5f6
+Author: Vadim <vadim@gmail.com>
+Date:   Fri Jan 31 12:11:56 2025 +0300
+
+    Итоговая ветка
+
+[33mcommit 3b1e5f630a88d30f9bbcd4ffa8168852ee499f1a[m
+Author: Hindi_Here <90714509+Hindi-Here@users.noreply.github.com>
+Date:   Fri Jan 31 12:01:54 2025 +0300
+
+    return shadow header
+
+[33mcommit 5ddcc8678443410f5e26dfe4bc3b8954786d780e[m
+Author: Hindi_Here <90714509+Hindi-Here@users.noreply.github.com>
+Date:   Fri Jan 31 11:18:07 2025 +0300
+
+    mini-update??
+    
+    shadow header
+
+[33mcommit c846d8ff08182009fa2803cca5a83af3a72ad30a[m
+Author: Vadim <vadim@gmail.com>
+Date:   Thu Jan 30 21:10:17 2025 +0300
+
+    все уехало
+
+[33mcommit 1d6a75da239d161ea54de0eac878c631588200bf[m
+Author: Hindi_Here <90714509+Hindi-Here@users.noreply.github.com>
+Date:   Thu Jan 30 20:03:23 2025 +0300
+
+    Correct Adaptive Class
+    
+    Change Algorithm Adaptive Element on Activity
+
+[33mcommit a536cbcf0c753cb31f17590c1e65f5ac48d9529b[m
+Merge: d9867a3 3fa0a0f
+Author: Hindi_Here <90714509+Hindi-Here@users.noreply.github.com>
+Date:   Thu Jan 30 19:58:57 2025 +0300
+
+    Merge branch 'XYZ1337' of https://github.com/Remb022/MathMastery_rep into XYZ1337
+
+[33mcommit d9867a3ceaf75f663322302d00ad49e9da68094a[m
+Author: Hindi_Here <90714509+Hindi-Here@users.noreply.github.com>
+Date:   Thu Jan 30 19:58:55 2025 +0300
+
+    Correct Adaptive Class
+    
+    Change Algorithm Adaptive Element on Activity
+
+[33mcommit 3fa0a0feaa3b74598e18835a11faa8d1dcbfca1b[m
+Author: Vadim <vadim@gmail.com>
+Date:   Thu Jan 30 17:07:32 2025 +0300
+
+    Исправил AGP c 8.8 на 8.6.1
+
+[33mcommit 1c6d7b3d85618205440e1938bf4d939473552f3c[m
+Author: Vadim <vadim@gmail.com>
+Date:   Thu Jan 30 16:42:48 2025 +0300
+
+    Исправить версию AGP
+
+[33mcommit d1919488f7c82be99f9883b2c1c81c6df53bdddc[m
+Author: Hindi_Here <90714509+Hindi-Here@users.noreply.github.com>
+Date:   Thu Jan 30 12:29:58 2025 +0300
+
+    adaptive change
+    
+    Add Adaptive Component Class / Change Name Class and Component xml Files
+
+[33mcommit 11478fd990087461636c4f16a0bc8c6c3e1edda5[m
+Author: Hindi_Here <90714509+Hindi-Here@users.noreply.github.com>
+Date:   Wed Jan 29 14:49:10 2025 +0300
+
+    separation xml components
+
+[33mcommit 32e6e9553f20f3b051b6a16f34f6292cd926fc34[m
+Author: vershinin egor <118288792+Kinza945@users.noreply.github.com>
+Date:   Tue Jan 28 22:26:52 2025 +0300
+
+    Create README.md
+
+[33mcommit 0dd0bd35bd44a5429142576417728be9198167dd[m
+Merge: 1433698 535cd5b
+Author: vershinin egor <118288792+Kinza945@users.noreply.github.com>
+Date:   Tue Jan 28 22:22:42 2025 +0300
+
+    Merge pull request #4 from Remb022/notMaster
+    
+    notMaster
+
+[33mcommit 535cd5b9da1e3c55a9265603af3bbb93bfe1cb16[m
+Author: Kinza <egort.egort05@mail.ru>
+Date:   Tue Jan 28 22:21:36 2025 +0300
+
+    все еще не понимаю почему не сразу отправилось у меня на сайте не было отображения
+
+[33mcommit 14336988c23b14fcc116f60493f88de50395d033[m
+Merge: 3c13215 d3b88d2
+Author: vershinin egor <118288792+Kinza945@users.noreply.github.com>
+Date:   Tue Jan 28 22:18:57 2025 +0300
+
+    Merge pull request #3 from Remb022/notMaster
+    
+    Not master
+
+[33mcommit d3b88d29cf41a5f489b385522e32c4970b93e828[m
+Author: Kinza <egort.egort05@mail.ru>
+Date:   Tue Jan 28 22:15:24 2025 +0300
+
+    вроде настроил котлин дубль два
+
+[33mcommit 39b7d933d24a5e2a54da115aaec14be7fcb677d1[m
+Author: Kinza <egort.egort05@mail.ru>
+Date:   Tue Jan 28 22:08:22 2025 +0300
+
+    вроде настроил котлин
+
+[33mcommit 97d70b9b8a565349b9d81bdfa3f349991c91877f[m
+Author: Kinza <egort.egort05@mail.ru>
+Date:   Tue Jan 28 21:52:53 2025 +0300
+
+    вроде настроил котлин
+
+[33mcommit 3c132153a382e56923cea9f55517e7c71f451971[m
+Author: vershinin egor <118288792+Kinza945@users.noreply.github.com>
+Date:   Tue Jan 28 20:03:19 2025 +0300
+
+    Create README.md
+    
+    Анекдот
+
+[33mcommit f5fa3d4f177bcbe496dbc9fb1b74382228e0185a[m
+Merge: 2474017 b44a07c
+Author: vershinin egor <118288792+Kinza945@users.noreply.github.com>
+Date:   Tue Jan 28 19:42:08 2025 +0300
+
+    Merge pull request #2 from Remb022/notMaster
+    
+    notMaster
+
+[33mcommit b44a07cc16583784022bee39294394b30936e5e9[m
+Author: Kinza <egort.egort05@mail.ru>
+Date:   Tue Jan 28 19:38:21 2025 +0300
+
+    бра нет коммита
+
+[33mcommit 24740179172b33bdffdab6536dff7fcf13545e13[m
+Merge: e9ccd9b de44a94
+Author: vershinin egor <118288792+Kinza945@users.noreply.github.com>
+Date:   Tue Jan 28 19:36:05 2025 +0300
+
+    Merge pull request #1 from Remb022/notMaster
+    
+    и что?
+
+[33mcommit de44a944fb6ae65bccb080fad427fa9611d9f824[m
+Author: Kinza <egort.egort05@mail.ru>
+Date:   Tue Jan 28 19:33:44 2025 +0300
+
+    и что?
+
+[33mcommit e9ccd9b32b994a0a51266e72dfcfbddc8dbff195[m
+Author: Vadim <vadim@gmail.com>
+Date:   Tue Jan 28 18:35:44 2025 +0300
+
+    Initial commit
