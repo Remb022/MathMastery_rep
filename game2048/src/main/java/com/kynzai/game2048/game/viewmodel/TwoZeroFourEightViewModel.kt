@@ -37,7 +37,7 @@ class TwoZeroFourEightViewModel @Inject constructor(
 
     //TODO: Размер поля
     fun startNewGame() = viewModelScope.launch {
-        val newBoard = boardGameUseCases.createBoardGame(2)
+        val newBoard = boardGameUseCases.createBoardGame(4)
         _gameState.update {
             it.copy(
                 board = newBoard,

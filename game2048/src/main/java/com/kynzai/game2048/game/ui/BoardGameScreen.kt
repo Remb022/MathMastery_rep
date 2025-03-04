@@ -2,6 +2,7 @@ package com.kynzai.game2048.game.ui
 
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.runtime.*
@@ -9,6 +10,7 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import com.kynzai.game2048.R
 import com.kynzai.game2048.datastore.GameState
 import com.kynzai.game2048.game.board.GameStatus
@@ -45,17 +47,26 @@ fun BoardGameScreen(viewModel: TwoZeroFourEightViewModel, uiState: GameState) {
         }
     }
 
-
     Box {
+        Row(
+            modifier = Modifier.fillMaxWidth()
+                .zIndex(1f),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            HeaderPanel(
+                modifier = Modifier.clickable {
+                    println("HeaderPanel clicked!")
+                }
+            )
+        }
+
         Column(
             modifier = Modifier
+                .padding(top = 100.dp)
                 .fillMaxSize()
                 .background(White2),
             horizontalAlignment = CenterHorizontally
         ) {
-
-            HeaderPanel()
-
 
             Spacer(modifier = Modifier.height(50.dp))
             Row(
@@ -103,7 +114,6 @@ fun BoardGameScreen(viewModel: TwoZeroFourEightViewModel, uiState: GameState) {
                     .padding(top = 180.dp),
                 horizontalArrangement = Arrangement.Center
             ) {
-                HeaderPanel()
 
                 RestartButton(
                     modifier = Modifier.offset(y = reStartButtonY),
@@ -115,6 +125,3 @@ fun BoardGameScreen(viewModel: TwoZeroFourEightViewModel, uiState: GameState) {
         }
     }
 }
-
-
-

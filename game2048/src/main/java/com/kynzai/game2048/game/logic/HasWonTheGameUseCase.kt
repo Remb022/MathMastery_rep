@@ -18,7 +18,6 @@ class HasWonTheGameUseCase {
         return result.copy(
             gameStatus = GameStatus.YOU_WIN,
             numberToWin = nextHighNumber * 2
-            // score остается без изменений
         )
     }
 }

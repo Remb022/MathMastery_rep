@@ -26,7 +26,9 @@ import com.kynzai.game2048.R
 import com.kynzai.game2048.game.ui.theme.Yallow
 
 @Composable
-fun HeaderPanel() {
+fun HeaderPanel(
+    modifier: Modifier = Modifier,
+) {
     val context = LocalContext.current
     Row(
         modifier = Modifier
@@ -47,14 +49,15 @@ fun HeaderPanel() {
 
         Spacer(modifier = Modifier.weight(1f))
 
-        // Кнопка настроек
         IconButton(
             onClick = {
-                // Логика перехода на главный экран через deep link
+                //TODO: Оставить только вызов
                 val deepLinkUri = Uri.parse("app://mathmastery/home")
-                val intent = Intent(Intent.ACTION_VIEW, deepLinkUri)
+                val intent = Intent(Intent.ACTION_VIEW, deepLinkUri).apply {
+                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                }
                 context.startActivity(intent)
-                (context as? android.app.Activity)?.finish() // Закрываем текущий экран
+                (context as? android.app.Activity)?.finish()
             },
             modifier = Modifier.size(70.dp)
         ) {

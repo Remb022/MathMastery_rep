@@ -1,22 +1,27 @@
 package com.kynzai.game2048.game.board.components
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment.Companion.Center
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color.Companion.Black
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -24,74 +29,124 @@ import com.kynzai.game2048.datastore.DEFAULT_VALUE
 import com.kynzai.game2048.game.logic.MovementDirection
 import com.kynzai.game2048.game.ui.theme.getCellData
 import com.kynzai.game2048.game.ui.corners
-import com.kynzai.game2048.game.ui.paddings_inside_board
 import com.kynzai.game2048.game.ui.theme.Grey2
 
 @Composable
-fun BoardGame(tableData: List<List<Int>>, currentDirection: MovementDirection, uiBoardSize: Dp) {
-    LazyColumn(
-        modifier = Modifier.Companion
-            .width(uiBoardSize)
-            .height(uiBoardSize)
-            .background(
-                color = Grey2,
-                shape = RoundedCornerShape(corners)
-            )
-            .padding(paddings_inside_board)
-    ) {
-        items(
-            items = tableData,
-        ) { row ->
-            BoardGameRow(rowData = row, uiBoardSize - paddings_inside_board - paddings_inside_board)
-        }
-    }
-}
+fun BoardGame(
+    tableData: List<List<Int>>,
+    currentDirection: MovementDirection,
+    uiBoardSize: Dp
+) {
+    var previousBoard by remember { mutableStateOf(emptyList<List<Int>>()) }
+    val cellSpacing = 8.dp
+    val containerSize = uiBoardSize - cellSpacing * 2
+    val tileSize = (containerSize - cellSpacing * 3) / 4
 
-@Composable
-fun BoardGameRow(rowData: List<Int>, uiBoardSize: Dp) {
-    val uiCellSize = uiBoardSize.div(rowData.size)
-
-    LazyRow(
+    Box(
         modifier = Modifier
-            .width(uiBoardSize)
-            .height(uiCellSize)
+            .size(uiBoardSize)
+            .background(Grey2, RoundedCornerShape(corners))
+            .padding(cellSpacing)
     ) {
-        items(
-            items = rowData,
-        ) { cellData ->
-            BoardGameCell(cellData, uiCellSize)
+        // Отображение пустых ячеек
+        for (row in 0 until 4) {
+            for (col in 0 until 4) {
+                EmptyCell(
+                    tileSize = tileSize,
+                    modifier = Modifier
+                        .offset(
+                            x = (tileSize + cellSpacing) * col,
+                            y = (tileSize + cellSpacing) * row
+                        )
+                )
+            }
         }
+
+        // Отображение ячеек с числами
+        tableData.forEachIndexed { row, rows ->
+            rows.forEachIndexed { col, value ->
+                if (value != DEFAULT_VALUE) {
+                    key("$row-$col-$value") {
+                        val offsetX by animateDpAsState(
+                            targetValue = (tileSize + cellSpacing) * col,
+                            animationSpec = tween(300)
+                        )
+
+                        val offsetY by animateDpAsState(
+                            targetValue = (tileSize + cellSpacing) * row,
+                            animationSpec = tween(300)
+                        )
+
+                        val scale = remember { Animatable(0.8f) }
+                        LaunchedEffect(value) {
+                            if (previousBoard.getOrNull(row)?.getOrNull(col) != value) {
+                                scale.animateTo(1.2f, tween(100))
+                                scale.animateTo(1f, tween(200))
+                            }
+                        }
+
+                        BoardGameCell(
+                            cellNumber = value,
+                            tileSize = tileSize,
+                            modifier = Modifier
+                                .offset(offsetX, offsetY)
+                                .graphicsLayer {
+                                    scaleX = scale.value
+                                    scaleY = scale.value
+                                }
+                        )
+                    }
+                }
+            }
+        }
+    }
+    LaunchedEffect(tableData) {
+        previousBoard = tableData
     }
 }
 
 @Composable
-fun BoardGameCell(cellNumber: Int, uiCellSize: Dp) {
+fun BoardGameCell(
+    cellNumber: Int,
+    tileSize: Dp,
+    modifier: Modifier = Modifier
+) {
     val cellData = getCellData(cellNumber)
-    Box(modifier = Modifier
-        .width(uiCellSize)
-        .height(uiCellSize)
-        .padding(paddings_inside_board)
+    val backgroundColor = cellData.backgroundColor
+    val textColor = if (cellNumber < 8) Color.DarkGray else Color.White
+
+    Box(
+        modifier = modifier
+            .size(tileSize)
+            .background(
+                color = backgroundColor,
+                shape = RoundedCornerShape(corners / 2))
+            .padding(4.dp),
+        contentAlignment = Alignment.Center
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    shape = RoundedCornerShape(corners),
-                    color = cellData.backgroundColor
-                )
-                .border(
-                    shape = RoundedCornerShape(corners),
-                    color = Black,
-                    width = 1.dp
-                ),
-            contentAlignment = Center
-        ) {
-            Text(
-                fontSize = 25.sp,
-                color = cellData.textColor,
-                fontWeight = FontWeight.Bold,
-                text = if (cellNumber == DEFAULT_VALUE) "" else cellNumber.toString()
-            )
-        }
+        Text(
+            text = cellNumber.toString(),
+            color = textColor,
+            fontSize = when {
+                cellNumber > 512 -> 18.sp
+                cellNumber > 64 -> 22.sp
+                else -> 26.sp
+            }
+        )
     }
+}
+
+@Composable
+fun EmptyCell(
+    tileSize: Dp,
+    modifier: Modifier = Modifier
+) {
+    Box(
+        modifier = modifier
+            .size(tileSize)
+            .background(
+                color = Color.LightGray,
+                shape = RoundedCornerShape(corners / 2)
+            )
+    )
 }
