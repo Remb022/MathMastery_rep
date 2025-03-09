@@ -1,16 +1,16 @@
 package com.kynzai.game2048.game.board.components
 
+import android.util.Log
 import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -18,18 +18,16 @@ import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.kynzai.game2048.datastore.DEFAULT_VALUE
 import com.kynzai.game2048.game.logic.MovementDirection
-import com.kynzai.game2048.game.ui.theme.getCellData
 import com.kynzai.game2048.game.ui.corners
 import com.kynzai.game2048.game.ui.theme.Grey2
+import java.util.UUID
+import kotlin.math.abs
 
 @Composable
 fun BoardGame(
@@ -37,10 +35,56 @@ fun BoardGame(
     currentDirection: MovementDirection,
     uiBoardSize: Dp
 ) {
+    data class AnimatableTile(
+        val value: Int,
+        val row: Int,
+        val col: Int,
+        val uniqueId: String = UUID.randomUUID().toString()
+    )
+
     var previousBoard by remember { mutableStateOf(emptyList<List<Int>>()) }
+    var previousNumberPositions by remember { mutableStateOf(emptyMap<Int, List<Pair<Int, Int>>>()) }
+
     val cellSpacing = 8.dp
     val containerSize = uiBoardSize - cellSpacing * 2
     val tileSize = (containerSize - cellSpacing * 3) / 4
+
+    val currentTilePositions = remember(tableData) {
+        buildMap<Int, MutableList<Pair<Int, Int>>> {
+            tableData.forEachIndexed { row, rows ->
+                rows.forEachIndexed { col, value ->
+                    if (value != DEFAULT_VALUE) {
+                        getOrPut(value) { mutableListOf() }.add(Pair(row, col))
+                    }
+                }
+            }
+        }
+    }
+
+    val animatableTiles = remember(tableData) {
+        tableData.mapIndexed { row, rows ->
+            rows.mapIndexed { col, value ->
+                AnimatableTile(value, row, col)
+            }
+        }
+    }
+
+    fun findPreviousPosition(
+        value: Int,
+        currentRow: Int,
+        currentCol: Int
+    ): Pair<Int, Int> {
+        val previousPositions = previousNumberPositions.getOrDefault(value, emptyList())
+
+        if (previousPositions.isNotEmpty()) {
+            val closestPosition = previousPositions.minByOrNull { prevPos ->
+                abs(prevPos.first - currentRow) + abs(prevPos.second - currentCol)
+            }
+            return closestPosition ?: Pair(currentRow, currentCol)
+        }
+
+        return Pair(currentRow, currentCol)
+    }
 
     Box(
         modifier = Modifier
@@ -48,7 +92,6 @@ fun BoardGame(
             .background(Grey2, RoundedCornerShape(corners))
             .padding(cellSpacing)
     ) {
-        // Отображение пустых ячеек
         for (row in 0 until 4) {
             for (col in 0 until 4) {
                 EmptyCell(
@@ -62,26 +105,51 @@ fun BoardGame(
             }
         }
 
-        // Отображение ячеек с числами
-        tableData.forEachIndexed { row, rows ->
-            rows.forEachIndexed { col, value ->
+        animatableTiles.forEachIndexed { row, rows ->
+            rows.forEachIndexed { col, animatableTile ->
+                val value = animatableTile.value
+
                 if (value != DEFAULT_VALUE) {
-                    key("$row-$col-$value") {
-                        val offsetX by animateDpAsState(
-                            targetValue = (tileSize + cellSpacing) * col,
-                            animationSpec = tween(300)
-                        )
+                    key(animatableTile.uniqueId) {
+                        val previousPosition = findPreviousPosition(value, row, col)
 
-                        val offsetY by animateDpAsState(
-                            targetValue = (tileSize + cellSpacing) * row,
-                            animationSpec = tween(300)
-                        )
+                        val startX = (tileSize + cellSpacing) * previousPosition.second
+                        val startY = (tileSize + cellSpacing) * previousPosition.first
 
-                        val scale = remember { Animatable(0.8f) }
+                        val targetX = (tileSize + cellSpacing) * col
+                        val targetY = (tileSize + cellSpacing) * row
+
+                        val offsetX = remember { Animatable(startX.value) }
+                        LaunchedEffect(targetX) {
+                            if (startX != targetX) {
+                                offsetX.animateTo(
+                                    targetValue = targetX.value,
+                                    animationSpec = tween(
+                                        durationMillis = 300,
+                                        easing = LinearEasing
+                                    )
+                                )
+                            }
+                        }
+
+                        val offsetY = remember { Animatable(startY.value) }
+                        LaunchedEffect(targetY) {
+                            if (startY != targetY) {
+                                offsetY.animateTo(
+                                    targetValue = targetY.value,
+                                    animationSpec = tween(
+                                        durationMillis = 300,
+                                        easing = LinearEasing
+                                    )
+                                )
+                            }
+                        }
+
+                        val scale = remember { Animatable(1f) }
                         LaunchedEffect(value) {
                             if (previousBoard.getOrNull(row)?.getOrNull(col) != value) {
-                                scale.animateTo(1.2f, tween(100))
-                                scale.animateTo(1f, tween(200))
+                                scale.animateTo(1.2f, tween(durationMillis = 100))
+                                scale.animateTo(1f, tween(durationMillis = 100))
                             }
                         }
 
@@ -89,7 +157,7 @@ fun BoardGame(
                             cellNumber = value,
                             tileSize = tileSize,
                             modifier = Modifier
-                                .offset(offsetX, offsetY)
+                                .offset(offsetX.value.dp, offsetY.value.dp)
                                 .graphicsLayer {
                                     scaleX = scale.value
                                     scaleY = scale.value
@@ -100,53 +168,20 @@ fun BoardGame(
             }
         }
     }
+
     LaunchedEffect(tableData) {
+        val newNumberPositions = mutableMapOf<Int, List<Pair<Int, Int>>>()
+
+        tableData.forEachIndexed { row, rows ->
+            rows.forEachIndexed { col, value ->
+                if (value != DEFAULT_VALUE) {
+                    val positions = newNumberPositions.getOrDefault(value, emptyList())
+                    newNumberPositions[value] = positions + Pair(row, col)
+                }
+            }
+        }
+
+        previousNumberPositions = newNumberPositions
         previousBoard = tableData
     }
-}
-
-@Composable
-fun BoardGameCell(
-    cellNumber: Int,
-    tileSize: Dp,
-    modifier: Modifier = Modifier
-) {
-    val cellData = getCellData(cellNumber)
-    val backgroundColor = cellData.backgroundColor
-    val textColor = if (cellNumber < 8) Color.DarkGray else Color.White
-
-    Box(
-        modifier = modifier
-            .size(tileSize)
-            .background(
-                color = backgroundColor,
-                shape = RoundedCornerShape(corners / 2))
-            .padding(4.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = cellNumber.toString(),
-            color = textColor,
-            fontSize = when {
-                cellNumber > 512 -> 18.sp
-                cellNumber > 64 -> 22.sp
-                else -> 26.sp
-            }
-        )
-    }
-}
-
-@Composable
-fun EmptyCell(
-    tileSize: Dp,
-    modifier: Modifier = Modifier
-) {
-    Box(
-        modifier = modifier
-            .size(tileSize)
-            .background(
-                color = Color.LightGray,
-                shape = RoundedCornerShape(corners / 2)
-            )
-    )
 }
