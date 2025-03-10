@@ -32,7 +32,6 @@ import kotlin.math.abs
 @Composable
 fun BoardGame(
     tableData: List<List<Int>>,
-    currentDirection: MovementDirection,
     uiBoardSize: Dp
 ) {
     data class AnimatableTile(
@@ -48,18 +47,6 @@ fun BoardGame(
     val cellSpacing = 8.dp
     val containerSize = uiBoardSize - cellSpacing * 2
     val tileSize = (containerSize - cellSpacing * 3) / 4
-
-    val currentTilePositions = remember(tableData) {
-        buildMap<Int, MutableList<Pair<Int, Int>>> {
-            tableData.forEachIndexed { row, rows ->
-                rows.forEachIndexed { col, value ->
-                    if (value != DEFAULT_VALUE) {
-                        getOrPut(value) { mutableListOf() }.add(Pair(row, col))
-                    }
-                }
-            }
-        }
-    }
 
     val animatableTiles = remember(tableData) {
         tableData.mapIndexed { row, rows ->
