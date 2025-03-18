@@ -83,4 +83,6 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
 
+
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
 }

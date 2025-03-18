@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name"> MathMastery_beta </string>
 
-    <string name="operand_found"> \u003F + \u003F = C </string>
+    <string name="operand_found"> X + \u003F = C </string>
     <string name="operation_found"> X ? Y = С </string>
     <string name="result_found"> X + Y = ? </string>
     <string name="equal_found"> \u003E \u003C = </string>
     <string name="mini_game_2048"> 2048 </string>
-    <string name="coming_soon_mode"> \u003F </string>
+    <string name="question_mark"> \u003F </string>
 </resources>
