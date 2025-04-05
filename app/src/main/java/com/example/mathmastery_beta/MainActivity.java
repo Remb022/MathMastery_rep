@@ -22,6 +22,8 @@ import com.example.mathmastery_beta.level_status_model.LevelModel;
 import com.example.mathmastery_beta.level_status_model.OperandFoundModel;
 import com.example.mathmastery_beta.level_status_model.OperationFoundModel;
 import com.example.mathmastery_beta.level_status_model.ResultFoundModel;
+import com.example.mathmastery_beta.utils.DeepLinkHandler;
+
 import org.jetbrains.annotations.Nullable;
 import java.io.File;
 
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DeepLinkHandler.handleDeepLink(this);
 
         setNicknameFormListener();
         setChangeAvatarListener();
@@ -113,10 +117,12 @@ public class MainActivity extends AppCompatActivity {
 
         miniGame2048.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, com.kynzai.game2048.game.MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), com.kynzai.game2048.game.MainActivity.class);
+
+                v.getContext().startActivity(intent);
+
+
             }
         });
 
