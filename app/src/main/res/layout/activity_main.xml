@@ -84,7 +84,7 @@
 
     <!-- Footer -->
     <include
-        layout="@layout/footer_component"
+        layout="@layout/component_footer"
         android:id="@+id/footer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,10 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.mathmastery_beta.EqualFoundActivity;
 import com.example.mathmastery_beta.OperandFoundActivity;
 import com.example.mathmastery_beta.OperationFoundActivity;
@@ -25,10 +23,11 @@ public class LevelGridAdapter extends RecyclerView.Adapter<LevelGridAdapter.View
     private final Context context;
     private final String path;
 
-    public LevelGridAdapter(List<LevelModel> levels, Context context,String path) {
+    // Constructor with path parameter
+    public LevelGridAdapter(List<LevelModel> levels, Context context, String path) {
         this.levels = levels;
         this.context = context;
-        this.path = path;
+        this.path = path; // Store the path value
     }
 
     @NonNull
@@ -46,13 +45,14 @@ public class LevelGridAdapter extends RecyclerView.Adapter<LevelGridAdapter.View
 
         holder.levelNumber.setText(String.valueOf(level));
 
+        // Set icon based on level status
         if ("active".equals(status)) {
             holder.iconLock.setBackgroundResource(R.drawable.icon_unlock);
-        }
-        else {
+        } else {
             holder.iconLock.setBackgroundResource(R.drawable.icon_lock);
         }
 
+        // Set onClickListener to open the relevant activity
         holder.itemView.setOnClickListener(v -> {
             if ("active".equals(status)) {
                 Intent intent;
@@ -77,7 +77,6 @@ public class LevelGridAdapter extends RecyclerView.Adapter<LevelGridAdapter.View
                 context.startActivity(intent);
             }
         });
-
     }
 
     @Override
@@ -96,5 +95,6 @@ public class LevelGridAdapter extends RecyclerView.Adapter<LevelGridAdapter.View
         }
     }
 }
+
 
 

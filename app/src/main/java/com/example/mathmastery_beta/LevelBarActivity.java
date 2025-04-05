@@ -4,23 +4,19 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
-
 import com.example.mathmastery_beta.adaptor.LevelPagerAdapter;
 import com.example.mathmastery_beta.handlers.HandlerAdaptive;
 import com.example.mathmastery_beta.handlers.HandlerDataSave;
 import com.example.mathmastery_beta.handlers.HandlerJSON;
 import com.example.mathmastery_beta.level_status_model.LevelModel;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -46,12 +42,6 @@ public class LevelBarActivity extends AppCompatActivity {
         updateFooterProgress();
     }
 
-    private void setFunctionalHeaderIcon() {
-        ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
-        functionalHeaderIcon.setImageResource(R.drawable.icon_homepage);
-        functionalHeaderIcon.setVisibility(View.VISIBLE);
-        functionalHeaderIcon.setOnClickListener(v -> finish());
-    }
 
     private void setGameInfo(){
         TextView gameInfo = findViewById(R.id.game_info);
@@ -96,6 +86,17 @@ public class LevelBarActivity extends AppCompatActivity {
         catch (ClassNotFoundException ex) {
             Log.e("NotFoundModel", "Model-Class not found", ex);
         }
+    }
+
+    private void setFunctionalHeaderIcon() {
+        ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
+        functionalHeaderIcon.setImageResource(R.drawable.icon_homepage);
+        functionalHeaderIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private String loadJSON(String fileName) {
