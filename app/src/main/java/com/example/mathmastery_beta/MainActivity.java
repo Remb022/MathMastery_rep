@@ -2,8 +2,6 @@ package com.example.mathmastery_beta;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -11,10 +9,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
@@ -26,9 +22,7 @@ import com.example.mathmastery_beta.level_status_model.LevelModel;
 import com.example.mathmastery_beta.level_status_model.OperandFoundModel;
 import com.example.mathmastery_beta.level_status_model.OperationFoundModel;
 import com.example.mathmastery_beta.level_status_model.ResultFoundModel;
-
 import org.jetbrains.annotations.Nullable;
-
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         loadNickname();
         loadAvatar();
         adaptiveComponent();
-    }
 
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -115,6 +109,16 @@ public class MainActivity extends AppCompatActivity {
         CardView operationFoundGame = findViewById(R.id.operation_found_game);
         CardView resultFoundGame = findViewById(R.id.result_found_game);
         CardView equalFoundGame = findViewById(R.id.equal_found_game);
+        CardView miniGame2048 = findViewById(R.id.mini_game_2048);
+
+        miniGame2048.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, com.kynzai.game2048.game.MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
 
         operandFoundGame.setOnClickListener(v -> startLevelBarActivity("operand_found.json",
                 OperandFoundModel.class));
