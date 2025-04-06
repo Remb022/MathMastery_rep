@@ -31,46 +31,63 @@ import kotlin.math.abs
 
 @Composable
 fun BoardGame(
-    tableData: List<List<Int>>,
+    currentBoard: List<List<Int>>,
     uiBoardSize: Dp
 ) {
-    data class AnimatableTile(
+    // Класс для хранения состояния плитки с историей перемещений
+    data class Tile(
+        val id: UUID,
         val value: Int,
-        val row: Int,
-        val col: Int,
-        val uniqueId: String = UUID.randomUUID().toString()
+        var currentRow: Int,
+        var currentCol: Int,
+        var previousRow: Int = currentRow,
+        var previousCol: Int = currentCol
     )
-
-    var previousBoard by remember { mutableStateOf(emptyList<List<Int>>()) }
-    var previousNumberPositions by remember { mutableStateOf(emptyMap<Int, List<Pair<Int, Int>>>()) }
 
     val cellSpacing = 8.dp
     val containerSize = uiBoardSize - cellSpacing * 2
     val tileSize = (containerSize - cellSpacing * 3) / 4
 
-    val animatableTiles = remember(tableData) {
-        tableData.mapIndexed { row, rows ->
-            rows.mapIndexed { col, value ->
-                AnimatableTile(value, row, col)
+    // Состояние всех плиток
+    val tilesState = remember { mutableStateOf(emptyList<Tile>()) }
+
+    // Эффект для обновления позиций
+    LaunchedEffect(currentBoard) {
+        val previousTiles = tilesState.value.associateBy { it.currentRow to it.currentCol }
+        val newTiles = mutableListOf<Tile>()
+
+        // Сопоставляем новые позиции
+        currentBoard.forEachIndexed { row, rows ->
+            rows.forEachIndexed { col, value ->
+                if (value != DEFAULT_VALUE) {
+                    // Ищем плитку в предыдущем состоянии
+                    val existingTile = previousTiles.values.firstOrNull {
+                        it.value == value && !newTiles.any { t -> t.id == it.id }
+                    }
+
+                    if (existingTile != null) {
+                        // Обновляем позицию существующей плитки
+                        existingTile.previousRow = existingTile.currentRow
+                        existingTile.previousCol = existingTile.currentCol
+                        existingTile.currentRow = row
+                        existingTile.currentCol = col
+                        newTiles.add(existingTile)
+                    } else {
+                        // Создаем новую плитку
+                        newTiles.add(
+                            Tile(
+                                id = UUID.randomUUID(),
+                                value = value,
+                                currentRow = row,
+                                currentCol = col
+                            )
+                        )
+                    }
+                }
             }
         }
-    }
 
-    fun findPreviousPosition(
-        value: Int,
-        currentRow: Int,
-        currentCol: Int
-    ): Pair<Int, Int> {
-        val previousPositions = previousNumberPositions.getOrDefault(value, emptyList())
-
-        if (previousPositions.isNotEmpty()) {
-            val closestPosition = previousPositions.minByOrNull { prevPos ->
-                abs(prevPos.first - currentRow) + abs(prevPos.second - currentCol)
-            }
-            return closestPosition ?: Pair(currentRow, currentCol)
-        }
-
-        return Pair(currentRow, currentCol)
+        tilesState.value = newTiles
     }
 
     Box(
@@ -79,8 +96,9 @@ fun BoardGame(
             .background(Grey2, RoundedCornerShape(corners))
             .padding(cellSpacing)
     ) {
-        for (row in 0 until 4) {
-            for (col in 0 until 4) {
+        // Фоновые пустые клетки
+        repeat(4) { row ->
+            repeat(4) { col ->
                 EmptyCell(
                     tileSize = tileSize,
                     modifier = Modifier
@@ -92,83 +110,34 @@ fun BoardGame(
             }
         }
 
-        animatableTiles.forEachIndexed { row, rows ->
-            rows.forEachIndexed { col, animatableTile ->
-                val value = animatableTile.value
+        // Анимированные плитки
+        tilesState.value.forEach { tile ->
+            key(tile.id) {
+                val targetX = (tileSize + cellSpacing) * tile.currentCol
+                val targetY = (tileSize + cellSpacing) * tile.currentRow
+                val startX = (tileSize + cellSpacing) * tile.previousCol
+                val startY = (tileSize + cellSpacing) * tile.previousRow
 
-                if (value != DEFAULT_VALUE) {
-                    key(animatableTile.uniqueId) {
-                        val previousPosition = findPreviousPosition(value, row, col)
+                val offsetX = remember(tile.id) { Animatable(startX.value) }
+                val offsetY = remember(tile.id) { Animatable(startY.value) }
 
-                        val startX = (tileSize + cellSpacing) * previousPosition.second
-                        val startY = (tileSize + cellSpacing) * previousPosition.first
-
-                        val targetX = (tileSize + cellSpacing) * col
-                        val targetY = (tileSize + cellSpacing) * row
-
-                        val offsetX = remember { Animatable(startX.value) }
-                        LaunchedEffect(targetX) {
-                            if (startX != targetX) {
-                                offsetX.animateTo(
-                                    targetValue = targetX.value,
-                                    animationSpec = tween(
-                                        durationMillis = 300,
-                                        easing = LinearEasing
-                                    )
-                                )
-                            }
-                        }
-
-                        val offsetY = remember { Animatable(startY.value) }
-                        LaunchedEffect(targetY) {
-                            if (startY != targetY) {
-                                offsetY.animateTo(
-                                    targetValue = targetY.value,
-                                    animationSpec = tween(
-                                        durationMillis = 300,
-                                        easing = LinearEasing
-                                    )
-                                )
-                            }
-                        }
-
-                        val scale = remember { Animatable(1f) }
-                        LaunchedEffect(value) {
-                            if (previousBoard.getOrNull(row)?.getOrNull(col) != value) {
-                                scale.animateTo(1.2f, tween(durationMillis = 100))
-                                scale.animateTo(1f, tween(durationMillis = 100))
-                            }
-                        }
-
-                        BoardGameCell(
-                            cellNumber = value,
-                            tileSize = tileSize,
-                            modifier = Modifier
-                                .offset(offsetX.value.dp, offsetY.value.dp)
-                                .graphicsLayer {
-                                    scaleX = scale.value
-                                    scaleY = scale.value
-                                }
-                        )
+                LaunchedEffect(tile.currentRow, tile.currentCol) {
+                    if (tile.previousRow != tile.currentRow || tile.previousCol != tile.currentCol) {
+                        offsetX.animateTo(targetX.value, tween(500))
+                        offsetY.animateTo(targetY.value, tween(500))
+                    } else {
+                        offsetX.snapTo(targetX.value)
+                        offsetY.snapTo(targetY.value)
                     }
                 }
+
+                BoardGameCell(
+                    cellNumber = tile.value,
+                    tileSize = tileSize,
+                    modifier = Modifier
+                        .offset(offsetX.value.dp, offsetY.value.dp)
+                )
             }
         }
-    }
-
-    LaunchedEffect(tableData) {
-        val newNumberPositions = mutableMapOf<Int, List<Pair<Int, Int>>>()
-
-        tableData.forEachIndexed { row, rows ->
-            rows.forEachIndexed { col, value ->
-                if (value != DEFAULT_VALUE) {
-                    val positions = newNumberPositions.getOrDefault(value, emptyList())
-                    newNumberPositions[value] = positions + Pair(row, col)
-                }
-            }
-        }
-
-        previousNumberPositions = newNumberPositions
-        previousBoard = tableData
     }
 }

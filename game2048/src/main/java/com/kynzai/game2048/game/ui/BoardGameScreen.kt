@@ -83,7 +83,7 @@ fun BoardGameScreen(viewModel: TwoZeroFourEightViewModel, uiState: GameState) {
                 HighScoreDisplay(uiState)
             }
 
-            BoardGame(uiState.board, uiBoardSize)
+            BoardGame(uiState.board, uiBoardSize, )
 
             Spacer(modifier = Modifier.Companion.height(IconButtonHeight + 10.dp))
 
