@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -49,59 +49,58 @@ android {
 }
 
 dependencies {
+    // --- Core Android ---
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.androidx.core.ktx)
+
+    // --- Jetpack Compose ---
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.activity.compose)
+
+    // --- Lifecycle & Datastore ---
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.datastore.preferences)
 
-    // Hilt dependencies
-    implementation(libs.hilt.navigation.compose)
+    // --- Hilt / Dependency Injection ---
     implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
+    kapt(libs.hilt.compiler)
 
-    // For instrumentation tests
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.56.1")
-    androidTestAnnotationProcessor("com.google.dagger:hilt-compiler:2.56.1")
-
-    // For local unit tests
-    testImplementation("com.google.dagger:hilt-android-testing:2.56.1")
-    testAnnotationProcessor("com.google.dagger:hilt-compiler:2.56.1")
-
-    // Debugging dependencies
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
-
-    // Android testing
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-
-    // Unit testing
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
-
-    // RecyclerView and ViewPager
+    // --- RecyclerView & ViewPager2 ---
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
 
-    // Other libraries
+    // --- Other Libraries ---
     implementation("com.google.code.gson:gson:2.12.1")
     implementation("commons-io:commons-io:2.18.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
-    // Project dependency
+    // --- Project Modules ---
     implementation(project(":game2048"))
 
-    // Datastore & Lifecycle dependencies
-    implementation(libs.androidx.datastore.preferences)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    // --- Debugging Tools ---
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
+
+    // --- Testing ---
+    testImplementation(libs.junit)
+    testImplementation("com.google.dagger:hilt-android-testing:2.56.1")
+    testAnnotationProcessor("com.google.dagger:hilt-compiler:2.56.1")
+
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.56.1")
+    androidTestAnnotationProcessor("com.google.dagger:hilt-compiler:2.56.1")
 }
 
 

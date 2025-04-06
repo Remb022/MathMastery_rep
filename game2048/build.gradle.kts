@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -35,28 +35,23 @@ android {
     }
     kapt {
         correctErrorTypes = true
+        useBuildCache = true
     }
-
 }
 
 dependencies {
-    // Hilt
-    implementation(libs.hilt.navigation.compose)
-    implementation(libs.hilt.android)
-
+    // Hilt & Dagger
+    implementation("com.google.dagger:hilt-android:2.56.1")
+    kapt("com.google.dagger:hilt-compiler:2.56.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
-    implementation ("com.google.dagger:hilt-android:2.56.1")
-    kapt ("com.google.dagger:hilt-compiler:2.56.1")
 
-    // For instrumentation tests
-    androidTestImplementation  ("com.google.dagger:hilt-android-testing:2.56.1")
-    androidTestAnnotationProcessor ("com.google.dagger:hilt-compiler:2.56.1")
+    // Для тестирования Hilt
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.56.1")
+    androidTestAnnotationProcessor("com.google.dagger:hilt-compiler:2.56.1")
+    testImplementation("com.google.dagger:hilt-android-testing:2.56.1")
+    testAnnotationProcessor("com.google.dagger:hilt-compiler:2.56.1")
 
-    // For local unit tests
-    testImplementation ("com.google.dagger:hilt-android-testing:2.56.1")
-    testAnnotationProcessor ("com.google.dagger:hilt-compiler:2.56.1")
-
-    // Другие зависимости
+    // Compose & AndroidX
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
@@ -69,13 +64,13 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
 
-    // Для тестирования
+    // Lifecycle & Datastore
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    // Debug и тестовые зависимости
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
-    // Lifecycle и другие
-    implementation(libs.androidx.datastore.preferences)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
 }
