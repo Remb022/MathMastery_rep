@@ -21,9 +21,6 @@ class DataStoreManager @Inject constructor(private val context: Context) {
         val GAME_STATUS_KEY = intPreferencesKey("game_status")
     }
 
-    val highScoreFlow: Flow<Int> = context.dataStore.data.map { preferences ->
-        preferences[HIGH_SCORE_KEY] ?: 0
-    }
 
     suspend fun saveHighScore(newHighScore: Int) {
         context.dataStore.edit { preferences ->
@@ -54,7 +51,7 @@ class DataStoreManager @Inject constructor(private val context: Context) {
         val board = if (boardString.isNotEmpty()) {
             boardString.split(";").map { row -> row.split(",").map { it.toInt() }.toMutableList() }.toMutableList()
         } else {
-            List(4) { MutableList(4) { 0 } }.toMutableList() // Пустая доска, если данных нет
+            List(4) { MutableList(4) { DEFAULT_VALUE } }.toMutableList()
         }
 
         GameState(

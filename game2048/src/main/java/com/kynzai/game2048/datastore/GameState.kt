@@ -3,8 +3,8 @@ package com.kynzai.game2048.datastore
 import com.kynzai.game2048.game.board.DEFAULT_NUMBER_TO_WIN
 import com.kynzai.game2048.game.board.GameStatus
 
-
-const val DEFAULT_VALUE = -1
+//была изменена константа DEFAULT_VALUE на 0 вместо -1
+const val DEFAULT_VALUE = 0
 
 data class GameState(
     val board: MutableList<MutableList<Int>> = mutableListOf(),

@@ -2,6 +2,7 @@ package com.kynzai.game2048.game.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kynzai.game2048.datastore.DEFAULT_VALUE
 import com.kynzai.game2048.datastore.DataStoreManager
 import com.kynzai.game2048.game.board.CreateBoardGameUseCase
 import com.kynzai.game2048.game.board.DEFAULT_NUMBER_TO_WIN
@@ -26,7 +27,15 @@ class TwoZeroFourEightViewModel @Inject constructor(
     val gameState = _gameState.asStateFlow()
 
     init {
-        loadGameState()
+        viewModelScope.launch {
+            dataStoreManager.gameStateFlow.collect { savedState ->
+                if (savedState.board.flatten().all { it == DEFAULT_VALUE }) {
+                    startNewGame()
+                } else {
+                    _gameState.value = savedState
+                }
+            }
+        }
     }
 
     private fun loadGameState() = viewModelScope.launch {
