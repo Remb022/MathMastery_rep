@@ -102,6 +102,7 @@ fun BoardGameScreen(viewModel: TwoZeroFourEightViewModel, uiState: GameState) {
             }
         }
 
+
         DragGesturesDirectionDetector(
             modifier = Modifier.fillMaxSize(),
             onDirectionDetected = {
