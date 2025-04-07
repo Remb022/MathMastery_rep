@@ -56,7 +56,6 @@ public class ResultFoundActivity extends AppCompatActivity {
 
     private void setFunctionalHeaderIcon() {
         ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
-        functionalHeaderIcon.setImageResource(R.drawable.icon_list);
         functionalHeaderIcon.setOnClickListener(v -> finish());
     }
 
@@ -206,7 +205,7 @@ public class ResultFoundActivity extends AppCompatActivity {
     }
 
     private void gameNotTrueEqual() {
-        Toast.makeText(this, "Not True Result!", Toast.LENGTH_SHORT).show();
+        // штраф
         handlerTimer.addFineTime();
     }
 
@@ -227,8 +226,9 @@ public class ResultFoundActivity extends AppCompatActivity {
         int currentLevel = model.getLevel();
         handlerJSON.unlockNextLevel(getIntent().getStringExtra("json"), currentLevel, ResultFoundModel.class);
 
-        Toast.makeText(this, "Level Complete!", Toast.LENGTH_SHORT).show();
-        finish();
+        // level complete
+        LevelCompleteForm levelCompleteForm = new LevelCompleteForm(this);
+        levelCompleteForm.showLevelCompleteDialog(model.getLevel(), currentRecord,"Result Found");
     }
 
     private void adaptiveComponent(){

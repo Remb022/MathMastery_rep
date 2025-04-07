@@ -90,13 +90,7 @@ public class LevelBarActivity extends AppCompatActivity {
 
     private void setFunctionalHeaderIcon() {
         ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
-        functionalHeaderIcon.setImageResource(R.drawable.icon_homepage);
-        functionalHeaderIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        functionalHeaderIcon.setOnClickListener(v -> finish());
     }
 
     private String loadJSON(String fileName) {

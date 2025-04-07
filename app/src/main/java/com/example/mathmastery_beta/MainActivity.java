@@ -148,7 +148,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void setFunctionalHeaderIcon() {
         ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
-        functionalHeaderIcon.setImageResource(R.drawable.icon_settings);
         functionalHeaderIcon.setVisibility(View.INVISIBLE);
     }
 

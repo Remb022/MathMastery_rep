@@ -45,7 +45,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_margin="35dp"
-            android:src="@drawable/icon_settings"
+            android:src="@drawable/icon_homepage"
             android:background="@android:color/transparent"
             android:scaleType="fitXY"
             tools:ignore="ContentDescription" />
