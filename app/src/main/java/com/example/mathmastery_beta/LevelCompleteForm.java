@@ -30,17 +30,24 @@ public class LevelCompleteForm {
         container.setPadding(32, 32, 32, 32);
 
         TextView congratulation = new TextView(context);
-        congratulation.setText("Поздравляем! Уровень " + level + " режима\n" + mode + " был пройден!");
-        congratulation.setTextSize(18);
-        congratulation.setTextColor(ContextCompat.getColor(context, R.color.yellow_gray));
+        congratulation.setText("Уровень " + level);
+        congratulation.setTextSize(35);
+        congratulation.setTextColor(ContextCompat.getColor(context, R.color.black));
         congratulation.setGravity(Gravity.CENTER);
-        congratulation.setPadding(0, 0, 0, 24);
         container.addView(congratulation);
+
+        TextView congratulationD = new TextView(context);
+        congratulationD.setText("пройден!");
+        congratulationD.setTextSize(20);
+        congratulationD.setTextColor(ContextCompat.getColor(context, R.color.black));
+        congratulationD.setGravity(Gravity.CENTER);
+        congratulationD.setPadding(0, 24, 0, 0);
+        container.addView(congratulationD);
 
         TextView time = new TextView(context);
         time.setText(currentTime);
         time.setTextSize(35);
-        time.setTextColor(ContextCompat.getColor(context, R.color.black));
+        time.setTextColor(ContextCompat.getColor(context, R.color.yellow_gray));
         time.setGravity(Gravity.CENTER);
         time.setPadding(0, 64, 0, 64);
         container.addView(time);
