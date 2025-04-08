@@ -1,7 +1,5 @@
 package com.example.mathmastery_beta.adaptor;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -15,12 +13,14 @@ import com.example.mathmastery_beta.OperandFoundActivity;
 import com.example.mathmastery_beta.OperationFoundActivity;
 import com.example.mathmastery_beta.R;
 import com.example.mathmastery_beta.ResultFoundActivity;
+import com.example.mathmastery_beta.aniimation.Animator;
 import com.example.mathmastery_beta.level_status_model.LevelModel;
 
 import java.util.List;
 
 public class LevelGridAdapter extends RecyclerView.Adapter<LevelGridAdapter.ViewHolder> {
 
+    private final Animator animator = new Animator();
     private final List<LevelModel> levels;
     private final Context context;
     private final String path;
@@ -79,27 +79,9 @@ public class LevelGridAdapter extends RecyclerView.Adapter<LevelGridAdapter.View
                 context.startActivity(intent);
             }
             else {
-                setUnlockLevelAnimation(holder.iconLock);
+                animator.setUnlockLevelAnimation(holder.iconLock);
             }
         });
-    }
-
-    private void setUnlockLevelAnimation(View view) {
-        ObjectAnimator rotateLeft = ObjectAnimator.ofFloat(view, "rotation", 0f, -4f);
-        rotateLeft.setDuration(100);
-
-        ObjectAnimator rotateRight = ObjectAnimator.ofFloat(view, "rotation", 0f, 4f);
-        rotateRight.setDuration(100);
-
-        ObjectAnimator rotateBackLeft = ObjectAnimator.ofFloat(view, "rotation", -4f, 0f);
-        rotateBackLeft.setDuration(100);
-
-        ObjectAnimator rotateBackRight = ObjectAnimator.ofFloat(view, "rotation", 4f, 0f);
-        rotateBackRight.setDuration(100);
-
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playSequentially(rotateLeft, rotateBackLeft, rotateRight, rotateBackRight);
-        animatorSet.start();
     }
 
     @Override

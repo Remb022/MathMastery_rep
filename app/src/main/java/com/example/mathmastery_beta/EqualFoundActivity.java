@@ -11,10 +11,11 @@ import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mathmastery_beta.aniimation.Animator;
+import com.example.mathmastery_beta.forms.LevelCompleteForm;
 import com.example.mathmastery_beta.handlers.HandlerAdaptive;
 import com.example.mathmastery_beta.handlers.HandlerDataSave;
 import com.example.mathmastery_beta.handlers.HandlerTimer;
@@ -25,34 +26,52 @@ import java.util.Random;
 
 public class EqualFoundActivity extends AppCompatActivity {
 
+    private TextView num1;
+    private TextView operation;
+    private TextView num2;
+    private TextView levelNumber;
+    private TextView bestTime;
+    private TableLayout gameFieldBlock;
+    private TextView timer;
+    private ImageButton functionalHeaderIcon;
+
     HandlerTimer handlerTimer;
     HandlerJSON handlerJSON = new HandlerJSON(this);
     HandlerDataSave handlerDataSave = new HandlerDataSave(this);
-    private EqualFoundModel model = new EqualFoundModel();
+    Animator animator = new Animator();
+    EqualFoundModel model = new EqualFoundModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_equal_found);
 
+        initializeComponent();
+
         setFunctionalHeaderIcon();
         generateComponent();
         generateExample();
         adaptiveComponent();
 
-        TextView timer = findViewById(R.id.currentTime);
         handlerTimer = new HandlerTimer(timer);
         handlerTimer.startTimer();
     }
 
-    private void setFunctionalHeaderIcon() {
-        ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
-        functionalHeaderIcon.setOnClickListener(v -> finish());
+    private void initializeComponent() {
+        num1 = findViewById(R.id.num1);
+        operation = findViewById(R.id.operation);
+        num2 = findViewById(R.id.num2);
+        levelNumber = findViewById(R.id.levelNumber);
+        bestTime = findViewById(R.id.bestTime);
+        gameFieldBlock = findViewById(R.id.gameFieldBlock);
+        timer = findViewById(R.id.currentTime);
+        functionalHeaderIcon = findViewById(R.id.functional_header_icon);
     }
+
+    private void setFunctionalHeaderIcon() {functionalHeaderIcon.setOnClickListener(v -> finish());}
 
     private void generateComponent() {
         Intent intent = getIntent();
-        TextView levelNumber = findViewById(R.id.levelNumber);
         int level = intent.getIntExtra("levelNumber", 0);
         levelNumber.setText(String.valueOf(level));
 
@@ -60,10 +79,7 @@ public class EqualFoundActivity extends AppCompatActivity {
         String json = handlerJSON.loadJSON(jsonPath);
         model = HandlerJSON.getJSONote(json, level, EqualFoundModel.class);
 
-        TextView bestTime = findViewById(R.id.bestTime);
         bestTime.setText(model.getRecord());
-
-        TableLayout gameFieldBlock = findViewById(R.id.gameFieldBlock);
 
         int columns = 2;
         int rows = 2;
@@ -109,9 +125,6 @@ public class EqualFoundActivity extends AppCompatActivity {
 
     private int count = 0;
     private void gameProcessClick(TextView clickedLabel){
-        TextView num1 = findViewById(R.id.num1);
-        TextView num2 = findViewById(R.id.num2);
-
         int numToInt1 = Integer.parseInt(num1.getText().toString());
         int numToInt2 = Integer.parseInt(num2.getText().toString());
 
@@ -150,24 +163,28 @@ public class EqualFoundActivity extends AppCompatActivity {
         int randomNum1 = rangeMin + random.nextInt((rangeMax - rangeMin) + 1);
         int randomNum2 = rangeMin + random.nextInt((rangeMax - rangeMin) + 1);
 
-        TextView num1 = findViewById(R.id.num1);
-        TextView num2 = findViewById(R.id.num2);
-
         num1.setText(String.valueOf(randomNum1));
         num2.setText(String.valueOf(randomNum2));
+
+        setAnimation();
 
         HandlerAdaptive componentAdaptive = new HandlerAdaptive(this);
         componentAdaptive.setAdaptiveEqualExample();
     }
 
+    private void setAnimation(){
+        animator.textUpDownAnimation(num1, 0);
+        animator.textUpDownAnimation(operation, 100);
+        animator.textUpDownAnimation(num2, 200);
+    }
+
     private void gameNotTrueEqual() {
-        // штраф
+        // penalty time animation
         handlerTimer.addFineTime();
     }
 
     private void gameEnd() {
-        TextView currentRecordTextView = findViewById(R.id.currentTime);
-        String currentRecord = currentRecordTextView.getText().toString();
+        String currentRecord = timer.getText().toString();
 
         String record = model.getRecord();
         if ("00:00".equals(record)) {
@@ -182,7 +199,6 @@ public class EqualFoundActivity extends AppCompatActivity {
         int currentLevel = model.getLevel();
         handlerJSON.unlockNextLevel(getIntent().getStringExtra("json"), currentLevel, EqualFoundModel.class);
 
-        // level complete!
         LevelCompleteForm levelCompleteForm = new LevelCompleteForm(this, handlerTimer);
         levelCompleteForm.showLevelCompleteDialog(model.getLevel(), currentRecord);
     }

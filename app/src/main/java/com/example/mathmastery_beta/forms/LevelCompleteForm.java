@@ -1,4 +1,4 @@
-package com.example.mathmastery_beta;
+package com.example.mathmastery_beta.forms;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 
+import com.example.mathmastery_beta.R;
 import com.example.mathmastery_beta.handlers.HandlerTimer;
 
 import java.util.Objects;
@@ -60,7 +61,7 @@ public class LevelCompleteForm {
         container.addView(time);
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        View buttonsView = inflater.inflate(R.layout.level_complete_form_button_layout, null);
+        @SuppressLint("InflateParams") View buttonsView = inflater.inflate(R.layout.level_complete_form_button_layout, null);
         container.addView(buttonsView);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context)

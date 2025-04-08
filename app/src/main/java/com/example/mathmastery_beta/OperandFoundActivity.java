@@ -9,10 +9,11 @@ import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mathmastery_beta.aniimation.Animator;
+import com.example.mathmastery_beta.forms.LevelCompleteForm;
 import com.example.mathmastery_beta.handlers.HandlerAdaptive;
 import com.example.mathmastery_beta.handlers.HandlerCalculate;
 import com.example.mathmastery_beta.handlers.HandlerJSON;
@@ -29,36 +30,57 @@ import java.util.Random;
 public class OperandFoundActivity extends AppCompatActivity {
 
     private List<Integer> operandList;
+    private TextView num1;
+    private TextView operation;
+    private TextView num2;
+    private TextView equal;
+    private TextView result;
+    private TextView levelNumber;
+    private TextView bestTime;
+    private TableLayout gameFieldBlock;
+    private TextView timer;
+    private ImageButton functionalHeaderIcon;
 
     HandlerTimer handlerTimer;
     HandlerCalculate calculator = new HandlerCalculate();
     HandlerJSON handlerJSON = new HandlerJSON(this);
     HandlerDataSave handlerDataSave = new HandlerDataSave(this);
-    private OperandFoundModel model = new OperandFoundModel();
+    Animator animator = new Animator();
+    OperandFoundModel model = new OperandFoundModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_operand_found);
 
+        initializeComponent();
+
         setFunctionalHeaderIcon();
         generateComponent();
         generateExample(0);
         adaptiveComponent();
 
-        TextView timer = findViewById(R.id.currentTime);
         handlerTimer = new HandlerTimer(timer);
         handlerTimer.startTimer();
     }
 
-    private void setFunctionalHeaderIcon() {
-        ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
-        functionalHeaderIcon.setOnClickListener(v -> finish());
+    private void initializeComponent() {
+        num1 = findViewById(R.id.num1);
+        operation = findViewById(R.id.operation);
+        num2 = findViewById(R.id.num2);
+        equal = findViewById(R.id.equal);
+        result = findViewById(R.id.result);
+        levelNumber = findViewById(R.id.levelNumber);
+        bestTime = findViewById(R.id.bestTime);
+        gameFieldBlock = findViewById(R.id.gameFieldBlock);
+        timer = findViewById(R.id.currentTime);
+        functionalHeaderIcon = findViewById(R.id.functional_header_icon);
     }
+
+    private void setFunctionalHeaderIcon() { functionalHeaderIcon.setOnClickListener(v -> finish());}
 
     private void generateComponent() {
         Intent intent = getIntent();
-        TextView levelNumber = findViewById(R.id.levelNumber);
         int level = intent.getIntExtra("levelNumber", 0);
         levelNumber.setText(String.valueOf(level));
 
@@ -66,10 +88,8 @@ public class OperandFoundActivity extends AppCompatActivity {
         String json = handlerJSON.loadJSON(jsonPath);
         model = HandlerJSON.getJSONote(json, level, OperandFoundModel.class);
 
-        TextView bestTime = findViewById(R.id.bestTime);
         bestTime.setText(model.getRecord());
 
-        TableLayout gameFieldBlock = findViewById(R.id.gameFieldBlock);
         gameFieldBlock.removeAllViews();
 
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
@@ -106,20 +126,16 @@ public class OperandFoundActivity extends AppCompatActivity {
     private int page = 0;
     private int count = 0;
     private void gameProcessClick(TextView clickedLabel){
-        TextView num1 = findViewById(R.id.num1);
-        TextView op = findViewById(R.id.operation);
-        TextView res = findViewById(R.id.result);
-
         int numToInt1 = Integer.parseInt(num1.getText().toString());
         int numToInt2 = Integer.parseInt(clickedLabel.getText().toString());
-        String result = res.getText().toString();
-        String operation = op.getText().toString();
+        String res = result.getText().toString();
+        String op = operation.getText().toString();
 
-        double resultValue = calculator.calculateResult(numToInt1, numToInt2, operation);
+        double resultValue = calculator.calculateResult(numToInt1, numToInt2, op);
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         String decFormatResult = decimalFormat.format(resultValue);
 
-        if (decFormatResult.equals(result)) {
+        if (decFormatResult.equals(res)) {
             count++;
             if (count < model.getWidth() * model.getHeight()) {
                 clickedLabel.setEnabled(false);
@@ -157,20 +173,25 @@ public class OperandFoundActivity extends AppCompatActivity {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         String decFormatResult = decimalFormat.format(resultValue);
 
-        TextView num1 = findViewById(R.id.num1);
-        TextView operation = findViewById(R.id.operation);
-        TextView result = findViewById(R.id.result);
-
         num1.setText(String.valueOf(randomNum1));
         operation.setText(randomOperation);
         result.setText(decFormatResult);
+
+        setAnimation();
 
         HandlerAdaptive handlerAdaptive = new HandlerAdaptive(this);
         handlerAdaptive.setAdaptiveExample();
     }
 
+    private void setAnimation(){
+        animator.textUpDownAnimation(num1, 0);
+        animator.textUpDownAnimation(operation, 100);
+        animator.textUpDownAnimation(num2, 200);
+        animator.textUpDownAnimation(equal, 300);
+        animator.textUpDownAnimation(result, 400);
+    }
+
     private List<Integer> getOperandList(){
-        TableLayout gameFieldBlock = findViewById(R.id.gameFieldBlock);
         int height = model.getHeight();
         int width = model.getWidth();
 
@@ -189,13 +210,12 @@ public class OperandFoundActivity extends AppCompatActivity {
     }
 
     private void gameNotTrueEqual() {
-        // штраф
+        // penalty time animation
         handlerTimer.addFineTime();
     }
 
     private void gameEnd() {
-        TextView currentRecordTextView = findViewById(R.id.currentTime);
-        String currentRecord = currentRecordTextView.getText().toString();
+        String currentRecord = timer.getText().toString();
 
         String record = model.getRecord();
         if ("00:00".equals(record)) {
@@ -210,7 +230,6 @@ public class OperandFoundActivity extends AppCompatActivity {
         int currentLevel = model.getLevel();
         handlerJSON.unlockNextLevel(getIntent().getStringExtra("json"), currentLevel, OperandFoundModel.class);
 
-        // Level complete!
         LevelCompleteForm levelCompleteForm = new LevelCompleteForm(this, handlerTimer);
         levelCompleteForm.showLevelCompleteDialog(model.getLevel(), currentRecord);
     }
