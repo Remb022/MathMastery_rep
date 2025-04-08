@@ -28,6 +28,8 @@ public class HandlerTimer {
         handler.postDelayed(timerRunnable, interval);
     }
 
+    public void stopTimer() { handler.removeCallbacks(timerRunnable); }
+
     public void restartTimer() {
         elapsedTimeInMillis = 0;
         updateTimerText();

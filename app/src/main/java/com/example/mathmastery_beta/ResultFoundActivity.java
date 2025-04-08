@@ -227,8 +227,8 @@ public class ResultFoundActivity extends AppCompatActivity {
         handlerJSON.unlockNextLevel(getIntent().getStringExtra("json"), currentLevel, ResultFoundModel.class);
 
         // level complete
-        LevelCompleteForm levelCompleteForm = new LevelCompleteForm(this);
-        levelCompleteForm.showLevelCompleteDialog(model.getLevel(), currentRecord,"Result Found");
+        LevelCompleteForm levelCompleteForm = new LevelCompleteForm(this, handlerTimer);
+        levelCompleteForm.showLevelCompleteDialog(model.getLevel(), currentRecord);
     }
 
     private void adaptiveComponent(){

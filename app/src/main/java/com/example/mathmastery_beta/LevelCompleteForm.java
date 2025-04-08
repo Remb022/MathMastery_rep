@@ -1,5 +1,6 @@
 package com.example.mathmastery_beta;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -15,15 +16,21 @@ import androidx.core.content.ContextCompat;
 
 import com.example.mathmastery_beta.handlers.HandlerTimer;
 
+import java.util.Objects;
+
 public class LevelCompleteForm {
     private final Context context;
     HandlerTimer handlerTimer;
 
-    public LevelCompleteForm(Context context) {
+    public LevelCompleteForm(Context context, HandlerTimer handlerTimer) {
         this.context = context;
+        this.handlerTimer = handlerTimer;
     }
 
-    public void showLevelCompleteDialog(int level, String currentTime, String mode) {
+    @SuppressLint("SetTextI18n")
+    public void showLevelCompleteDialog(int level, String currentTime) {
+        handlerTimer.stopTimer();
+
         LinearLayout container = new LinearLayout(context);
         container.setOrientation(LinearLayout.VERTICAL);
         container.setGravity(Gravity.CENTER);
@@ -61,7 +68,7 @@ public class LevelCompleteForm {
                 .setCancelable(false);
 
         AlertDialog dialog = builder.create();
-        dialog.getWindow().setBackgroundDrawableResource(R.drawable.round_dialog);
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(R.drawable.round_dialog);
         dialog.show();
 
         // events
@@ -77,8 +84,6 @@ public class LevelCompleteForm {
                 activity.startActivity(intent);
                 activity.overridePendingTransition(0, 0);
 
-                TextView timer = ((Activity) context).findViewById(R.id.currentTime);
-                handlerTimer = new HandlerTimer(timer);
                 handlerTimer.restartTimer();
             }
         });

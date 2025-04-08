@@ -211,8 +211,8 @@ public class OperandFoundActivity extends AppCompatActivity {
         handlerJSON.unlockNextLevel(getIntent().getStringExtra("json"), currentLevel, OperandFoundModel.class);
 
         // Level complete!
-        LevelCompleteForm levelCompleteForm = new LevelCompleteForm(this);
-        levelCompleteForm.showLevelCompleteDialog(model.getLevel(), currentRecord,"Operand Found");
+        LevelCompleteForm levelCompleteForm = new LevelCompleteForm(this, handlerTimer);
+        levelCompleteForm.showLevelCompleteDialog(model.getLevel(), currentRecord);
     }
 
     private void adaptiveComponent(){

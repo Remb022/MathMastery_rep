@@ -183,8 +183,8 @@ public class EqualFoundActivity extends AppCompatActivity {
         handlerJSON.unlockNextLevel(getIntent().getStringExtra("json"), currentLevel, EqualFoundModel.class);
 
         // level complete!
-        LevelCompleteForm levelCompleteForm = new LevelCompleteForm(this);
-        levelCompleteForm.showLevelCompleteDialog(model.getLevel(), currentRecord,"Equal Found");
+        LevelCompleteForm levelCompleteForm = new LevelCompleteForm(this, handlerTimer);
+        levelCompleteForm.showLevelCompleteDialog(model.getLevel(), currentRecord);
     }
 
     private void adaptiveComponent(){
