@@ -100,6 +100,3 @@ public class LevelGridAdapter extends RecyclerView.Adapter<LevelGridAdapter.View
         }
     }
 }
-
-
-

@@ -28,10 +28,16 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.jetbrains.annotations.Nullable;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
@@ -153,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else
             {
-                startLevelBarActivity(randomGame, Objects.requireNonNull(cl[rand]));
+                startRandomLevelActivity(randomGame, cl[rand]);
             }
         });
     }
@@ -165,6 +171,42 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
+
+    private void startRandomLevelActivity(String jsonFileName, Class<?> model) {
+        String jsonContent = handlerJSON.loadJSON(jsonFileName);
+
+        Gson gson = new Gson();
+        Type type = TypeToken.getParameterized(List.class, model).getType();
+        List<LevelModel> levelList = gson.fromJson(jsonContent, type);
+
+        List<LevelModel> levelActive = levelList.stream()
+                .filter(level -> "active".equals(level.getStatus()))
+                .collect(Collectors.toList());
+
+        Random random = new Random();
+        LevelModel randomLevel = levelActive.get(random.nextInt(levelActive.size()));
+
+        Intent intent = null;
+        switch (jsonFileName) {
+            case "operand_found.json":
+                intent = new Intent(this, OperandFoundActivity.class);
+                break;
+            case "operation_found.json":
+                intent = new Intent(this, OperationFoundActivity.class);
+                break;
+            case "result_found.json":
+                intent = new Intent(this, ResultFoundActivity.class);
+                break;
+            case "equal_found.json":
+                intent = new Intent(this, EqualFoundActivity.class);
+                break;
+        }
+
+        Objects.requireNonNull(intent).putExtra("levelNumber", randomLevel.getLevel());
+        intent.putExtra("json", jsonFileName);
+        startActivity(intent);
+    }
+
 
     private void setFunctionalHeaderIcon() {
         ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
