@@ -40,6 +40,7 @@ public class EqualFoundActivity extends AppCompatActivity {
     private TableLayout gameFieldBlock;
     private TextView timer;
     private ImageButton functionalHeaderIcon;
+    private LinearLayout linearLayout;
 
     HandlerTimer handlerTimer;
     HandlerJSON handlerJSON = new HandlerJSON(this);
@@ -73,6 +74,7 @@ public class EqualFoundActivity extends AppCompatActivity {
         gameFieldBlock = findViewById(R.id.gameFieldBlock);
         timer = findViewById(R.id.currentTime);
         functionalHeaderIcon = findViewById(R.id.functional_header_icon);
+        linearLayout = findViewById(R.id.descriptionLinearLayout);
     }
 
     private void setFunctionalHeaderIcon() {functionalHeaderIcon.setOnClickListener(v -> finish());}
@@ -140,12 +142,6 @@ public class EqualFoundActivity extends AppCompatActivity {
         View gradientBottomGreen = findViewById(R.id.gradient_bottom_green);
         View gradientTopGreen = findViewById(R.id.gradient_top_green);
 
-        TextView num1 = findViewById(R.id.num1);
-        TextView op = findViewById(R.id.operation);
-        TextView num2 = findViewById(R.id.num2);
-
-        LinearLayout linearLayout = findViewById(R.id.descriptionLinearLayout);
-
         int numToInt1 = Integer.parseInt(num1.getText().toString());
         int numToInt2 = Integer.parseInt(num2.getText().toString());
 
@@ -172,10 +168,9 @@ public class EqualFoundActivity extends AppCompatActivity {
                 MyAnimation.glowEffect(gradientTopGreen);
                 //изменение цвета каждого числа
                 MyAnimation.changeTextColor(num1, R.color.yellow_gray, R.color.green, 600);
-                MyAnimation.changeTextColor(op, R.color.yellow_gray, R.color.green, 600);
+                MyAnimation.changeTextColor(operation, R.color.yellow_gray, R.color.green, 600);
                 MyAnimation.changeTextColor(num2, R.color.yellow_gray, R.color.green, 600);
 
-                generateExample();
                 new Handler(Looper.getMainLooper()).postDelayed(this::generateExample, 500);
             }
             else {

@@ -45,6 +45,7 @@ public class OperandFoundActivity extends AppCompatActivity {
     private TableLayout gameFieldBlock;
     private TextView timer;
     private ImageButton functionalHeaderIcon;
+    private LinearLayout linearLayout;
 
     HandlerTimer handlerTimer;
     HandlerCalculate calculator = new HandlerCalculate();
@@ -81,6 +82,7 @@ public class OperandFoundActivity extends AppCompatActivity {
         gameFieldBlock = findViewById(R.id.gameFieldBlock);
         timer = findViewById(R.id.currentTime);
         functionalHeaderIcon = findViewById(R.id.functional_header_icon);
+        linearLayout = findViewById(R.id.descriptionLinearLayout);
     }
 
     private void setFunctionalHeaderIcon() { functionalHeaderIcon.setOnClickListener(v -> finish());}
@@ -140,8 +142,6 @@ public class OperandFoundActivity extends AppCompatActivity {
         View gradientBottomGreen = findViewById(R.id.gradient_bottom_green);
         View gradientTopGreen = findViewById(R.id.gradient_top_green);
 
-        LinearLayout linearLayout = findViewById(R.id.descriptionLinearLayout);
-
         int numToInt1 = Integer.parseInt(num1.getText().toString());
         int numToInt2 = Integer.parseInt(clickedLabel.getText().toString());
         String res = result.getText().toString();
@@ -169,6 +169,7 @@ public class OperandFoundActivity extends AppCompatActivity {
                 clickedLabel.setEnabled(false);
                 clickedLabel.setBackgroundResource(R.drawable.cell_border_game_clicked);
                 clickedLabel.setTextColor(Color.parseColor("#b5b5b5"));
+
                 new Handler(Looper.getMainLooper()).postDelayed(() -> generateExample(count), 500);
             }
             else {
@@ -232,8 +233,6 @@ public class OperandFoundActivity extends AppCompatActivity {
         handlerTimer.addFineTime();
         View gradientBottomRed = findViewById(R.id.gradient_bottom_red);
         View gradientTopRed = findViewById(R.id.gradient_top_red);
-        
-        LinearLayout linearLayout = findViewById(R.id.descriptionLinearLayout);
 
         MyAnimation.glowEffect(gradientBottomRed);
         MyAnimation.glowEffect(gradientTopRed);

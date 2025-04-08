@@ -28,15 +28,9 @@ import com.example.mathmastery_beta.level_status_model.ResultFoundModel;
 import com.example.mathmastery_beta.utils.DeepLinkHandler;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import org.jetbrains.annotations.Nullable;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;

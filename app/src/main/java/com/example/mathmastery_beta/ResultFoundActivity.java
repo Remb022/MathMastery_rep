@@ -43,7 +43,7 @@ public class ResultFoundActivity extends AppCompatActivity {
     private TableLayout gameFieldBlock;
     private TextView timer;
     private ImageButton functionalHeaderIcon;
-
+    private LinearLayout linearLayout;
     private List<Integer> numList1;
     private List<Integer> numList2;
     private List<String> operationList;
@@ -83,6 +83,7 @@ public class ResultFoundActivity extends AppCompatActivity {
         gameFieldBlock = findViewById(R.id.gameFieldBlock);
         timer = findViewById(R.id.currentTime);
         functionalHeaderIcon = findViewById(R.id.functional_header_icon);
+        linearLayout = findViewById(R.id.descriptionLinearLayout);
     }
 
     private void setFunctionalHeaderIcon() { functionalHeaderIcon.setOnClickListener(v -> finish()); }
@@ -146,8 +147,6 @@ public class ResultFoundActivity extends AppCompatActivity {
         View gradientBottomGreen = findViewById(R.id.gradient_bottom_green);
         View gradientTopGreen = findViewById(R.id.gradient_top_green);
 
-        LinearLayout linearLayout = findViewById(R.id.descriptionLinearLayout);
-
         double res = Double.parseDouble(clickedLabel.getText().toString());
         double correctResult = calculator.calculateResult(numList1.get(count), numList2.get(count), operationList.get(count));
 
@@ -169,6 +168,7 @@ public class ResultFoundActivity extends AppCompatActivity {
                 clickedLabel.setEnabled(false);
                 clickedLabel.setBackgroundResource(R.drawable.cell_border_game_clicked);
                 clickedLabel.setTextColor(Color.parseColor("#b5b5b5"));
+
                 new Handler(Looper.getMainLooper()).postDelayed(() -> showExample(count), 500);
             }
             else {
