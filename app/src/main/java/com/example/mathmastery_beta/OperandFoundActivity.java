@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Gravity;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
@@ -114,7 +116,12 @@ public class OperandFoundActivity extends AppCompatActivity {
                 params.setMargins(5, 5, 5, 5);
                 label.setLayoutParams(params);
 
-                label.setOnClickListener(v -> gameProcessClick(label));
+                label.setOnClickListener(v -> {
+                    num2.setText(label.getText().toString());
+                    new Handler(Looper.getMainLooper()).postDelayed(() -> num2.setText("?"), 500);
+                    gameProcessClick(label);
+                });
+
                 tableRow.addView(label);
             }
 
@@ -141,14 +148,14 @@ public class OperandFoundActivity extends AppCompatActivity {
                 clickedLabel.setEnabled(false);
                 clickedLabel.setBackgroundResource(R.drawable.cell_border_game_clicked);
                 clickedLabel.setTextColor(Color.parseColor("#b5b5b5"));
-                generateExample(count);
+                new Handler(Looper.getMainLooper()).postDelayed(() -> generateExample(count), 500);
             }
             else {
                 page++;
                 if (page < model.getPage()) {
                     generateComponent();
                     count = 0;
-                    generateExample(count);
+                    new Handler(Looper.getMainLooper()).postDelayed(() -> generateExample(count), 500);
                 }
                 else {
                     gameEnd();

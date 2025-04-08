@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Gravity;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
@@ -114,7 +116,12 @@ public class OperationFoundActivity extends AppCompatActivity {
                 params.setMargins(5, 5, 5, 5);
                 label.setLayoutParams(params);
 
-                label.setOnClickListener(v -> gameProcessClick(label));
+                label.setOnClickListener(v -> {
+                    operation.setText(label.getText().toString());
+                    new Handler(Looper.getMainLooper()).postDelayed(() -> operation.setText("?"), 500);
+                    gameProcessClick(label);
+                });
+
                 tableRow.addView(label);
             }
 
@@ -136,7 +143,7 @@ public class OperationFoundActivity extends AppCompatActivity {
         if (decFormatResult.equals(res)) {
             count++;
             if (count < model.getCount()) {
-                generateExample();
+                new Handler(Looper.getMainLooper()).postDelayed(this::generateExample, 500);
             }
             else {
                 gameEnd();

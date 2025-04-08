@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Gravity;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
@@ -110,8 +112,8 @@ public class ResultFoundActivity extends AppCompatActivity {
                 TextView label = new TextView(this);
 
                 @SuppressLint("DefaultLocale")
-                String result = String.format("%.0f", resultList.get(index));
-                label.setText(result);
+                String res= String.format("%.0f", resultList.get(index));
+                label.setText(res);
 
                 label.setTextSize(25);
                 label.setTypeface(null, Typeface.BOLD);
@@ -123,7 +125,12 @@ public class ResultFoundActivity extends AppCompatActivity {
                 params.setMargins(5, 5, 5, 5);
                 label.setLayoutParams(params);
 
-                label.setOnClickListener(v -> gameProcessClick(label));
+                label.setOnClickListener(v -> {
+                    result.setText(label.getText().toString());
+                    new Handler(Looper.getMainLooper()).postDelayed(() -> result.setText("?"), 500);
+                    gameProcessClick(label);
+                });
+
                 tableRow.addView(label);
                 index++;
             }
@@ -143,14 +150,14 @@ public class ResultFoundActivity extends AppCompatActivity {
                 clickedLabel.setEnabled(false);
                 clickedLabel.setBackgroundResource(R.drawable.cell_border_game_clicked);
                 clickedLabel.setTextColor(Color.parseColor("#b5b5b5"));
-                showExample(count);
+                new Handler(Looper.getMainLooper()).postDelayed(() -> showExample(count), 500);
             }
             else {
                 page++;
                 if (page < model.getPage()) {
                     generateComponent();
                     count = 0;
-                    showExample(count);
+                    new Handler(Looper.getMainLooper()).postDelayed(() -> showExample(count), 500);
                 }
                 else {
                     gameEnd();

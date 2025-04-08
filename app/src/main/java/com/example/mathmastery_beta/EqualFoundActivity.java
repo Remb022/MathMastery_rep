@@ -5,6 +5,9 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import android.view.Gravity;
 
 import android.widget.ImageButton;
@@ -115,7 +118,12 @@ public class EqualFoundActivity extends AppCompatActivity {
                 params.setMargins(5, 5, 5, 5);
                 label.setLayoutParams(params);
 
-                label.setOnClickListener(v -> gameProcessClick(label));
+                label.setOnClickListener(v -> {
+                    operation.setText(label.getText().toString());
+                    new Handler(Looper.getMainLooper()).postDelayed(() -> operation.setText("?"), 500);
+                    gameProcessClick(label);
+                });
+
                 tableRow.addView(label);
             }
 
@@ -144,7 +152,7 @@ public class EqualFoundActivity extends AppCompatActivity {
         if (isCorrect) {
             count++;
             if (count < model.getCount()) {
-                generateExample();
+                new Handler(Looper.getMainLooper()).postDelayed(this::generateExample, 500);
             }
             else {
                 gameEnd();
