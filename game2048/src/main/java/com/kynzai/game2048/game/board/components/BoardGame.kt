@@ -27,68 +27,26 @@ import com.kynzai.game2048.game.logic.MovementDirection
 import com.kynzai.game2048.game.ui.corners
 import com.kynzai.game2048.game.ui.theme.Grey2
 import java.util.UUID
-import kotlin.math.abs
+
+import androidx.compose.material3.Text
+import androidx.compose.runtime.*
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun BoardGame(
     currentBoard: List<List<Int>>,
     uiBoardSize: Dp
 ) {
-    // Класс для хранения состояния плитки с историей перемещений
-    data class Tile(
-        val id: UUID,
-        val value: Int,
-        var currentRow: Int,
-        var currentCol: Int,
-        var previousRow: Int = currentRow,
-        var previousCol: Int = currentCol
-    )
-
     val cellSpacing = 8.dp
+    val boardSize = currentBoard.size
+    if (boardSize == 0 || currentBoard[0].isEmpty()) return
+
     val containerSize = uiBoardSize - cellSpacing * 2
-    val tileSize = (containerSize - cellSpacing * 3) / 4
-
-    // Состояние всех плиток
-    val tilesState = remember { mutableStateOf(emptyList<Tile>()) }
-
-    // Эффект для обновления позиций
-    LaunchedEffect(currentBoard) {
-        val previousTiles = tilesState.value.associateBy { it.currentRow to it.currentCol }
-        val newTiles = mutableListOf<Tile>()
-
-        // Сопоставляем новые позиции
-        currentBoard.forEachIndexed { row, rows ->
-            rows.forEachIndexed { col, value ->
-                if (value != DEFAULT_VALUE) {
-                    // Ищем плитку в предыдущем состоянии
-                    val existingTile = previousTiles.values.firstOrNull {
-                        it.value == value && !newTiles.any { t -> t.id == it.id }
-                    }
-
-                    if (existingTile != null) {
-                        // Обновляем позицию существующей плитки
-                        existingTile.previousRow = existingTile.currentRow
-                        existingTile.previousCol = existingTile.currentCol
-                        existingTile.currentRow = row
-                        existingTile.currentCol = col
-                        newTiles.add(existingTile)
-                    } else {
-                        // Создаем новую плитку
-                        newTiles.add(
-                            Tile(
-                                id = UUID.randomUUID(),
-                                value = value,
-                                currentRow = row,
-                                currentCol = col
-                            )
-                        )
-                    }
-                }
-            }
-        }
-
-        tilesState.value = newTiles
-    }
+    val tileSize = (containerSize - cellSpacing * (boardSize - 1)) / boardSize
 
     Box(
         modifier = Modifier
@@ -96,47 +54,32 @@ fun BoardGame(
             .background(Grey2, RoundedCornerShape(corners))
             .padding(cellSpacing)
     ) {
-        // Фоновые пустые клетки
-        repeat(4) { row ->
-            repeat(4) { col ->
+        // Отрисовка пустых клеток (фон)
+        for (row in 0 until boardSize) {
+            for (col in 0 until boardSize) {
                 EmptyCell(
                     tileSize = tileSize,
-                    modifier = Modifier
-                        .offset(
-                            x = (tileSize + cellSpacing) * col,
-                            y = (tileSize + cellSpacing) * row
-                        )
+                    modifier = Modifier.offset(
+                        x = (tileSize + cellSpacing) * col,
+                        y = (tileSize + cellSpacing) * row
+                    )
                 )
             }
         }
 
-        // Анимированные плитки
-        tilesState.value.forEach { tile ->
-            key(tile.id) {
-                val targetX = (tileSize + cellSpacing) * tile.currentCol
-                val targetY = (tileSize + cellSpacing) * tile.currentRow
-                val startX = (tileSize + cellSpacing) * tile.previousCol
-                val startY = (tileSize + cellSpacing) * tile.previousRow
-
-                val offsetX = remember(tile.id) { Animatable(startX.value) }
-                val offsetY = remember(tile.id) { Animatable(startY.value) }
-
-                LaunchedEffect(tile.currentRow, tile.currentCol) {
-                    if (tile.previousRow != tile.currentRow || tile.previousCol != tile.currentCol) {
-                        offsetX.animateTo(targetX.value, tween(500))
-                        offsetY.animateTo(targetY.value, tween(500))
-                    } else {
-                        offsetX.snapTo(targetX.value)
-                        offsetY.snapTo(targetY.value)
-                    }
+        // Отрисовка плиток
+        for (row in 0 until boardSize) {
+            for (col in 0 until boardSize) {
+                if (currentBoard[row][col] != DEFAULT_VALUE) {
+                    BoardGameCell(
+                        cellNumber = currentBoard[row][col],
+                        tileSize = tileSize,
+                        modifier = Modifier.offset(
+                            x = (tileSize + cellSpacing) * col,
+                            y = (tileSize + cellSpacing) * row
+                        )
+                    )
                 }
-
-                BoardGameCell(
-                    cellNumber = tile.value,
-                    tileSize = tileSize,
-                    modifier = Modifier
-                        .offset(offsetX.value.dp, offsetY.value.dp)
-                )
             }
         }
     }
