@@ -5,6 +5,9 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import android.view.Gravity;
 
 import android.view.View;
@@ -17,6 +20,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mathmastery_beta.aniimation.Animator;
+import com.example.mathmastery_beta.forms.LevelCompleteForm;
 import com.example.mathmastery_beta.handlers.HandlerAdaptive;
 import com.example.mathmastery_beta.handlers.HandlerDataSave;
 import com.example.mathmastery_beta.handlers.HandlerTimer;
@@ -27,15 +32,27 @@ import java.util.Random;
 
 public class EqualFoundActivity extends AppCompatActivity {
 
+    private TextView num1;
+    private TextView operation;
+    private TextView num2;
+    private TextView levelNumber;
+    private TextView bestTime;
+    private TableLayout gameFieldBlock;
+    private TextView timer;
+    private ImageButton functionalHeaderIcon;
+
     HandlerTimer handlerTimer;
     HandlerJSON handlerJSON = new HandlerJSON(this);
     HandlerDataSave handlerDataSave = new HandlerDataSave(this);
-    private EqualFoundModel model = new EqualFoundModel();
+    Animator animator = new Animator();
+    EqualFoundModel model = new EqualFoundModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_equal_found);
+
+        initializeComponent();
 
         setFunctionalHeaderIcon();
         generateComponent();
@@ -47,15 +64,21 @@ public class EqualFoundActivity extends AppCompatActivity {
         handlerTimer.startTimer();
     }
 
-    private void setFunctionalHeaderIcon() {
-        ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
-        functionalHeaderIcon.setImageResource(R.drawable.icon_list);
-        functionalHeaderIcon.setOnClickListener(v -> finish());
+    private void initializeComponent() {
+        num1 = findViewById(R.id.num1);
+        operation = findViewById(R.id.operation);
+        num2 = findViewById(R.id.num2);
+        levelNumber = findViewById(R.id.levelNumber);
+        bestTime = findViewById(R.id.bestTime);
+        gameFieldBlock = findViewById(R.id.gameFieldBlock);
+        timer = findViewById(R.id.currentTime);
+        functionalHeaderIcon = findViewById(R.id.functional_header_icon);
     }
+
+    private void setFunctionalHeaderIcon() {functionalHeaderIcon.setOnClickListener(v -> finish());}
 
     private void generateComponent() {
         Intent intent = getIntent();
-        TextView levelNumber = findViewById(R.id.levelNumber);
         int level = intent.getIntExtra("levelNumber", 0);
         levelNumber.setText(String.valueOf(level));
 
@@ -63,10 +86,7 @@ public class EqualFoundActivity extends AppCompatActivity {
         String json = handlerJSON.loadJSON(jsonPath);
         model = HandlerJSON.getJSONote(json, level, EqualFoundModel.class);
 
-        TextView bestTime = findViewById(R.id.bestTime);
         bestTime.setText(model.getRecord());
-
-        TableLayout gameFieldBlock = findViewById(R.id.gameFieldBlock);
 
         int columns = 2;
         int rows = 2;
@@ -102,7 +122,12 @@ public class EqualFoundActivity extends AppCompatActivity {
                 params.setMargins(5, 5, 5, 5);
                 label.setLayoutParams(params);
 
-                label.setOnClickListener(v -> gameProcessClick(label));
+                label.setOnClickListener(v -> {
+                    operation.setText(label.getText().toString());
+                    new Handler(Looper.getMainLooper()).postDelayed(() -> operation.setText("?"), 500);
+                    gameProcessClick(label);
+                });
+
                 tableRow.addView(label);
             }
 
@@ -151,6 +176,7 @@ public class EqualFoundActivity extends AppCompatActivity {
                 MyAnimation.changeTextColor(num2, R.color.yellow_gray, R.color.green, 600);
 
                 generateExample();
+                new Handler(Looper.getMainLooper()).postDelayed(this::generateExample, 500);
             }
             else {
                 gameEnd();
@@ -168,9 +194,6 @@ public class EqualFoundActivity extends AppCompatActivity {
         Random random = new Random();
         int randomNum1 = rangeMin + random.nextInt((rangeMax - rangeMin) + 1);
         int randomNum2 = rangeMin + random.nextInt((rangeMax - rangeMin) + 1);
-
-        TextView num1 = findViewById(R.id.num1);
-        TextView num2 = findViewById(R.id.num2);
 
         num1.setText(String.valueOf(randomNum1));
         num2.setText(String.valueOf(randomNum2));
@@ -196,11 +219,12 @@ public class EqualFoundActivity extends AppCompatActivity {
         MyAnimation.changeTextColor(operation, R.color.yellow_gray, R.color.red, 600);
         MyAnimation.changeTextColor(num2, R.color.yellow_gray, R.color.red, 600);
         MyAnimation.shake_horizontal(linearLayout);
+        // penalty time animation
+        handlerTimer.addFineTime();
     }
 
     private void gameEnd() {
-        TextView currentRecordTextView = findViewById(R.id.currentTime);
-        String currentRecord = currentRecordTextView.getText().toString();
+        String currentRecord = timer.getText().toString();
 
         String record = model.getRecord();
         if ("00:00".equals(record)) {
@@ -215,8 +239,8 @@ public class EqualFoundActivity extends AppCompatActivity {
         int currentLevel = model.getLevel();
         handlerJSON.unlockNextLevel(getIntent().getStringExtra("json"), currentLevel, EqualFoundModel.class);
 
-        Toast.makeText(this, "Level Complete!", Toast.LENGTH_SHORT).show();
-        finish();
+        LevelCompleteForm levelCompleteForm = new LevelCompleteForm(this, handlerTimer);
+        levelCompleteForm.showLevelCompleteDialog(model.getLevel(), currentRecord);
     }
 
     private void adaptiveComponent(){

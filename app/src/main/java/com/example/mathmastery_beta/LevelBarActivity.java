@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Objects;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -47,7 +46,7 @@ public class LevelBarActivity extends AppCompatActivity {
         TextView gameInfo = findViewById(R.id.game_info);
 
         String gameType = getIntent().getStringExtra("json");
-        String type = "";
+        String type;
         switch (Objects.requireNonNull(gameType)) {
             case "operand_found.json":
                 type = "X + ? = C";
@@ -90,13 +89,7 @@ public class LevelBarActivity extends AppCompatActivity {
 
     private void setFunctionalHeaderIcon() {
         ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
-        functionalHeaderIcon.setImageResource(R.drawable.icon_homepage);
-        functionalHeaderIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        functionalHeaderIcon.setOnClickListener(v -> finish());
     }
 
     private String loadJSON(String fileName) {

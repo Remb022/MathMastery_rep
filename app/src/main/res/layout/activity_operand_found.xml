@@ -86,7 +86,7 @@
             android:layout_margin="35dp"
             android:background="@android:color/transparent"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_list"
+            android:src="@drawable/icon_back_page"
             tools:ignore="ContentDescription" />
 
     </LinearLayout>

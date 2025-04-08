@@ -1,7 +1,6 @@
-package com.example.mathmastery_beta;
+package com.example.mathmastery_beta.forms;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Build;
 import android.text.InputType;
 import android.view.ViewGroup;
@@ -14,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 
+import com.example.mathmastery_beta.R;
 import com.example.mathmastery_beta.handlers.HandlerDataSave;
 
 public class ChangeNicknameForm {

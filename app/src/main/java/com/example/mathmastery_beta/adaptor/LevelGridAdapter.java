@@ -13,12 +13,14 @@ import com.example.mathmastery_beta.OperandFoundActivity;
 import com.example.mathmastery_beta.OperationFoundActivity;
 import com.example.mathmastery_beta.R;
 import com.example.mathmastery_beta.ResultFoundActivity;
+import com.example.mathmastery_beta.aniimation.Animator;
 import com.example.mathmastery_beta.level_status_model.LevelModel;
 
 import java.util.List;
 
 public class LevelGridAdapter extends RecyclerView.Adapter<LevelGridAdapter.ViewHolder> {
 
+    private final Animator animator = new Animator();
     private final List<LevelModel> levels;
     private final Context context;
     private final String path;
@@ -76,6 +78,9 @@ public class LevelGridAdapter extends RecyclerView.Adapter<LevelGridAdapter.View
                 intent.putExtra("json", path);
                 context.startActivity(intent);
             }
+            else {
+                animator.setUnlockLevelAnimation(holder.iconLock);
+            }
         });
     }
 
@@ -95,6 +100,3 @@ public class LevelGridAdapter extends RecyclerView.Adapter<LevelGridAdapter.View
         }
     }
 }
-
-
-
