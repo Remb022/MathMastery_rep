@@ -24,9 +24,15 @@ import com.example.mathmastery_beta.level_status_model.OperandFoundModel;
 import com.example.mathmastery_beta.level_status_model.OperationFoundModel;
 import com.example.mathmastery_beta.level_status_model.ResultFoundModel;
 import com.example.mathmastery_beta.utils.DeepLinkHandler;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.jetbrains.annotations.Nullable;
 import java.io.File;
+import java.lang.reflect.Type;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -115,16 +121,11 @@ public class MainActivity extends AppCompatActivity {
         CardView resultFoundGame = findViewById(R.id.result_found_game);
         CardView equalFoundGame = findViewById(R.id.equal_found_game);
         CardView miniGame2048 = findViewById(R.id.mini_game_2048);
+        CardView random = findViewById(R.id.random_game);
 
-        miniGame2048.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), com.kynzai.game2048.game.MainActivity.class);
-
-                v.getContext().startActivity(intent);
-
-
-            }
+        miniGame2048.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), com.kynzai.game2048.game.MainActivity.class);
+            v.getContext().startActivity(intent);
         });
 
         operandFoundGame.setOnClickListener(v -> startLevelBarActivity("operand_found.json",
@@ -138,12 +139,30 @@ public class MainActivity extends AppCompatActivity {
 
         equalFoundGame.setOnClickListener(v -> startLevelBarActivity("equal_found.json",
                 EqualFoundModel.class));
+
+        random.setOnClickListener(v -> {
+            String[] games = {"operand_found.json", "operation_found.json", "result_found.json", "equal_found.json", "mini_game_2048"};
+            Class<?>[] cl = {OperandFoundModel.class, OperationFoundModel.class, ResultFoundModel.class, EqualFoundModel.class, null};
+
+            int rand = (int) (Math.random() * games.length);
+            String randomGame = games[rand];
+
+            if ("mini_game_2048".equals(randomGame)) {
+                Intent intent = new Intent(v.getContext(), com.kynzai.game2048.game.MainActivity.class);
+                v.getContext().startActivity(intent);
+            }
+            else
+            {
+                startLevelBarActivity(randomGame, Objects.requireNonNull(cl[rand]));
+            }
+        });
     }
 
     private void startLevelBarActivity(String jsonFileName, Class<?> model) {
         Intent intent = new Intent(MainActivity.this, LevelBarActivity.class);
         intent.putExtra("json", jsonFileName);
         intent.putExtra("model", model.getName());
+
         startActivity(intent);
     }
 

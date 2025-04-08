@@ -184,18 +184,8 @@ public class OperandFoundActivity extends AppCompatActivity {
         operation.setText(randomOperation);
         result.setText(decFormatResult);
 
-        setAnimation();
-
         HandlerAdaptive handlerAdaptive = new HandlerAdaptive(this);
         handlerAdaptive.setAdaptiveExample();
-    }
-
-    private void setAnimation(){
-        animator.textUpDownAnimation(num1, 0);
-        animator.textUpDownAnimation(operation, 100);
-        animator.textUpDownAnimation(num2, 200);
-        animator.textUpDownAnimation(equal, 300);
-        animator.textUpDownAnimation(result, 400);
     }
 
     private List<Integer> getOperandList(){

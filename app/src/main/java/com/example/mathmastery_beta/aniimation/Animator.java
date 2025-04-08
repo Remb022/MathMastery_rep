@@ -3,27 +3,8 @@ package com.example.mathmastery_beta.aniimation;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
-import android.widget.TextView;
 
 public class Animator {
-
-    public void textUpDownAnimation(TextView textView, long delay) {
-        textView.animate().cancel();
-        textView.setTranslationY(-100);
-        textView.setAlpha(0);
-
-        ObjectAnimator translationY = ObjectAnimator.ofFloat(textView, "translationY", -100, 0);
-        translationY.setDuration(500);
-        translationY.setStartDelay(delay);
-
-        ObjectAnimator alpha = ObjectAnimator.ofFloat(textView, "alpha", 0, 1);
-        alpha.setDuration(500);
-        alpha.setStartDelay(delay);
-
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(translationY, alpha);
-        animatorSet.start();
-    }
 
     public void setUnlockLevelAnimation(View view) {
         ObjectAnimator rotateLeft = ObjectAnimator.ofFloat(view, "rotation", 0f, -4f);

@@ -264,7 +264,7 @@
 
             <!-- Игра 6 -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_game_6"
+                android:id="@+id/random_game"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:layout_weight="1"

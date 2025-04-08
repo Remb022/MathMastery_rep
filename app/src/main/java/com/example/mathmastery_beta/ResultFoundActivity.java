@@ -174,18 +174,8 @@ public class ResultFoundActivity extends AppCompatActivity {
         operation.setText(operationList.get(index));
         num2.setText(String.valueOf(numList2.get(index)));
 
-        setAnimation();
-
         HandlerAdaptive handlerAdaptive = new HandlerAdaptive(this);
         handlerAdaptive.setAdaptiveExample();
-    }
-
-    private void setAnimation(){
-        animator.textUpDownAnimation(num1, 0);
-        animator.textUpDownAnimation(operation, 100);
-        animator.textUpDownAnimation(num2, 200);
-        animator.textUpDownAnimation(equal, 300);
-        animator.textUpDownAnimation(result, 400);
     }
 
     private void generateExample() {

@@ -174,16 +174,8 @@ public class EqualFoundActivity extends AppCompatActivity {
         num1.setText(String.valueOf(randomNum1));
         num2.setText(String.valueOf(randomNum2));
 
-        setAnimation();
-
         HandlerAdaptive componentAdaptive = new HandlerAdaptive(this);
         componentAdaptive.setAdaptiveEqualExample();
-    }
-
-    private void setAnimation(){
-        animator.textUpDownAnimation(num1, 0);
-        animator.textUpDownAnimation(operation, 100);
-        animator.textUpDownAnimation(num2, 200);
     }
 
     private void gameNotTrueEqual() {
