@@ -6,7 +6,9 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -114,12 +116,35 @@ public class ResultFoundActivity extends AppCompatActivity {
     private int page = 0;
     private int count = 0;
     private void gameProcessClick(TextView clickedLabel){
+        View gradientBottomGreen = findViewById(R.id.gradient_bottom_green);
+        View gradientTopGreen = findViewById(R.id.gradient_top_green);
+
+        TextView num1 = findViewById(R.id.num1);
+        TextView op = findViewById(R.id.operation);
+        TextView num2 = findViewById(R.id.num2);
+        TextView equal = findViewById(R.id.equal);
+        TextView res = findViewById(R.id.result);
+
+        LinearLayout linearLayout = findViewById(R.id.descriptionLinearLayout);
+
         double result = Double.parseDouble(clickedLabel.getText().toString());
         double correctResult = calculator.calculateResult(numList1.get(count), numList2.get(count), operationList.get(count));
 
         if (Math.abs(result - correctResult) < 0.1) {
             count++;
             if (count < model.getWidth() * model.getHeight()) {
+                //вертикальная тряска
+                MyAnimation.shake_vertical(linearLayout);
+                //подсветка градиента
+                MyAnimation.glowEffect(gradientBottomGreen);
+                MyAnimation.glowEffect(gradientTopGreen);
+                //изменение цвета каждого числа
+                MyAnimation.changeTextColor(num1, R.color.yellow_gray, R.color.green, 600);
+                MyAnimation.changeTextColor(op, R.color.yellow_gray, R.color.green, 600);
+                MyAnimation.changeTextColor(num2, R.color.yellow_gray, R.color.green, 600);
+                MyAnimation.changeTextColor(equal, R.color.yellow_gray, R.color.green, 600);
+                MyAnimation.changeTextColor(res, R.color.yellow_gray, R.color.green, 600);
+
                 clickedLabel.setEnabled(false);
                 clickedLabel.setBackgroundResource(R.drawable.cell_border_game_clicked);
                 clickedLabel.setTextColor(Color.parseColor("#b5b5b5"));
@@ -206,8 +231,27 @@ public class ResultFoundActivity extends AppCompatActivity {
     }
 
     private void gameNotTrueEqual() {
-        Toast.makeText(this, "Not True Result!", Toast.LENGTH_SHORT).show();
-        handlerTimer.addFineTime();
+        View gradientBottomRed = findViewById(R.id.gradient_bottom_red);
+        View gradientTopRed = findViewById(R.id.gradient_top_red);
+
+        TextView num1 = findViewById(R.id.num1);
+        TextView operation = findViewById(R.id.operation);
+        TextView num2 = findViewById(R.id.num2);
+        TextView equal = findViewById(R.id.equal);
+        TextView result = findViewById(R.id.result);
+
+        LinearLayout linearLayout = findViewById(R.id.descriptionLinearLayout);
+
+        MyAnimation.glowEffect(gradientBottomRed);
+        MyAnimation.glowEffect(gradientTopRed);
+
+        MyAnimation.changeTextColor(num1, R.color.yellow_gray, R.color.red, 600);
+        MyAnimation.changeTextColor(operation, R.color.yellow_gray, R.color.red, 600);
+        MyAnimation.changeTextColor(num2, R.color.yellow_gray, R.color.red, 600);
+        MyAnimation.changeTextColor(equal, R.color.yellow_gray, R.color.red, 600);
+        MyAnimation.changeTextColor(result, R.color.yellow_gray, R.color.red, 600);
+
+        MyAnimation.shake_horizontal(linearLayout);
     }
 
     private void gameEnd() {

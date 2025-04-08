@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"> MathMastery_beta </string>
+    <string name="app_name"> MathMastery</string>
 
     <string name="operand_found"> X + \u003F = C </string>
     <string name="operation_found"> X ? Y = С </string>
