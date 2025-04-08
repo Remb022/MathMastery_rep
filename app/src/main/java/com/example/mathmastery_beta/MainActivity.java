@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         loadNickname();
         loadAvatar();
         adaptiveComponent();
+        themStatusBar();
 
     }
     @Override
@@ -55,6 +58,12 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         updateCardLevels();
         updateProgress();
+    }
+
+    private void themStatusBar(){
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(getResources().getColor(R.color.gray));
     }
 
     private void setNicknameFormListener(){
