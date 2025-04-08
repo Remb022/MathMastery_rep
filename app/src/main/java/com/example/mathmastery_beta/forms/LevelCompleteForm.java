@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,23 +40,24 @@ public class LevelCompleteForm {
 
         TextView congratulation = new TextView(context);
         congratulation.setText("Уровень " + level);
-        congratulation.setTextSize(35);
-        congratulation.setTextColor(ContextCompat.getColor(context, R.color.black));
+        congratulation.setTextSize(35);;
+        congratulation.setTypeface(null, Typeface.BOLD);
+        congratulation.setTextColor(ContextCompat.getColor(context, R.color.gray));
         congratulation.setGravity(Gravity.CENTER);
         container.addView(congratulation);
 
         TextView congratulationD = new TextView(context);
         congratulationD.setText("пройден!");
-        congratulationD.setTextSize(20);
-        congratulationD.setTextColor(ContextCompat.getColor(context, R.color.black));
+        congratulationD.setTextSize(30);
+        congratulationD.setTextColor(ContextCompat.getColor(context, R.color.gray));
         congratulationD.setGravity(Gravity.CENTER);
         congratulationD.setPadding(0, 24, 0, 0);
         container.addView(congratulationD);
 
         TextView time = new TextView(context);
         time.setText(currentTime);
-        time.setTextSize(35);
-        time.setTextColor(ContextCompat.getColor(context, R.color.yellow_gray));
+        time.setTextSize(30);
+        time.setTextColor(ContextCompat.getColor(context, R.color.black));
         time.setGravity(Gravity.CENTER);
         time.setPadding(0, 64, 0, 64);
         container.addView(time);
