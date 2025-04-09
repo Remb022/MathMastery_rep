@@ -2,23 +2,12 @@ package com.example.mathmastery_beta;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
-import com.example.mathmastery_beta.forms.ChangeNicknameForm;
+import com.example.mathmastery_beta.handlers.AchieveChecker;
 import com.example.mathmastery_beta.handlers.HandlerAdaptive;
-import com.example.mathmastery_beta.handlers.HandlerDataSave;
 import com.example.mathmastery_beta.level_status_model.EqualFoundModel;
 import com.example.mathmastery_beta.handlers.HandlerJSON;
 import com.example.mathmastery_beta.level_status_model.LevelModel;
@@ -26,20 +15,19 @@ import com.example.mathmastery_beta.level_status_model.OperandFoundModel;
 import com.example.mathmastery_beta.level_status_model.OperationFoundModel;
 import com.example.mathmastery_beta.level_status_model.ResultFoundModel;
 import com.example.mathmastery_beta.utils.DeepLinkHandler;
+import com.example.mathmastery_beta.handlers.HandlerHeaderEvents;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.jetbrains.annotations.Nullable;
-import java.io.File;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends HandlerHeaderEvents {
 
     private final HandlerJSON handlerJSON = new HandlerJSON(this);
-    private final HandlerDataSave handlerDataSave = new HandlerDataSave(this);
+    private final AchieveChecker achieveChecker = new AchieveChecker(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,71 +45,25 @@ public class MainActivity extends AppCompatActivity {
         loadNickname();
         loadAvatar();
         adaptiveComponent();
-        themStatusBar();
-
     }
+
     @Override
     protected void onResume() {
         super.onResume();
-        updateCardLevels();
+        loadAvatar();
+        loadNickname();
         updateProgress();
+        updateCardLevels();
+
+        achieveChecker.checkLevelAchievements();
     }
 
-    private void themStatusBar(){
-        Window window = getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(getResources().getColor(R.color.gray));
-    }
-
-    private void setNicknameFormListener(){
-        TextView nicknameTextView = findViewById(R.id.nickname_header_info);
-        ChangeNicknameForm changeNicknameForm = new ChangeNicknameForm(this, handlerDataSave);
-        nicknameTextView.setOnClickListener(v -> changeNicknameForm.showEditNicknameDialog(nicknameTextView));
-    }
-
-    private static final int PICK_IMAGE_REQUEST = 1;
-    private void setChangeAvatarListener() {
-        ImageButton avatarButton = findViewById(R.id.avatar_header_icon);
-        avatarButton.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    private void setFunctionalHeaderIcon() {
+        ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
+        functionalHeaderIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AchieveActivity.class);
+            startActivity(intent);
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
-            Uri selectedImageUri = data.getData();
-            if (selectedImageUri != null) {
-                String filePath = handlerDataSave.copyImageFromUri(selectedImageUri);
-                if (filePath != null) {
-                    handlerDataSave.saveAvatar(filePath);
-                    avatarRound(filePath);
-                }
-            }
-        }
-    }
-
-    private void avatarRound(String filePath) {
-        ImageButton avatarButton = findViewById(R.id.avatar_header_icon);
-        Glide.with(this)
-                .load(new File(filePath))
-                .apply(RequestOptions.circleCropTransform())
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
-                .into(avatarButton);
-    }
-
-    private void loadAvatar() {
-        String filePath = handlerDataSave.getAvatar();
-        if (filePath != null) {
-            File file = new File(filePath);
-            if (file.exists()) {
-                avatarRound(filePath);
-            }
-        }
     }
 
     private void setClickListener(){
@@ -210,31 +152,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-    private void setFunctionalHeaderIcon() {
-        ImageButton functionalHeaderIcon = findViewById(R.id.functional_header_icon);
-        functionalHeaderIcon.setVisibility(View.INVISIBLE);
-    }
-
     private void downloadJsonFiles(){
-        HandlerJSON handlerJSON = new HandlerJSON(this);
         handlerJSON.copyFileFromAssets("operation_found.json", "operation_found.json");
         handlerJSON.copyFileFromAssets("operand_found.json", "operand_found.json");
         handlerJSON.copyFileFromAssets("result_found.json", "result_found.json");
         handlerJSON.copyFileFromAssets("equal_found.json", "equal_found.json");
-    }
-
-    private void loadNickname() {
-        TextView nicknameTextView = findViewById(R.id.nickname_header_info);
-        String nickname = handlerDataSave.getNickname();
-        nicknameTextView.setText(nickname);
-    }
-
-    private void adaptiveComponent(){
-        HandlerAdaptive handlerAdaptive = new HandlerAdaptive(this);
-        handlerAdaptive.setMainHeaderComponentSize();
-        handlerAdaptive.setMainPageComponentSize();
-        handlerAdaptive.setFooterTextSize();
     }
 
     @SuppressLint("SetTextI18n")
@@ -251,12 +173,11 @@ public class MainActivity extends AppCompatActivity {
         setMaxLevelForCard(R.id.level_card_score_4, "equal_found.json", EqualFoundModel.class);
     }
 
-    private void updateProgress() {
-        TextView levelFooterIndex = findViewById(R.id.level_footer_index);
-        TextView levelHeaderInfo = findViewById(R.id.level_header_info);
-        ProgressBar progressBar = findViewById(R.id.progressBar);
-
-        handlerDataSave.updateProgress(levelFooterIndex, levelHeaderInfo, progressBar);
+    protected void adaptiveComponent() {
+        HandlerAdaptive handlerAdaptive = new HandlerAdaptive(this);
+        handlerAdaptive.setMainHeaderComponentSize();
+        handlerAdaptive.setMainPageComponentSize();
+        handlerAdaptive.setFooterTextSize();
     }
 
 }

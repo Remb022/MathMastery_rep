@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 import com.example.mathmastery_beta.adaptor.LevelPagerAdapter;
+import com.example.mathmastery_beta.handlers.AchieveChecker;
 import com.example.mathmastery_beta.handlers.HandlerAdaptive;
 import com.example.mathmastery_beta.handlers.HandlerDataSave;
 import com.example.mathmastery_beta.handlers.HandlerJSON;
@@ -22,6 +23,7 @@ import com.google.gson.reflect.TypeToken;
 public class LevelBarActivity extends AppCompatActivity {
 
     private final HandlerDataSave handlerDataSave = new HandlerDataSave(this);
+    private final AchieveChecker achieveChecker = new AchieveChecker(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,8 @@ public class LevelBarActivity extends AppCompatActivity {
         super.onResume();
         setLevelList();
         updateFooterProgress();
+
+        achieveChecker.checkLevelAchievements();
     }
 
 

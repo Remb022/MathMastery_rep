@@ -21,6 +21,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mathmastery_beta.aniimation.Animator;
+import com.example.mathmastery_beta.forms.AchievePushForm;
 import com.example.mathmastery_beta.forms.LevelCompleteForm;
 import com.example.mathmastery_beta.handlers.HandlerAdaptive;
 import com.example.mathmastery_beta.handlers.HandlerDataSave;
@@ -236,6 +237,7 @@ public class EqualFoundActivity extends AppCompatActivity {
 
         LevelCompleteForm levelCompleteForm = new LevelCompleteForm(this, handlerTimer);
         levelCompleteForm.showLevelCompleteDialog(model.getLevel(), currentRecord);
+
     }
 
     private void adaptiveComponent(){
