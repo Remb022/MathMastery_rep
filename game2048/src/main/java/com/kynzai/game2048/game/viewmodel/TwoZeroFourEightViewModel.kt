@@ -10,6 +10,7 @@ import com.kynzai.game2048.datastore.GameState
 import com.kynzai.game2048.game.board.GameStatus
 import com.kynzai.game2048.game.logic.MoveNumbersUseCase
 import com.kynzai.game2048.game.logic.MovementDirection
+import com.kynzai.game2048.game.logic.records.UserProgressManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,7 +22,8 @@ import javax.inject.Inject
 class TwoZeroFourEightViewModel @Inject constructor(
     private val boardGameUseCases: CreateBoardGameUseCase,
     private val moveNumbersUseCase: MoveNumbersUseCase,
-    private val dataStoreManager: DataStoreManager
+    private val dataStoreManager: DataStoreManager,
+    private val userProgressManager: UserProgressManager
 ) : ViewModel() {
     private val _gameState = MutableStateFlow(GameState())
     val gameState = _gameState.asStateFlow()
@@ -38,11 +40,6 @@ class TwoZeroFourEightViewModel @Inject constructor(
         }
     }
 
-    private fun loadGameState() = viewModelScope.launch {
-        dataStoreManager.gameStateFlow.collect { savedState ->
-            _gameState.value = savedState
-        }
-    }
 
     //TODO: Размер поля
     fun startNewGame() = viewModelScope.launch {
@@ -87,6 +84,17 @@ class TwoZeroFourEightViewModel @Inject constructor(
     }
 
     private fun saveRecord(score: Int) = viewModelScope.launch {
+        val currentHighScore = _gameState.value.highScore
+
+        // Добавляем опыт только если это новый рекорд и улучшение на положительное значение
+        if (score > currentHighScore) {
+            val improvement = score - currentHighScore
+            if (improvement > 0) {
+                val expToSave = (improvement / 100 * 25)
+                userProgressManager.addUserExp(expToSave)
+            }
+        }
+
         dataStoreManager.saveHighScore(score)
     }
 

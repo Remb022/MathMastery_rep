@@ -8,6 +8,7 @@ import com.kynzai.game2048.game.board.CheckPossibleMovesUseCase
 import com.kynzai.game2048.game.logic.CombineAndMoveNumbersUseCase
 import com.kynzai.game2048.game.logic.HasWonTheGameUseCase
 import com.kynzai.game2048.game.logic.MoveNumbersUseCase
+import com.kynzai.game2048.game.logic.records.UserProgressManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

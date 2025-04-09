@@ -28,7 +28,6 @@ import com.kynzai.game2048.game.viewmodel.TwoZeroFourEightViewModel
 
 
 val corners = 10.dp
-val paddings_inside_board = 3.dp
 val paddings_outside_board = 18.dp
 val SpaceBeforeBoard = 50.dp
 

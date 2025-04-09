@@ -1,5 +1,8 @@
 package com.kynzai.game2048.game.board.components
 
+import android.graphics.Canvas
+import android.graphics.Path.Direction
+import android.service.quicksettings.Tile
 import android.util.Log
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
@@ -84,3 +87,4 @@ fun BoardGame(
         }
     }
 }
+
