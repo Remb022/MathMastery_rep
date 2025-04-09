@@ -29,6 +29,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.ColorFilter.Companion.tint
 
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -37,6 +38,8 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.kynzai.game2048.game.ui.theme.Gray
 import com.kynzai.game2048.game.ui.theme.White
+import com.kynzai.game2048.game.ui.theme.Yallow
+import com.kynzai.game2048.game.ui.theme.Yellow_gray
 
 val AppNameDefaultHeight = 60. dp
 val IconButtonHeight = 70. dp
@@ -146,14 +149,10 @@ fun RestartButton(
         modifier = modifier
             .height(IconButtonHeight)
             .width(IconButtonHeight)
-            .border(
-                shape = RoundedCornerShape(corners),
-                color = Color.Black,
-                width = 1.dp
-            ),
+            ,
         shape = RoundedCornerShape(corners),
         colors = ButtonDefaults.buttonColors(
-            containerColor = Yellow3,
+            containerColor = Yallow,
             contentColor = Color.Black,
             disabledContainerColor = Yellow1,
             disabledContentColor = Color.White
@@ -162,7 +161,8 @@ fun RestartButton(
         Image(
             painter = painterResource(iconResource),
             contentDescription = "Начать заново",
-            modifier = Modifier.size(150.dp)
+            colorFilter = tint(Gray),
+            modifier = Modifier.size(40.dp)
         )
     }
 }
