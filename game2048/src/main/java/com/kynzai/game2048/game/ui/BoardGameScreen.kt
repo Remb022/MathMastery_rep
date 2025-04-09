@@ -54,14 +54,13 @@ fun BoardGameScreen(viewModel: TwoZeroFourEightViewModel, uiState: GameState) {
         ) {
             HeaderPanel(
                 modifier = Modifier.clickable {
-                    println("HeaderPanel clicked!")
                 }
             )
         }
 
         Column(
             modifier = Modifier
-                .padding(top = 100.dp)
+                .padding(top = 30.dp)
                 .fillMaxSize()
                 .background(White2),
             horizontalAlignment = CenterHorizontally
