@@ -1,6 +1,8 @@
 package com.kynzai.game2048.game.ui
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kynzai.game2048.game.viewmodel.TwoZeroFourEightViewModel
 

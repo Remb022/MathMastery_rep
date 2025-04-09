@@ -28,32 +28,38 @@ public class HandlerDataSave {
         editor.apply();
     }
 
-    private int getUserLevel() {
+    public int getUserLevel() {
         SharedPreferences prefs = context.getSharedPreferences("userProgress", Context.MODE_PRIVATE);
         return prefs.getInt("userLevel", 1);
     }
 
-    private int getUserExp() {
+    public int getUserExp() {
         SharedPreferences prefs = context.getSharedPreferences("userProgress", Context.MODE_PRIVATE);
         return prefs.getInt("userExp", 0);
     }
+
 
     private int calculateExpToNextLevel(int currentLevel) {
         return currentLevel * 100;
     }
 
     public void userLevelUp(int levelRewardExp) {
-        int userExp = getUserExp();
-        int userLevel = getUserLevel();
-        int newExp = userExp + levelRewardExp;
+        Log.d("EXP_HANDLER", "┌── Начало обработки ──");
+        Log.d("EXP_HANDLER", "│ Текущий уровень: " + getUserLevel());
+        Log.d("EXP_HANDLER", "│ Текущий опыт: " + getUserExp());
 
-        int expToNextLevel = calculateExpToNextLevel(userLevel);
-        if (newExp >= expToNextLevel) {
-            userLevel++;
-            newExp -= expToNextLevel;
+        int newExp = getUserExp() + levelRewardExp;
+        int newLevel = getUserLevel();
+        int neededExp = calculateExpToNextLevel(newLevel);
+
+        if(newExp >= neededExp) {
+            newLevel++;
+            newExp -= neededExp;
+            Log.d("EXP_HANDLER", "├── УРОВЕНЬ ПОВЫШЕН! ──");
         }
 
-        saveUserProgress(userLevel, newExp);
+        saveUserProgress(newLevel, newExp);
+        Log.d("EXP_HANDLER", "└── Сохранено: Lv.$newLevel Exp.$newExp");
     }
 
     @SuppressLint("SetTextI18n")

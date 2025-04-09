@@ -26,6 +26,8 @@ val Grey1 = Color(0xFFD9D9D9)
 val Grey2 = Color(0xFFA4A4A4)
 
 val White2 = Color(0xFFDCDCDC)
+val Yellow_gray = Color(0xFF595843)
+//    <color name="yellow_gray">#595843</color>
 val Yallow = Color(0xFFF4AF16)
 val LightYallow = Color(0xFFFDFAE2)
 val Gray = Color(0xFF363634)

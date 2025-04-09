@@ -2,9 +2,22 @@ package com.kynzai.game2048.game.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -13,20 +26,19 @@ import androidx.compose.ui.zIndex
 import com.kynzai.game2048.R
 import com.kynzai.game2048.datastore.GameState
 import com.kynzai.game2048.game.board.GameStatus
+import com.kynzai.game2048.game.board.components.BoardGame
 import com.kynzai.game2048.game.logic.DragGesturesDirectionDetector
 import com.kynzai.game2048.game.logic.MovementDirection
-import com.kynzai.game2048.game.board.components.BoardGame
 import com.kynzai.game2048.game.ui.components.AppNameDefaultHeight
 import com.kynzai.game2048.game.ui.components.GameOverDialog
 import com.kynzai.game2048.game.ui.components.HeaderPanel
 import com.kynzai.game2048.game.ui.components.HighScoreDisplay
-import com.kynzai.game2048.game.ui.components.RestartButton
 import com.kynzai.game2048.game.ui.components.IconButtonHeight
+import com.kynzai.game2048.game.ui.components.RestartButton
 import com.kynzai.game2048.game.ui.theme.White2
 import com.kynzai.game2048.game.viewmodel.TwoZeroFourEightViewModel
 
 val corners = 10.dp
-val paddings_inside_board = 3.dp
 val paddings_outside_board = 18.dp
 val SpaceBeforeBoard = 50.dp
 
@@ -53,7 +65,6 @@ fun BoardGameScreen(viewModel: TwoZeroFourEightViewModel, uiState: GameState) {
         ) {
             HeaderPanel(
                 modifier = Modifier.clickable {
-                    println("HeaderPanel clicked!")
                 }
             )
 
@@ -61,7 +72,7 @@ fun BoardGameScreen(viewModel: TwoZeroFourEightViewModel, uiState: GameState) {
 
         Column(
             modifier = Modifier
-                .padding(top = 100.dp)
+                .padding(top = 30.dp)
                 .fillMaxSize()
                 .background(White2),
             horizontalAlignment = CenterHorizontally

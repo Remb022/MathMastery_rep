@@ -1,7 +1,9 @@
 package com.kynzai.game2048.datastore
 
 import android.content.Context
-import androidx.datastore.preferences.core.*
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.kynzai.game2048.game.board.GameStatus
 import kotlinx.coroutines.flow.Flow
