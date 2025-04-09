@@ -7,4 +7,9 @@
     <color name="yalow">#F4AF16</color>
     <color name="lightYalow">#FDFAE2</color>
     <color name="green">#4CAF50</color>
+    <color name="light_gray">#6D6D6B</color>
+    <color name="yellow">#F4AF16</color>
+    <color name="lightYellow">#FDFAE2</color>
+    <color name="yellow_gray">#595843</color>
+    <color name="transparent">#00000000</color>
 </resources>
