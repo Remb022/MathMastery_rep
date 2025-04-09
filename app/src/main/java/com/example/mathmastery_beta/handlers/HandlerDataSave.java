@@ -12,6 +12,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 public class HandlerDataSave {
     private final Context context;
@@ -139,6 +144,18 @@ public class HandlerDataSave {
             Log.e("Copy File", "Error Copy, File Not Download");
             return null;
         }
+    }
+
+    public void saveAchieveStatus(String key, boolean value) {
+        SharedPreferences prefs = context.getSharedPreferences("achievements", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean(key, value);
+        editor.apply();
+    }
+
+    public boolean getAchieveStatus(String key) {
+        SharedPreferences prefs = context.getSharedPreferences("achievements", Context.MODE_PRIVATE);
+        return prefs.getBoolean(key, false);
     }
 
 }

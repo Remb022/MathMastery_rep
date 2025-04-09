@@ -7,7 +7,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 
-import com.example.mathmastery_beta.forms.AchievePushForm;
 import com.example.mathmastery_beta.handlers.AchieveChecker;
 import com.example.mathmastery_beta.handlers.HandlerAdaptive;
 import com.example.mathmastery_beta.level_status_model.EqualFoundModel;
@@ -30,6 +29,7 @@ import java.util.stream.Collectors;
 public class MainActivity extends HandlerHeaderEvents {
 
     private final HandlerJSON handlerJSON = new HandlerJSON(this);
+    private final AchieveChecker achieveChecker = new AchieveChecker(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,8 @@ public class MainActivity extends HandlerHeaderEvents {
         loadNickname();
         updateProgress();
         updateCardLevels();
+
+        achieveChecker.checkLevelAchievements();
     }
 
     private void setFunctionalHeaderIcon() {

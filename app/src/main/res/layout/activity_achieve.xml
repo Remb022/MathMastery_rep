@@ -92,7 +92,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/achievement_start_icon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -147,7 +147,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/achievement_levelMode1_icon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -202,7 +202,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/achievement_levelMode2_icon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -257,7 +257,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/achievement_levelUp1_icon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -312,7 +312,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/achievement_levelUp2_icon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -367,7 +367,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/achievement_levelUp3_icon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -422,7 +422,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/achievement_custom_icon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -477,7 +477,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/achievement_secret_icon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"

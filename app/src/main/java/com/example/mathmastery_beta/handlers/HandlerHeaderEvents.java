@@ -22,6 +22,7 @@ import java.io.File;
 public abstract class HandlerHeaderEvents extends AppCompatActivity {
     protected static final int PICK_IMAGE_REQUEST = 1;
     protected final HandlerDataSave handlerDataSave = new HandlerDataSave(this);
+    protected final AchieveChecker achieveChecker = new AchieveChecker(this);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,6 +78,7 @@ public abstract class HandlerHeaderEvents extends AppCompatActivity {
                 avatarRound(filePath);
             }
         }
+        achieveChecker.customProfileCheck();
     }
 
     protected void loadNickname() {

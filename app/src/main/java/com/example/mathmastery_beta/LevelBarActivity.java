@@ -23,6 +23,7 @@ import com.google.gson.reflect.TypeToken;
 public class LevelBarActivity extends AppCompatActivity {
 
     private final HandlerDataSave handlerDataSave = new HandlerDataSave(this);
+    private final AchieveChecker achieveChecker = new AchieveChecker(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class LevelBarActivity extends AppCompatActivity {
         super.onResume();
         setLevelList();
         updateFooterProgress();
+
+        achieveChecker.checkLevelAchievements();
     }
 
 
