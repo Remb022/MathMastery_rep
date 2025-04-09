@@ -1,8 +1,8 @@
 package com.kynzai.game2048.game.logic
 
 import com.kynzai.game2048.game.board.AddNumberToBoardGameUseCase
-import com.kynzai.game2048.game.board.GameStatus
 import com.kynzai.game2048.game.board.CheckPossibleMovesUseCase
+import com.kynzai.game2048.game.board.GameStatus
 import com.kynzai.game2048.game.board.MoveNumberResult
 import javax.inject.Inject
 

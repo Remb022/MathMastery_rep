@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kynzai.game2048.datastore.DEFAULT_VALUE
 import com.kynzai.game2048.datastore.DataStoreManager
+import com.kynzai.game2048.datastore.GameState
 import com.kynzai.game2048.game.board.CreateBoardGameUseCase
 import com.kynzai.game2048.game.board.DEFAULT_NUMBER_TO_WIN
-import com.kynzai.game2048.datastore.GameState
 import com.kynzai.game2048.game.board.GameStatus
 import com.kynzai.game2048.game.logic.MoveNumbersUseCase
 import com.kynzai.game2048.game.logic.MovementDirection
