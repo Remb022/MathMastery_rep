@@ -1,6 +1,5 @@
 package com.kynzai.game2048.game.ui
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -25,7 +24,6 @@ import com.kynzai.game2048.game.ui.components.RestartButton
 import com.kynzai.game2048.game.ui.components.IconButtonHeight
 import com.kynzai.game2048.game.ui.theme.White2
 import com.kynzai.game2048.game.viewmodel.TwoZeroFourEightViewModel
-
 
 val corners = 10.dp
 val paddings_inside_board = 3.dp
@@ -58,6 +56,7 @@ fun BoardGameScreen(viewModel: TwoZeroFourEightViewModel, uiState: GameState) {
                     println("HeaderPanel clicked!")
                 }
             )
+
         }
 
         Column(
