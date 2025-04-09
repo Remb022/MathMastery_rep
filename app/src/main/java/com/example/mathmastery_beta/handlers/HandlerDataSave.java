@@ -28,7 +28,7 @@ public class HandlerDataSave {
         editor.apply();
     }
 
-    private int getUserLevel() {
+    public int getUserLevel() {
         SharedPreferences prefs = context.getSharedPreferences("userProgress", Context.MODE_PRIVATE);
         return prefs.getInt("userLevel", 1);
     }

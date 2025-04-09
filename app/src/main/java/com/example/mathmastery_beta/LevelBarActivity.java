@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 import com.example.mathmastery_beta.adaptor.LevelPagerAdapter;
+import com.example.mathmastery_beta.handlers.AchieveChecker;
 import com.example.mathmastery_beta.handlers.HandlerAdaptive;
 import com.example.mathmastery_beta.handlers.HandlerDataSave;
 import com.example.mathmastery_beta.handlers.HandlerJSON;

@@ -252,7 +252,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_margin="10dp"
-                    android:text="Level: 1"
+                    android:text="Record: 0"
                     android:textColor="@color/gray"
                     android:textSize="20sp" />
 
@@ -299,7 +299,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_margin="10dp"
-                    android:text="Level: 1"
+                    android:text="Level: ?"
                     android:textColor="@color/gray"
                     android:textSize="20sp" />
 
