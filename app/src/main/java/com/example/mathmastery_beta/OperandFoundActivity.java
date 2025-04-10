@@ -13,11 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mathmastery_beta.aniimation.Animator;
+import com.example.mathmastery_beta.aniimation.MyAnimation;
 import com.example.mathmastery_beta.forms.LevelCompleteForm;
 import com.example.mathmastery_beta.handlers.HandlerAdaptive;
 import com.example.mathmastery_beta.handlers.HandlerCalculate;

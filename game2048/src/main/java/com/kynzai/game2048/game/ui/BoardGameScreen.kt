@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -20,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
@@ -127,7 +130,13 @@ fun BoardGameScreen(viewModel: TwoZeroFourEightViewModel, uiState: GameState) {
             ) {
 
                 RestartButton(
-                    modifier = Modifier.offset(y = reStartButtonY),
+                    modifier = Modifier
+                        .offset(y = reStartButtonY)
+                        .shadow(
+                            elevation = 2.dp,
+                            shape = RoundedCornerShape(15.dp) ,
+                            clip = false
+                        ),
                     gameStatus = uiState.gameStatus,
                     onRestartConfirmed = { viewModel.startNewGame() },
                     iconResource = R.drawable.start_again // Иконка для кнопки

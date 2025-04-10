@@ -1,4 +1,4 @@
-package com.example.mathmastery_beta;
+package com.example.mathmastery_beta.aniimation;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
@@ -12,6 +12,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
+
+import com.example.mathmastery_beta.R;
 
 public class MyAnimation {
     //горизонтальная анимация

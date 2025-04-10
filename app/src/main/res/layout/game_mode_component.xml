@@ -32,6 +32,7 @@
 
                 <!-- Информация игра 1 -->
                 <ImageButton
+                    android:id="@+id/rules_operand_game"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -79,6 +80,7 @@
 
                 <!-- Информация игра 2 -->
                 <ImageButton
+                    android:id="@+id/rules_operation_game"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -130,6 +132,7 @@
 
                 <!-- Информация игра 3 -->
                 <ImageButton
+                    android:id="@+id/rules_result_game"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -177,6 +180,7 @@
 
                 <!-- Информация игра 4 -->
                 <ImageButton
+                    android:id="@+id/rules_equal_game"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -228,6 +232,7 @@
 
                 <!-- Информация игра 5 -->
                 <ImageButton
+                    android:id="@+id/rules_2048_game"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -275,6 +280,7 @@
 
                 <!-- Информация игра 6 -->
                 <ImageButton
+                    android:id="@+id/rules_question"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"

@@ -71,20 +71,23 @@
     </LinearLayout>
 
     <!-- Body -->
+
+    <!-- Footer -->
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/footer"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header"
-        app:layout_constraintBottom_toTopOf="@+id/footer">
+        app:layout_constraintVertical_bias="0.0">
 
-      <include layout="@layout/game_mode_component"/>
+        <include layout="@layout/game_mode_component" />
 
     </ScrollView>
 
-    <!-- Footer -->
     <include
         layout="@layout/component_footer"
         android:id="@+id/footer" />

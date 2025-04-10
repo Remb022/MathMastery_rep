@@ -3,6 +3,7 @@ package com.example.mathmastery_beta;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
@@ -67,6 +68,14 @@ public class MainActivity extends HandlerHeaderEvents {
     }
 
     private void setClickListener(){
+        //Правила игр
+        ImageButton rulesOperandGame = findViewById(R.id.rules_operand_game);
+        ImageButton rulesOperationGame = findViewById(R.id.rules_operation_game);
+        ImageButton rulesResultGame = findViewById(R.id.rules_result_game);
+        ImageButton rulesEqualGame = findViewById(R.id.rules_equal_game);
+        ImageButton rules2048Game = findViewById(R.id.rules_2048_game);
+        ImageButton rulesQuestion = findViewById(R.id.rules_question);
+        //Карточки игр
         CardView operandFoundGame = findViewById(R.id.operand_found_game);
         CardView operationFoundGame = findViewById(R.id.operation_found_game);
         CardView resultFoundGame = findViewById(R.id.result_found_game);
@@ -74,6 +83,44 @@ public class MainActivity extends HandlerHeaderEvents {
         CardView miniGame2048 = findViewById(R.id.mini_game_2048);
         CardView random = findViewById(R.id.random_game);
 
+        //Переход на активности правил игр
+        rulesOperandGame.setOnClickListener(v -> {
+            Intent intent = new Intent(this, InformationGameActivity.class);
+            intent.putExtra("content_key", "rules_operand_game");
+            startActivity(intent);
+        });
+
+        rulesOperationGame.setOnClickListener(v -> {
+            Intent intent = new Intent(this, InformationGameActivity.class);
+            intent.putExtra("content_key", "rules_operation_game");
+            startActivity(intent);
+        });
+
+        rulesResultGame.setOnClickListener(v -> {
+            Intent intent = new Intent(this, InformationGameActivity.class);
+            intent.putExtra("content_key", "rules_result_game");
+            startActivity(intent);
+        });
+
+        rulesEqualGame.setOnClickListener(v -> {
+            Intent intent = new Intent(this, InformationGameActivity.class);
+            intent.putExtra("content_key", "rules_equal_game");
+            startActivity(intent);
+        });
+
+        rules2048Game.setOnClickListener(v -> {
+            Intent intent = new Intent(this, InformationGameActivity.class);
+            intent.putExtra("content_key", "rules_2048_game");
+            startActivity(intent);
+        });
+
+        rulesQuestion.setOnClickListener(v -> {
+            Intent intent = new Intent(this, InformationGameActivity.class);
+            intent.putExtra("content_key", "rules_question");
+            startActivity(intent);
+        });
+
+        //Переход на активности игр
         miniGame2048.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), com.kynzai.game2048.game.MainActivity.class);
             v.getContext().startActivity(intent);
