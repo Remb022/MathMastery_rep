@@ -9,14 +9,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
-
 import com.example.mathmastery_beta.R;
 import com.example.mathmastery_beta.handlers.AchieveChecker;
 import com.example.mathmastery_beta.handlers.HandlerDataSave;
-
 import java.util.Objects;
 
 public class ChangeNicknameForm {
@@ -37,9 +34,8 @@ public class ChangeNicknameForm {
 
         input.setBackgroundResource(R.drawable.edit_form_border);
         input.setPadding(16, 16, 16, 16);
+        input.setTextColor(ContextCompat.getColor(context, R.color.yellow_gray));
 
-        input.setTextColor(ContextCompat.getColor(context,R.color.yellow_gray));
-        input.setTextColor(ContextCompat.getColor(context,R.color.yellow_gray));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             input.setTextCursorDrawable(R.drawable.edit_form_selected_cursor);
         }
@@ -60,11 +56,10 @@ public class ChangeNicknameForm {
         builder.setView(container);
         builder.setPositiveButton("Сохранить", (dialog, which) -> {
             String newNickname = input.getText().toString().trim();
-            if(newNickname.length() >= 4 && newNickname.length() <= 15) {
+            if (newNickname.length() >= 4 && newNickname.length() <= 15) {
                 nicknameTextView.setText(newNickname);
                 handlerDataSave.saveNickname(newNickname);
-            }
-            else {
+            } else {
                 Toast.makeText(context, "Nick Not in Range 4-15", Toast.LENGTH_SHORT).show();
             }
         });
