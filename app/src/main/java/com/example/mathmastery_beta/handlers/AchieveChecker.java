@@ -73,7 +73,7 @@ public class AchieveChecker {
             }
         }
 
-        if (maxActiveLevel >= 1 && !handlerDataSave.getAchieveStatus("startGame")) {
+        if (maxActiveLevel > 1 && !handlerDataSave.getAchieveStatus("startGame")) {
             showAchievement("Начало пути", "Пройти любой уровень");
             handlerDataSave.saveAchieveStatus("startGame", true);
         }
