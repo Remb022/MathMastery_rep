@@ -10,7 +10,7 @@ MathMastery - это образовательное приложение, кот
 
 <!-- Добавьте скриншоты приложения здесь -->
 <p align="center">
-  <img src="C:\Users\calculator2.0\AndroidStudioProjects\MathMastery_rep\screenshots\main_screen.png" alt="Главный экран" width="250"/>
+  <img src="screenshots\main_screen.png" alt="Главный экран" width="250"/>
   <img src="screenshots/exercise_screen.png" alt="Экран упражнений" width="250"/>
   <img src="screenshots/game2048_screen.png" alt="Экран с игрой 2048" width="250"/>
   <img src="screenshots/game_menu_screen.png" alt="Экран с уровнями математических упражнений" width="250"/>
