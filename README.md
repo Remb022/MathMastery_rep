@@ -13,12 +13,7 @@ MathMastery - это образовательное приложение, кот
   <img src="screenshots\main_screen.png" alt="Главный экран" width="250"/>
   <img src="screenshots/exercise_screen.png" alt="Экран упражнений" width="250"/>
   <img src="screenshots/game2048_screen.png" alt="Экран с игрой 2048" width="250"/>
-  <img src="screenshots/game_menu_screen.png" alt="Экран с уровнями математических упражнений" width="250"/>
-  <img src="screenshots/progress_screen.png" alt="Экран отслеживания прогресса" width="250"/>
 
-- `game2048_screen.png` - Экран с игрой 2048
-- `game_menu_screen.png` - Экран с уровнями математических упражнений
-- `progress_screen.png` - Экран отслеживания прогресса
 </p>
 
 
